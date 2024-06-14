@@ -1,0 +1,57 @@
+<mat-card>
+    <mat-card-title>Add Specialization</mat-card-title>
+    <mat-divider></mat-divider>
+    <form [formGroup]="specilization">
+        <div class="row">
+            <!-- <div class="col-md-6">
+                    <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                        <mat-label class="star">Discipline</mat-label>
+                        <mat-select formControlName="sP_CD_Id" required>
+                            <mat-option *ngFor="let d of discipline" [value]="d.cD_Id">{{d.cD_ClinicalDiscipline}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="checkError('sP_CD_Id', 'required')">Discipline is required</mat-error>
+                    </mat-form-field>
+                </div> -->
+            <div class="col-md-6">
+                <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                    <mat-label class="star">Specialization Code</mat-label>
+                    <input matInput #input maxlength="10" placeholder="Eg.SPE00001" formControlName="sP_Code" required>
+                    <mat-error *ngIf="checkError('sP_Code', 'required')">Specilization Code is required</mat-error>
+                    <mat-error
+                        *ngIf="specilization.controls['sP_Code'].hasError('alphaNumCheck') || specilization.controls['sP_Code'].hasError('pattern') ">
+                        Specialization Code must start with "SPE" followed by numeric characters
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                    <mat-label class="star">Specilization Category</mat-label>
+                    <mat-select placeholder="Eg.India" formControlName="sP_CD_Id" required>
+                        <mat-option *ngFor="let s of specializationdd" [value]="s.spc_id">{{s.spc_Name}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="checkError('sP_CD_Id', 'required')">Specilization Category is required</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                    <mat-label class="star">Specialization Description</mat-label>
+                    <input matInput placeholder="Eg. MBBS" maxlength="45" formControlName="sP_Specialization" required>
+                    <mat-error *ngIf="checkError('sP_Specialization', 'required')">Specialization is
+                        required</mat-error>
+                    <mat-error *ngIf="specilization.get('sP_Specialization').hasError('alphaCheck')">
+                        Please enter alphabet characters
+                    </mat-error>
+                    <mat-error *ngIf="specilization.get('sP_Specialization').hasError('spaceCheck')">
+                        Specialization will not allow white space
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <br>
+        <div class="footer_button">
+            <button id="save" mat-raised-button color="primary" (click)="save()">Save</button>
+            <!-- <button id="cancel" mat-raised-button color="accent" (click)="reset()">Clear</button> -->
+            <button routerLink="/base/master/specilization" id="cancel" mat-raised-button color="warn">Close</button>
+        </div>
+    </form>
+</mat-card>

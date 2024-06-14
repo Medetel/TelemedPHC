@@ -1,0 +1,55 @@
+<mat-card>
+    <mat-card-title>Add District</mat-card-title>
+    <mat-divider></mat-divider>
+        <form [formGroup]="district">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                        <mat-label class="star">Country</mat-label>
+                        <mat-select formControlName="cntry_id" #choosedValue (valueChange)="countrychange(choosedValue.value)" required>
+                            <mat-option *ngFor="let c of country" [value]="c.cntry_id">{{c.country_name}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="checkError('cntry_id', 'required')">Country Name is required</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                        <mat-label class="star">State</mat-label>
+                        <mat-select formControlName="stat_id" #selectval required>
+                            <mat-option *ngFor="let s of state" [value]="s.stat_id">{{s.state_name}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="checkError('stat_id', 'required')">State Name is required</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field  [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                        <mat-label class="star">District Code</mat-label>
+                        <input matInput #input maxlength="10" placeholder="Eg.DIS00001" formControlName="district_code" required>
+                        <mat-error *ngIf="checkError('district_code', 'required')">District code is required</mat-error>
+                        <mat-error *ngIf="district.controls['district_code'].hasError('alphaNumCheck') || district.controls['district_code'].hasError('pattern') ">
+                            District Code must start with "DIST" followed by numeric characters
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                        <mat-label class="star">District Name</mat-label>
+                        <input matInput placeholder="Eg.Bengaluru" maxlength="45" formControlName="district_name" required>
+                        <mat-error *ngIf="checkError('district_name', 'required')">District Name is required</mat-error>
+                        <mat-error *ngIf="district.get('district_name').hasError('alphaCheck')">
+                            Please enter alphabet characters
+                        </mat-error>
+                        <mat-error *ngIf="district.get('district_name').hasError('spaceCheck')">
+                            District Name will not allow white space
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <br>
+            <div class="footer_button">
+                <button id="save" mat-raised-button color="primary" (click)="save()">Save</button>
+                <!-- <button id="cancel" mat-raised-button color="accent" (click)="reset()">Clear</button> -->
+                <button routerLink="/base/master/district" id="cancel" mat-raised-button color="warn">Close</button>
+            </div>
+        </form>
+</mat-card>

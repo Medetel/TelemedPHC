@@ -1,0 +1,13 @@
+<!-- <button (click)="deleteGallery(Do_Id)">Delete Gallery</button> -->
+
+<mat-dialog-content class="mat-typography">
+  <div align="center">
+      <mat-icon color="warn" style="width: 200px;">warning</mat-icon>
+      <h3>Do you want delete Video?</h3>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button mat-raised-button color="primary" (click)="deleteGallery()">Yes</button>
+  <button mat-raised-button color="warn" mat-dialog-close>No</button>
+</mat-dialog-actions>
+

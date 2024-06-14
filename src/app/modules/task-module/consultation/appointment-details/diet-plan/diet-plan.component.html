@@ -1,0 +1,239 @@
+<mat-card>
+    <mat-card-title>Diet Plan</mat-card-title>
+    <mat-card-content>
+        <div class="button_add">
+            <form class="form-inline" [formGroup]="Dietplan" [hidden]="issave">
+                <fieldset>
+                    <legend>Diet-Info</legend>
+                    <div class="row">
+
+                        <div class="col-md-3 mt-3">
+                            <p style="color:rgb(40, 182, 238); font-size: 15px; margin-top: 3%;">Intake & Duration</p>
+                        </div>
+                        <div class="col-md-4">
+                            <!-- <select id="input" class="form-control food border border-primary"
+                                formControlName="dp_intake" aria-label="Search">
+                                <option value="">Select...</option>
+                                <option value="Morning">Morning</option>
+                                <option value="After Noon">After Noon</option>
+                                <option value="Night">Night</option>
+                            </select> -->
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Select</mat-label>
+                                <mat-select formControlName="dp_intake">
+                                    <!-- <mat-option value="">Select *</mat-option> -->
+                                    <mat-option value="Morning">Morning</mat-option>
+                                    <mat-option value="After Food">After Food</mat-option>
+                                    <mat-option value="Night">Night</mat-option>
+                                </mat-select>
+                                <!-- <mat-error *ngIf="Dietplan.get('dp_intake').hasError('required')">please select
+                                    field</mat-error> -->
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-2">
+                            <!-- <label for="inputPassword2" class="sr-only"></label>
+                            <input type="text" class="form-control dosage1 border border-primary"
+                                formControlName="dp_duration" placeholder="10"> -->
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Ex: 10</mat-label>
+                                <input matInput placeholder="" maxlength="2" type="number"
+                                    onKeyPress="if(this.value.length==2) return false;" formControlName="dp_duration"
+                                    >
+                                <!-- <mat-error *ngIf="Dietplan.get('dp_duration').hasError('required')">Field is
+                                    required</mat-error> -->
+                                <mat-error *ngIf="Dietplan.get('dp_duration').hasError('pattern')">Please enter positive
+                                    value</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-2">
+                            <!-- <select id="input" class="form-control food1 border border-primary"
+                                formControlName="dp_dura_interof">
+                                <option value="">Select...</option>
+                                <option value="Days">Days...</option>
+                                <option value="Weeks">Weeks</option>
+                                <option value="Months">Months</option>
+                            </select> -->
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Select</mat-label>
+                                <mat-select formControlName="dp_dura_interof" >
+                                    <!-- <mat-option value="">Select *</mat-option> -->
+                                    <mat-option value="Days">Days...</mat-option>
+                                    <mat-option value="Weeks">Weeks</mat-option>
+                                    <mat-option value="Months">Months</mat-option>
+                                </mat-select>
+                                <!-- <mat-error *ngIf="Dietplan.get('dp_dura_interof').hasError('required')">please select
+                                    field</mat-error> -->
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3">
+                            <P style="color:rgb(40, 182, 238); font-size: 15px; margin-top: 13%;">Instruction</P>
+                        </div>
+                        <div class="col-md-9">
+                            <!-- <label for="inputPassword2" class="sr-only"></label>
+                            <input type="text" formControlName="dp_instruction"
+                                class="form-control dosage border border-primary" placeholder="10"> -->
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Instructions</mat-label>
+                                <textarea matInput placeholder="" maxlength="500"
+                                    formControlName="dp_instruction" required></textarea>
+                                <mat-error *ngIf="Dietplan.get('dp_instruction').hasError('required')">Instructions
+                                        field is required</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-12">
+                            <div align="end">
+                                <button mat-raised-button color="primary" [disabled]="Dietplan.invalid"
+                                    (click)="save()">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </mat-card-content>
+
+    <mat-card-content>
+        <div class="button_add">
+            <form class="form-inline" [formGroup]="Dietplans" [hidden]="isedit">
+                <fieldset>
+                    <legend>Diet-Info</legend>
+                    <div class="row">
+
+                        <div class="col-md-3 mt-3">
+                            <p style="color:rgb(40, 182, 238); font-size: 15px; margin-top: 3%;">Intake & Duration</p>
+                        </div>
+                        <div class="col-md-4">
+                            <!-- <select id="input" class="form-control food border border-primary"
+                                formControlName="dp_intake" aria-label="Search">
+                                <option value="">Select...</option>
+                                <option value="Morning">Morning</option>
+                                <option value="After Noon">After Noon</option>
+                                <option value="Night">Night</option>
+                            </select> -->
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Select</mat-label>
+                                <mat-select formControlName="dp_intake" >
+                                    <!-- <mat-option value="">Select *</mat-option> -->
+                                    <mat-option value="Morning">Morning</mat-option>
+                                    <mat-option value="After Food">After Food</mat-option>
+                                    <mat-option value="Night">Night</mat-option>
+                                </mat-select>
+                                <!-- <mat-error *ngIf="Dietplan.get('dp_intake').hasError('required')">please select
+                                    field</mat-error> -->
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-2">
+                            <!-- <label for="inputPassword2" class="sr-only"></label>
+                            <input type="text" class="form-control dosage1 border border-primary"
+                                formControlName="dp_duration" placeholder="10"> -->
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Ex: 10</mat-label>
+                                <input matInput placeholder="" maxlength="2" type="number"
+                                    onKeyPress="if(this.value.length==2) return false;" formControlName="dp_duration"
+                                    >
+                                <!-- <mat-error *ngIf="Dietplan.get('dp_duration').hasError('required')">Field is
+                                    required</mat-error> -->
+                                <mat-error *ngIf="Dietplan.get('dp_duration').hasError('pattern')">Please enter positive
+                                    value</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-2">
+                            <!-- <select id="input" class="form-control food1 border border-primary"
+                                formControlName="dp_dura_interof">
+                                <option value="">Select...</option>
+                                <option value="Days">Days...</option>
+                                <option value="Weeks">Weeks</option>
+                                <option value="Months">Months</option>
+                            </select> -->
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Select</mat-label>
+                                <mat-select formControlName="dp_dura_interof" >
+                                    <!-- <mat-option value="">Select *</mat-option> -->
+                                    <mat-option value="Days">Days</mat-option>
+                                    <mat-option value="Weeks">Weeks</mat-option>
+                                    <mat-option value="Months">Months</mat-option>
+                                </mat-select>
+                                <!-- <mat-error *ngIf="Dietplan.get('dp_dura_interof').hasError('required')">please select
+                                    field</mat-error> -->
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3 ">
+                            <P style="color:rgb(40, 182, 238); font-size: 15px; margin-top: 13%;">Instruction</P>
+                        </div>
+                        <div class="col-md-9">
+                            <!-- <label for="inputPassword2" class="sr-only"></label>
+                            <input type="text" formControlName="dp_instruction"
+                                class="form-control dosage border border-primary" placeholder="10"> -->
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Instructions</mat-label>
+                                <textarea matInput placeholder="" maxlength="500"
+                                    formControlName="dp_instruction" required></textarea>
+                                    <mat-error *ngIf="Dietplan.get('dp_instruction').hasError('required')">Instructions
+                                        field is required</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-12">
+                            <div align="end">
+                                <button mat-raised-button color="primary" [disabled]="Dietplans.invalid"
+                                    (click)="Update()">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </mat-card-content>
+
+
+    <mat-card-content>
+        <div class="row">
+            <div class="table-responsive" *ngIf="data?.length > 0">
+                <table [dtOptions]="dtOptions" datatable>
+                    <thead class="thead-dark">
+                        <tr align="center">
+                            <th>SL.NO.</th>
+                            <th>Intake</th>
+                            <th>Duration</th>
+                            <th>Instruction</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- *ngFor="let d of Data;let i=index" -->
+                        <tr align="center" *ngFor="let d of data;let i=index"
+                            [ngClass]="{'warn': (d.delete_flag==0  && (d.status==1 ||d.status==2 || d.status==3))? false:true,'all':d.status==2 || d.status==3 || d.status==1}">
+                            <td>{{i+1}}</td>
+                            <td>{{d.dp_intake}}</td>
+                            <td>{{d.dp_duration}}&nbsp;{{d.dp_dura_interof}}</td>
+                            <td>{{d.dp_instruction}}</td>
+                            <td>{{d.status_name}}</td>
+                            <td>
+                                <button id="view" (click)="view(d)" [hidden]="viewhid" mat-icon-button color="primary"
+                                    matTooltip="View" [matTooltipPosition]="TooltipPosition"
+                                    matTooltipClass="tooltip-blue"
+                                    aria-label="Button that displays a tooltip in various positions">
+                                    <mat-icon id="vis">visibility</mat-icon>
+                                </button>
+                                <button id="edit" (click)="edit(d)" [hidden]="edithid" mat-icon-button color="accent"
+                                    [disabled]="(d.delete_flag == 0 && d.status==1 && d.status==2 || d.status==3 || d.status==6)? true:false"
+                                    matTooltip="edit" [matTooltipPosition]="TooltipPosition"
+                                    matTooltipClass="tooltip-yellow"
+                                    aria-label="Button that displays a tooltip in various positions">
+                                    <mat-icon id="vis">edit</mat-icon>
+                                </button>
+                                <button id="delete" (click)="delete(d)" [hidden]="deletehid" mat-icon-button
+                                    [disabled]="(d.delete_flag == 0 && d.status==1 && d.status==2 || d.status==3 || d.status==6)? true:false"
+                                    color="warn" matTooltip="delete" [matTooltipPosition]="TooltipPosition"
+                                    matTooltipClass="tooltip-red"
+                                    aria-label="Button that displays a tooltip in various positions">
+                                    <mat-icon id="vis">delete_outline</mat-icon>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

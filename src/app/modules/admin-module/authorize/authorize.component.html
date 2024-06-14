@@ -1,0 +1,86 @@
+<mat-card>
+    <mat-card-title>Authorize Details</mat-card-title>
+    <mat-card-content>
+        <div class="row">
+            <div class="table-responsive" *ngIf="data?.length>0">
+                <table [dtOptions]="dtOptions" datatable class="table table-striped table-bordered table-hover">
+                    <thead class="thead-dark">
+                        <tr align="center">
+                            <th>SlNo</th>
+                            <th>Role</th>
+                            <th>Authorize</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr align="center" *ngFor="let d of data;let i=index"[ngClass]="{'warn':d.inactive=='Y','approve':(d.inactive=='N' || d.inactive==null)}">
+                            <td>{{i+1}}</td>
+                            <td>{{d.name}}</td>
+                            <td>
+                                <button id="view" [hidden]="viewhid" (click)="view(d)" mat-icon-button color="primary"
+                                    matTooltip="view" [matTooltipPosition]="TooltipPosition"
+                                    matTooltipClass="tooltip-red"
+                                    aria-label="Button that displays a tooltip in various positions">
+                                    <mat-icon id="vis">remove_red_eye</mat-icon>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="row">
+    <div class="col-md-12 stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">Claims Details</h6>
+                <div class="col-md-12">
+                    <div class="form-group">
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table [dtOptions]="dtOptions" datatable class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr align="center">
+                                <th>SlNo</th>
+                                <th>Role</th>
+                                <th>Claims</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr align="center" *ngFor="let d of data">
+                                <td>{{d.slno}}</td>
+                                <td>{{d.Role}}</td>
+                                <td><button id="view" mat-icon-button color="primary" matTooltip="View" [matTooltipPosition]="TooltipPosition"
+                                        matTooltipClass="tooltip-blue" aria-label="Button that displays a tooltip in various positions">
+                                        <mat-icon id="vis">visibility</mat-icon>
+                                    </button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

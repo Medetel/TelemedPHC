@@ -1,0 +1,856 @@
+<mat-card *ngIf="roleName === 'Admin' || roleName === 'Call Center Admin'">
+  <mat-card-title><span style="color: black;font-size: 12pt;">Welcome To Dashboard</span></mat-card-title>
+
+  <div class="row">
+    <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Today's Appointments </mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">trending_up</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{today_appointment_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Today's Consultation </mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">how_to_reg</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{today_consultation_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Total Networks </mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">group_add</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{network_hospital_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Total Hospitals </mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">payment</mat-icon>
+            </a>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{hospital_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+  <div class="row">
+    <!-- <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Total Pharmacy</mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">receipt</mat-icon>
+            </a>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{pharmacy_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Total Diagnostic</mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">supervised_user_circle</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{diagnostic_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div> -->
+    <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Total Patients </mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">settings</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{patient_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Total Appointments </mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">group</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{appointment_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Total Doctors</mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">calendar_today</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{doctor_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Total Consultations </mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">assignment</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{consultation_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 20px;">
+     <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Total Pending Consultations </mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">assignment</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{total_pending_consultation_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Refferals</mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">group</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{referal_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Total Pharmacy</mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">receipt</mat-icon>
+            </a>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{pharmacy_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Total Diagnostic</mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">supervised_user_circle</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{diagnostic_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <!-- <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Total Patients </mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">settings</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{patient_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div> -->
+    <!-- <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Total Consultations </mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">assignment</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{consultation_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div> -->
+    <!-- <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Refferals</mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">group</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{referal_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div> -->
+  </div>
+
+</mat-card>
+
+
+
+<mat-card *ngIf="roleName === 'Medical Assistant'">
+  <mat-card-title><span style="color: black;font-size: 12pt;">Welcome To Dashboard</span></mat-card-title>
+
+  <div class="row">
+    <!-- <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Today Appointments</mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">group_add</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{today_phcAppointment_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div> -->
+    <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Today Patients </mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">settings</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{today_patient_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Today Patient Payments </mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">receipt</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{today_patient_payments_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Today Appointments</mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">group_add</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{today_phcAppointment_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Today Closed Consultation</mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">how_to_reg</mat-icon>
+            </a>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{today_completed_consultation_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Today Pending Consultation</mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">assignment</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{today_pending_consultation_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Today's Paid Amount</mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">group</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{today_patient_payments_amount}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Total Patients</mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">calendar_today</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{total_patient_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Total Consultation</mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">trending_up</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{total_consultation_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 20px;">
+    <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Total Appointment</mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">payment</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{total_phcAppointment_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Total Paid Amount</mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">supervised_user_circle</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{today_patient_payments_amount}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Refunds</mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">group</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{refund_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+
+</mat-card>
+
+
+<mat-card *ngIf="roleName === 'Doctor'">
+  <mat-card-title><span style="color: black;font-size: 12pt;">Welcome To Dashboard</span></mat-card-title>
+
+  <div class="row">
+    <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Today Doctor Amount</mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">trending_up</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{today_doctor_amount}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Today Approved Appointments</mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">settings</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{today_approved_appointment_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Today Pending Appointments </mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">group_add</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{today_pending_appointment_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <!-- <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Doctor Fee Amount</mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">group</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{doctor_fee_amount}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div> -->
+    <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Today Closed Consultation</mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">receipt</mat-icon>
+            </a>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{today_completed_consultation_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+  <div class="row">
+    <!-- <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Today Closed Consultation</mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">receipt</mat-icon>
+            </a>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{today_completed_consultation_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div> -->
+    <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Today Pending Consultation</mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">supervised_user_circle</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{today_pending_consultation_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Total Consultatons</mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">payment</mat-icon>
+            </a>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{total_consultation_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-3">
+      <mat-card style="background-color: #27c0e8bd;">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-title>Total Appointments</mat-title>
+            <a routerLink="/base/dashboard">
+              <mat-icon style="float: right;">calendar_today</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div align="center">
+              <span style="color: black;font-weight: 500;">{{total_phcappointment_count}}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+
+</mat-card>
+
+<!-- <div class="video-container">
+  <iframe src="../../../../../assets/images/telemedicine_video.mp4" width="560" height="315" allowfullscreen></iframe>
+</div> -->
+
+
+
+<mat-card style="margin-top: 10px;">
+  <div class="row">
+    <div class="col-lg-7 col-xl-8 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-baseline mb-2">
+            <h6 class="card-title mb-0">Patient Statistics</h6>
+            <div ngbDropdown class="mb-2">
+              <button ngbDropdownToggle class="btn p-0 no-dropdown-toggle-icon" type="button" id="dropdownMenuButton4">
+                <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal" appFeatherIcon></i>
+              </button>
+              <div ngbDropdownMenu aria-labelledby="dropdownMenuButton4">
+                <a ngbDropdownItem class="d-flex align-items-center" href="" (click)="false"><i data-feather="eye"
+                    appFeatherIcon class="icon-sm mr-2"></i> <span class="">View</span></a>
+                <a ngbDropdownItem class="d-flex align-items-center" href="" (click)="false"><i data-feather="edit-2"
+                    appFeatherIcon class="icon-sm mr-2"></i> <span class="">Edit</span></a>
+                <a ngbDropdownItem class="d-flex align-items-center" href="" (click)="false"><i data-feather="trash"
+                    appFeatherIcon class="icon-sm mr-2"></i> <span class="">Delete</span></a>
+                <a ngbDropdownItem class="d-flex align-items-center" href="" (click)="false"><i data-feather="printer"
+                    appFeatherIcon class="icon-sm mr-2"></i> <span class="">Print</span></a>
+                <a ngbDropdownItem class="d-flex align-items-center" href="" (click)="false"><i data-feather="download"
+                    appFeatherIcon class="icon-sm mr-2"></i> <span class="">Download</span></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="monthly-sales-chart-wrapper">
+            <canvas baseChart [datasets]="ng2BarChart1Data" [labels]="ng2BarChart1Labels"
+              [options]="ng2BarChart1Options" [colors]="ng2BarChart1Colors" [legend]="ng2BarChart1Legend"
+              [chartType]="ng2BarChart1Type">
+            </canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-5 col-xl-4 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-baseline mb-2">
+            <h6 class="card-title mb-0">Payment Statistics</h6>
+            <div ngbDropdown class="mb-2">
+              <button ngbDropdownToggle class="btn p-0 no-dropdown-toggle-icon" type="button" id="dropdownMenuButton5">
+                <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal" appFeatherIcon></i>
+              </button>
+              <div ngbDropdownMenu aria-labelledby="dropdownMenuButton5">
+                <a ngbDropdownItem class="d-flex align-items-center" href="" (click)="false"><i data-feather="eye"
+                    appFeatherIcon class="icon-sm mr-2"></i> <span class="">View</span></a>
+                <a ngbDropdownItem class="d-flex align-items-center" href="" (click)="false"><i data-feather="edit-2"
+                    appFeatherIcon class="icon-sm mr-2"></i> <span class="">Edit</span></a>
+                <a ngbDropdownItem class="d-flex align-items-center" href="" (click)="false"><i data-feather="trash"
+                    appFeatherIcon class="icon-sm mr-2"></i> <span class="">Delete</span></a>
+                <a ngbDropdownItem class="d-flex align-items-center" href="" (click)="false"><i data-feather="printer"
+                    appFeatherIcon class="icon-sm mr-2"></i> <span class="">Print</span></a>
+                <a ngbDropdownItem class="d-flex align-items-center" href="" (click)="false"><i data-feather="download"
+                    appFeatherIcon class="icon-sm mr-2"></i> <span class="">Download</span></a>
+              </div>
+            </div>
+          </div>
+          <div id="progressbar1" class="mx-auto"></div>
+          <div class="row mt-4 mb-3">
+            <div class="col-6 d-flex justify-content-end">
+              <div>
+                <label
+                  class="d-flex align-items-center justify-content-end tx-10 text-uppercase font-weight-medium">Total
+                  Payments <span class="p-1 ml-1 rounded-circle bg-primary-muted"></span></label>
+                <h5 class="font-weight-bold mb-0 text-right"></h5>
+              </div>
+            </div>
+            <div class="col-6">
+              <div>
+                <label class="d-flex align-items-center tx-10 text-uppercase font-weight-medium"><span
+                    class="p-1 mr-1 rounded-circle bg-primary"></span>Pending Payments</label>
+                <h5 class="font-weight-bold mb-0"></h5>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-block"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-card>

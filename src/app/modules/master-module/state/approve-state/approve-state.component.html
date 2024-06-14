@@ -1,0 +1,37 @@
+<h1 mat-dialog-title>Approve State</h1>
+<mat-divider></mat-divider>
+<!-- <div mat-dialog-content> -->
+    <form [formGroup]="state">
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Country Name</mat-label>
+                    <input style="color: seagreen;" matInput  formControlName="country_name" >
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>State Code</mat-label>
+                    <input style="color: seagreen;"  matInput  formControlName="state_code" >
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>State Name</mat-label>
+                    <input style="color: seagreen;"  matInput  formControlName="state_name" >
+                </mat-form-field>
+            </div>
+           
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Remarks</mat-label>
+                    <textarea style="color: seagreen;"  matInput  formControlName="Remarks" maxlength="200"></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+      </form>
+<!-- </div> -->
+<div mat-dialog-actions align="end" >
+    <button id="save" mat-raised-button color="primary"  (click)="approveform()" >Approve</button>
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+</div>

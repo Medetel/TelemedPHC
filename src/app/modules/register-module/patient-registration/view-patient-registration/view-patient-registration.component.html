@@ -1,0 +1,344 @@
+<h1 mat-dialog-title>View Patient</h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content>
+    <form [formGroup]="patient">
+        <div class="row">
+            <div class="col-md-12">
+                <div align="center">
+                    <img class="images" matPrefix [src]="Image_Url" width="100px" height="100px" alt="image not found">
+                </div>
+            </div>
+            <!-- <div class="col-md-3">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Code</mat-label>
+                        <input matInput placeholder="" formControlName="PR_PatientCode">
+                    </mat-form-field>
+                </div> -->
+            <!-- <div class="col-md-3">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Hospital Network</mat-label>
+                        <mat-select formControlName="PR_RemoteHospitalName_Id_FK">
+                            <mat-option *ngFor="let n of networkdd" [value]="n.nE_Id">{{n.nE_Description}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div> -->
+            <fieldset>
+                <legend>Personal Info</legend>
+                <div class="row">
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>FirstName</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="PR_FirstName" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>LastName</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="PR_LastName" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>DOB</mat-label>
+                            <input style="color: seagreen;"matInput [matDatepicker]="dp" placeholder="Date of Birth"
+                                (dateChange)="dobchange($event)" formControlName="PR_DOB" readonly>
+                            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                            <mat-datepicker #dp></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Age</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="PR_Age" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label> Gender</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="PR_Gender" readonly>
+                            <!-- <mat-select formControlName="PR_Gender">
+                                <mat-option *ngFor="let g of gender" [value]="g.text">{{g.text}}</mat-option>
+                            </mat-select> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Marital status</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="PR_MaritalStatus" readonly>
+                            <!-- <mat-select style="color: seagreen;"  formControlName="PR_MaritalStatus" readonly>
+                                <mat-option style="color: seagreen;" value="1">Married</mat-option>
+                                <mat-option style="color: seagreen;" value="2">Unmarried</mat-option>
+                            </mat-select> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Blood Groups</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="PR_BloodGroup" readonly>
+                            <!-- <mat-select formControlName="PR_BloodGroup" placeholder="bloodgroup">
+                                <mat-option value="O+">O+</mat-option>
+                                <mat-option value="O-">O-</mat-option>
+                                <mat-option value="AB+">AB+</mat-option>
+                                <mat-option value="AB-">AB-</mat-option>
+                                <mat-option value="B+">B+</mat-option>
+                                <mat-option value="A+">A+</mat-option>
+                                <mat-option value="B-">B-</mat-option>
+                                <mat-option value="A-">A-</mat-option>
+                            </mat-select> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Nationality</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="PR_NAL_Id_FK" readonly>
+                            <!-- <mat-select formControlName="PR_NAL_Id_FK" required>
+                                <mat-option *ngFor="let n of nationality" [value]="n.id">{{n.nationality}}
+                                </mat-option>
+                            </mat-select> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Religion</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="PR_REG_Id_FK" readonly>
+                            <!-- <mat-select formControlName="PR_REG_Id_FK" required>
+                                <mat-option *ngFor="let r of religion" [value]="r.id">{{r.religion}}
+                                </mat-option>
+                            </mat-select> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Caste</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="PR_CAT_Id_FK" readonly>
+                            <!-- <mat-select formControlName="PR_CAT_Id_FK" required>
+                                <mat-option *ngFor="let c of caste" [value]="c.id">{{c.caste}}
+                                </mat-option>
+                            </mat-select> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Mother Tongue</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="PR_MotherTongue" readonly>
+                            <!-- <mat-select formControlName="PR_MotherTongue">
+                                <mat-option *ngFor="let s of language" [value]="s.id">{{s.language}}</mat-option>
+                            </mat-select> -->
+                            <!-- <mat-select formControlName="PR_MotherTongue">
+                                <mat-option value="1">English</mat-option>
+                                <mat-option value="2">Kanada</mat-option>
+                                <mat-option value="3">Tamil</mat-option>
+                                <mat-option value="4">Telugu</mat-option>
+                                <mat-option value="5">Other</mat-option>
+                            </mat-select> -->
+                            <!-- <input style="color: seagreen;" matInput formControlName="PR_MotherTongue" readonly> -->
+                        </mat-form-field>
+                    </div>
+                    <!-- <div class="col-md-3">
+                        <div class="col-md-12" [hidden]="true">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Mother Tongue</mat-label>
+                                <input style="color: seagreen;" matInput placeholder="" formControlName="PR_MotherTongue" readonly>
+                                <mat-select formControlName="PR_MotherTongue" multiple>
+                                    <mat-select-trigger>
+                                        <mat-chip-list>
+                                            <mat-chip *ngFor="let topping of this.patient.value.toppingsControl"
+                                                [removable]="true" (removed)="onToppingRemoved(topping)">
+                                                {{topping.language}}
+                                                <mat-icon matChipRemove>cancel</mat-icon>
+                                            </mat-chip>
+                                        </mat-chip-list>
+                                    </mat-select-trigger>
+                                    <mat-option *ngFor="let c of language" [value]="c">{{c.language}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div> 
+                    </div>-->
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Identity Details</legend>
+                <div class="row">
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Identity Proof</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="PR_IDN_Id_FK" readonly>
+                            <!-- <mat-select formControlName="PR_IDN_Id_FK" #selectval required>
+                                <mat-option *ngFor="let i of identity" [value]="i.id">{{i.doC_Name}}</mat-option>
+                            </mat-select> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Identity No</mat-label>
+                            <input style="color: seagreen;" matInput formControlName="PR_Identity_No" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>National Health Id</mat-label>
+                            <input style="color: seagreen;"  matInput formControlName="National_Health_Id" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Occupation</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="PR_OCU_Id_FK" readonly>
+                            <!-- <mat-select formControlName="PR_OCU_Id_FK" required>
+                                <mat-option *ngFor="let o of occupation" [value]="o.id">{{o.occupation}}
+                                </mat-option>
+                            </mat-select> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Income</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="PR_Income" readonly>
+                            <!-- <mat-select formControlName="PR_Income">
+                                <mat-option value="1">0-1Lakhs</mat-option>
+                                <mat-option value="2">1-2Lakhs</mat-option>
+                                <mat-option value="3">2-3Lakhs</mat-option>
+                                <mat-option value="4">4-5Lakhs</mat-option>
+                                <mat-option value="4">More Than 5Lakhs</mat-option>
+                            </mat-select> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Insurance</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="PR_Insurance" readonly>
+                            <!-- <mat-select formControlName="PR_Insurance" (selectionChange)="Insurance($event)">
+                                <mat-option value="Yes">Yes</mat-option>
+                                <mat-option value="No">No</mat-option>
+                            </mat-select> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3" [hidden]="enable">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Category</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="PR_InsuranceCategory" readonly>
+                            <!-- <mat-select formControlName="PR_InsuranceCategory"
+                                (selectionChange)="InsuranceCategory($event)">
+                                <mat-option value="LIFE">Life</mat-option>
+                                <mat-option value="HEALTH">Health</mat-option>
+                            </mat-select> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3" [hidden]="enable">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Insurance Category</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="pR_INU_Id_FK" readonly>
+                            <!-- <mat-select formControlName="PR_INU_Id_FK" #selectval required>
+                                <mat-option *ngFor="let i of insurer" [value]="i.id">{{i.insurer}}</mat-option>
+                            </mat-select> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3" [hidden]="enable">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Sum Insured</mat-label>
+
+                            <input style="color: seagreen;" matInput formControlName="PR_Insured_Sum" readonly>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Communication Details</legend>
+                <div class="row">
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Mobile Number</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="PR_MobileNumber" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Alternate Number</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="PR_Alternative_No" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Landline Number</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="PR_LandlineNo" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Email Id</mat-label>
+                            <input style="color: seagreen;"matInput placeholder="" formControlName="PR_Email" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Address</mat-label>
+                            <input style="color: seagreen;"matInput placeholder="" formControlName="PR_Address" readonly>
+                            <!-- <textarea style="color: seagreen;" matInput formControlName="PR_Address"></textarea> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Country</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="PR_Country_Id_FK" readonly>
+                            <!-- <mat-select formControlName="PR_Country_Id_FK" #choosedValue
+                                (valueChange)="countrychange(choosedValue.value)" required>
+                                <mat-option *ngFor="let c of country" [value]="c.cntry_id">{{c.country_name}}
+                                </mat-option>
+                            </mat-select> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>State</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="PR_S_Id_FK" readonly>
+                            <!-- <mat-select formControlName="PR_S_Id_FK" #selectval (valueChange)="statechange($event)"
+                                required>
+                                <mat-option *ngFor="let s of state" [value]="s.stat_id">{{s.state_name}}</mat-option>
+                            </mat-select> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>District</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="PR_D_Id_FK" readonly>
+                            <!-- <mat-select formControlName="PR_D_Id_FK" #districtval
+                                (valueChange)="distritchange(districtval.value)" required>
+                                <mat-option *ngFor="let d of district" [value]="d.district_id">{{d.district_name}}
+                                </mat-option>
+                            </mat-select> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Taluk</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="PR_Taluk_Id" readonly>
+                            <!-- <mat-select formControlName="PR_Taluk_Id" #talukval
+                                (valueChange)="talukchange(talukval.value)" required>
+                                <mat-option *ngFor="let t of taluk" [value]="t.taluk_id">{{t.taluk_name}}</mat-option>
+                            </mat-select> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Village</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="PR_Gram_Id" readonly>
+                            <!-- <mat-select formControlName="PR_Gram_Id" #villageval
+                                (valueChange)="selectpincode(villageval.value)" required>
+                                <mat-option *ngFor="let g of gram" [value]="g.gram_id">{{g.gram_name}}</mat-option>
+                            </mat-select> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Postal Code</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="PR_Postalcode" readonly>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-dialog-close id="cancel" mat-raised-button color="warn">Close</button>
+</div>

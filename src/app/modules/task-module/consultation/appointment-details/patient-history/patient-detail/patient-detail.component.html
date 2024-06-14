@@ -1,0 +1,595 @@
+<button mat-icon-button class="close-button" [mat-dialog-close]="true">
+    <mat-icon class="close-icon" color="warn">close</mat-icon>
+</button>
+<h1 style="font-weight: 550;">Patient Details</h1>
+<h3 style="background-color: rgb(233, 234, 235);font-weight: 550;">Vital-Signs</h3>
+<div class="row">
+    <!-- <div class="col-md-3">
+        <h4 style="color: #008000;"><span style="color: #000000de;">Pulse Oximeter(spo2)</span> <span style="color: rgb(72, 135, 230);">(%)</span>:&nbsp;{{data.coN_OxygenSaturation}}/{{data.coN_PulseRate}}
+           
+        </h4>
+    </div>
+    <div class="col-md-3">
+        <h4>Blood Pressure <span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.coN_BloodPressure}}</span></h4>
+
+    </div>
+    <div class="col-md-3">
+        <h4>Temperature <span style="color: rgb(72, 135, 230);">(°C)</span>:&nbsp; <span
+                style="color: green;">{{data.coN_TempInCelsius}}</span></h4>
+    </div>
+  
+    <div class="col-md-3">
+        <h4>Glucose <span style="color: rgb(72, 135, 230); ">(mg/dl)</span>:&nbsp; <span
+                style="color: green;">{{data.coN_Sugar}}</span></h4>
+    </div>
+    <div class="col-md-3">
+        <h4>Hemoglobin <span style="color: rgb(72, 135, 230); ">(g/dl)</span>:&nbsp; <span
+                style="color: green;">{{data.coN_Hemoglobin}}</span></h4>
+
+    </div>
+    <div class="col-md-3">
+        <h4>ECG <span style="color: rgb(72, 135, 230);">(%)</span>:&nbsp; 
+            <a id="view" (click)="ecgGraphData()" [hidden]="viewhid" mat-icon-button color="primary" matTooltip="View"
+                [matTooltipPosition]="TooltipPosition" matTooltipClass="tooltip-blue"
+                aria-label="Button that displays a tooltip in various positions">
+                <mat-icon id="vis">visibility</mat-icon>
+        </a>
+        </h4>
+        
+    </div>
+
+    <div class="col-md-3">
+        <h4>Total Cholesterol <span style="color: rgb(72, 135, 230); ">(mg/dl)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_total_cholesterol}}</span></h4>
+    </div>
+    <div class="col-md-3">
+        <h4>Triglycerides <span style="color: rgb(72, 135, 230); ">(mg/dl)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_triglycerides}}</span></h4>
+    </div>
+    <div class="col-md-3">
+        <h4>HDL Cholesterol <span style="color: rgb(72, 135, 230); ">(mg/dl)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_hdl_cholesterol}}</span></h4>
+    </div>
+    <div class="col-md-3">
+        <h4>LDL <span style="color: rgb(72, 135, 230); ">(mg/dl)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_ldl}}</span></h4>
+    </div>
+  
+    <div class="col-md-3">
+        <h4>Height <span style="color: rgb(72, 135, 230); ">(Cm)</span>:&nbsp; <span
+                style="color: green;">{{data.coN_Height}}</span></h4>
+    </div>
+    <div class="col-md-3">
+        <h4>Weight <span style="color: rgb(72, 135, 230); ">(Kg)</span>:&nbsp; <span
+                style="color: green;">{{data.coN_Weight}}</span></h4>
+    </div>
+
+    <div class="col-md-3">
+        <h4>BMI <span style="color: rgb(72, 135, 230); ">(kg/m²)</span>:&nbsp; <span
+                style="color: green;">{{calculateBMI()}}</span></h4>
+    </div> -->
+    <div class="col-md-3" [hidden]="package_desc1">
+        <h4>Temperature <span style="color: rgb(72, 135, 230);">(°F)</span>:&nbsp; <span
+                style="color: green;">{{data.coN_TempInCelsius}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc1">
+        <h4>Blood Pressure <span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.coN_BloodPressure}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc1">
+        <h4>Spo2/PR <span style="color: rgb(72, 135, 230);">(bpm/%)</span>:&nbsp; <span
+                style="color: green;">{{data.coN_OxygenSaturation}} / {{data.coN_PulseRate}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc1">
+        <h4>Height <span style="color: rgb(72, 135, 230);"></span>:&nbsp; <span
+                style="color: green;">{{data.coN_Height}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc1">
+        <h4>Weight <span style="color: rgb(72, 135, 230);"></span>:&nbsp; <span
+                style="color: green;">{{data.coN_Weight}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc1">
+        <h4>BMI <span style="color: rgb(72, 135, 230); ">(kg/m²)</span>:&nbsp; <span
+                style="color: green;">{{calculateBMI()}}</span></h4>
+    </div>
+    <div class="col-md-3" [hidden]="package_desc2">
+        <h4>Hemoglobin <span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.coN_Hemoglobin}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc2">
+        <h4>Glucose <span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.coN_Sugar}}</span></h4>
+
+    </div>
+
+    <div class="col-md-3" [hidden]="package_desc3">
+        <h4>HIV 1 <span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_hiv_First}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc3">
+        <h4>Dengue <span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_dengue}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc3">
+        <h4>Malaria <span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_malaria}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc3">
+        <h4>Pregnancy/ Hepatitis B<span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_pregnancy}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc3">
+        <h4>Syphilis<span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_syphilis}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc3">
+        <h4>T3<span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_Tem_three}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc3">
+        <h4>T4<span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_Tem_forth}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc3">
+        <h4>TSH <span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_tsh}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc3">
+        <h4>LDL<span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_ldl}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc3">
+        <h4>HDL<span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_hdl_cholesterol}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc3">
+        <h4>Triglycerides<span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_triglycerides}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc3">
+        <h4>Total Cholesterol <span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_total_cholesterol}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc4">
+        <h4>HIV 2 <span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_hiv_two}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc4">
+        <h4>Hepatitis C <span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_hepatitis_c}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc4">
+        <h4>Troponin 1 <span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_troponin_one}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc5">
+        <h4>Leucocytes <span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_leucocytes}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc5">
+        <h4>Nitrite<span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_nitrite}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc5">
+        <h4>pH <span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_pH}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc5">
+        <h4>Protein<span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_protein}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc5">
+        <h4>Blood <span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_blood}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc5">
+        <h4>Specific Gravity<span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_specific_gravity}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc5">
+        <h4>Ketone <span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_ketone}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc6">
+        <h4>FEV 1<span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_fev_one}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc6">
+        <h4>FVC<span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_fvc}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc6">
+        <h4>TLC <span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_tlc}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc6">
+        <h4>FEV 1/FVC ratio <span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_fvc_ratio}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc6">
+        <h4>PEF <span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_pef}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc6">
+        <h4>FEF 25<span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_fef_twentyfive}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc6">
+        <h4>FEF 50<span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_fef_fifty}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc6">
+        <h4>FEF 75<span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_fef_seventyfive}}</span></h4>
+
+    </div>
+    <div class="col-md-3" [hidden]="package_desc6">
+        <h4>Tidal volume <span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                style="color: green;">{{data.lp_tidalvolume}}</span></h4>
+
+    </div>
+
+    <div class="col-md-3" [hidden]="package_desc2">
+        <h4>ECG <span style="color: rgb(72, 135, 230);">(%)</span>:&nbsp;
+            <a id="view" (click)="ecgGraphData()" [hidden]="viewhid" mat-icon-button color="primary" matTooltip="View"
+                [matTooltipPosition]="TooltipPosition" matTooltipClass="tooltip-blue"
+                aria-label="Button that displays a tooltip in various positions">
+                <mat-icon id="vis">visibility</mat-icon>
+            </a>
+        </h4>
+
+    </div>
+</div>
+
+
+
+<h3 style="background-color: rgb(233, 234, 235);">Clinical Notes</h3>
+
+<div class="row">
+    <div class="col-md-6">
+        <h4>Present Complaints :
+            <span style="color: green;" *ngFor="let d of data.complaintslist">
+                {{d.cmst_Name}}, &nbsp;
+            </span>
+        </h4>
+    </div>
+    <div class="col-md-6">
+        <h4>Symptoms :
+            <span style="color: green;" *ngFor="let d of data.symptomslist">
+                {{d.smst_Name}}, &nbsp;
+            </span>
+        </h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <h4>Present Illness :
+            <span style="color: green;">
+                {{data.dis_Desc}}, &nbsp;
+            </span>
+        </h4>
+    </div>
+    <div class="col-md-6">
+        <h4>Any Known Allergy :
+            <span style="color: green;" *ngFor="let d of data.allergylist">
+                {{d.al_Name}}, &nbsp;
+            </span>
+        </h4>
+    </div>
+</div>
+<div class="row">
+    <!-- <div class="col-md-6">
+        <h4>Under BP-Medication :&nbsp; <span style="color: green;">{{data.underBPMedication}}</span></h4>
+    </div>
+    <div class="col-md-6">
+        <h4>Under Sugar-Medication :&nbsp; <span style="color: green;">{{data.underSugarMedication}}</span></h4>
+    </div> -->
+    <div class="col-md-12">
+        <h4>Past/Current Medical History :&nbsp; <span style="color: green;"
+                *ngFor="let d of data.medicationlist">{{d.medic_name}}</span>
+        </h4>
+    </div>
+</div>
+
+<br><br>
+
+<h3 style="font-weight: 550;">Previous Records</h3>
+
+<!-- <div class="row">
+    <div class="col-md-4">
+        <p><strong>Document Id  :</strong> </p> 
+    </div>
+    <div class="col-md-4">
+        <p><strong>Document Type :</strong> </p>  
+    </div>
+    <div class="col-md-4">
+        <p><strong>Document :</strong> </p>  
+    </div>
+</div> -->
+
+<table>
+    <thead>
+        <tr>
+            <th>SI.No</th>
+            <th style="margin-left:180px;">Document Type</th>
+            <th>Document</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let d of documentdetails;let i=index;">
+            <td>{{i+1}}</td>
+            <td style="margin-left:50px;">{{d.doc_Name}}</td>
+            <td>
+                <a *ngIf="d.doc_Name!='PDF'" target="_blank" href="{{Image_Url}}/{{d.choose_Document}}">
+
+                    <img src="../../../../assets/images/Image-File-icon.png" style="width: 40px; height:40px;" />
+                </a>
+                <a *ngIf="d.doc_Name=='PDF'" href="{{Image_Url}}/{{d.choose_Document}}" target="_blank">
+                    <img src="../../../../assets/images/pdfimage.png" style="width: 55px;" />
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<br><br>
+
+<h3 style="font-weight: 550;">Diagnosis </h3>
+
+
+<!-- <div class="row">
+    <div class="col-md-6">
+        <p><strong>Description :</strong> </p> 
+    </div>
+    <div class="col-md-6">
+        <p><strong>Status :</strong> </p>  
+    </div>
+</div> -->
+
+<table>
+    <thead>
+        <tr>
+            <th>SI.No</th>
+            <th>Diagnosis Category</th>
+            <th>Diagnosis Description</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let d of data1;let i=index;">
+            <td>{{i+1}}</td>
+            <td>{{d.dM_Name}}</td>
+            <td>{{d.dD_Desc}}</td>
+            <td>{{d.status_name}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<br><br>
+
+<h3 style="font-weight: 550;">Prescriptions </h3>
+
+<!--<div class="row">
+   <div class="col-md-3">
+        <p><strong>Drugs Name :</strong> </p> 
+    </div>
+    <div class="col-md-3">
+        <p><strong>Dosage :</strong> </p>  
+    </div>
+    <div class="col-md-3">
+        <p><strong>Duration :</strong> </p>  
+    </div>
+    <div class="col-md-3">
+        <p><strong>Status :</strong> </p>  
+    </div>
+</div> -->
+
+<table>
+    <thead>
+        <tr>
+            <th>SI.No</th>
+            <th>Drugs Name</th>
+            <th>Dosage</th>
+            <th>Duration</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let d of data2;let i=index;">
+            <td>{{i+1}}</td>
+            <td>{{d.prc_Drd_name_unit}}</td>
+            <td>{{d.prc_dosage_qty}}</td>
+            <td>{{d.prc_drug_duration}}&nbsp;{{d.prc_duration_intermof}}</td>
+            <td>{{d.status_name}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<br><br>
+
+<h3 style="font-weight: 550;">Lab Test </h3>
+
+<!-- <div class="row">
+    <div class="col-md-4">
+        <p><strong>Category :</strong> </p> 
+    </div>
+    <div class="col-md-4">
+        <p><strong>Description :</strong> </p>  
+    </div>
+    <div class="col-md-4">
+        <p><strong>Status :</strong> </p>  
+    </div>
+</div> -->
+
+<table>
+    <thead>
+        <tr>
+            <th>SI.No</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let d of data3;let i=index;">
+            <td>{{i+1}}</td>
+            <td>{{d.category_Name}}</td>
+            <td>{{d.description}}</td>
+            <td>{{d.sts_name}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<br><br>
+
+<h3 style="font-weight: 550;">Diet Plan </h3>
+
+<!-- <div class="row">
+    <div class="col-md-3">
+        <p><strong>Intake :</strong> </p> 
+    </div>
+    <div class="col-md-3">
+        <p><strong>Duration :</strong> </p>  
+    </div>
+    <div class="col-md-3">
+        <p><strong>Instruction :</strong> </p>  
+    </div>
+    <div class="col-md-3">
+        <p><strong>Status :</strong> </p>  
+    </div>
+</div> -->
+
+<table>
+    <thead>
+        <tr>
+            <th>SI.No</th>
+            <th>Intake</th>
+            <th>Duration</th>
+            <th>Instruction</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let d of data4;let i=index;">
+            <td>{{i+1}}</td>
+            <td>{{d.dp_intake}}</td>
+            <td>{{d.dp_duration}}&nbsp;{{d.dp_dura_interof}}</td>
+            <td>{{d.dp_instruction}}</td>
+            <td>{{d.status_name}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<br><br>
+
+<h3 style="font-weight: 550;">Referral </h3>
+
+
+<!-- <div class="row">
+    <div class="col-md-3">
+        <p><strong>Referred Hospital :</strong> </p> 
+    </div>
+    <div class="col-md-3">
+        <p><strong>Referred date :</strong> </p>  
+    </div>
+    <div class="col-md-3">
+        <p><strong>Observations :</strong> </p>  
+    </div>
+    <div class="col-md-3">
+        <p><strong>Remarks :</strong> </p>  
+    </div>
+</div> -->
+
+<table>
+    <thead>
+        <tr>
+            <th>SI.No</th>
+            <th>Referred Hospital</th>
+            <th>Referred date</th>
+            <th>Observations</th>
+            <th>Remarks</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let d of data5;let i=index;">
+            <td>{{i+1}}</td>
+            <td>{{d.hos_Name}}</td>
+            <td>{{d.ref_Date}}</td>
+            <td>{{d.splObs}}</td>
+            <td>{{d.remarks}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<br><br><br>
+
+<h3 style="font-weight: 550;">Re-visit</h3>
+
+
+<!-- <div class="row">
+        <div class="col-md-4">
+            <p><strong>Revisi date :</strong> </p> 
+        </div>
+        <div class="col-md-4">
+            <p><strong>Revisit time :</strong> </p>  
+        </div>
+        <div class="col-md-4">
+            <p><strong>Remarks :</strong> </p>  
+        </div>
+    </div> -->
+
+<table>
+    <thead>
+        <tr>
+            <th>SI.No</th>
+            <th>Re-visit date</th>
+            <th>Re-visit time</th>
+            <th>Remarks</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let d of data6;let i=index;">
+            <td>{{i+1}}</td>
+            <td>{{d.rV_Date}}</td>
+            <td>{{d.rV_Time}}</td>
+            <td>{{d.remarks}}</td>
+        </tr>
+    </tbody>
+</table>

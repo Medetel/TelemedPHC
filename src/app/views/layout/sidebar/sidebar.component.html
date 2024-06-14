@@ -1,0 +1,40 @@
+<nav class="sidebar">
+  <div class="sidebar-header">
+
+    <!--- Logo -->
+    <a class="sidebar-brand">
+      <div class="media d-block d-sm-flex text-center">
+        <img [src]="image_url" alt="logo" style="width: 80px; height: 80px; object-fit: cover;">
+      </div>
+    </a>
+    <!--- Toggler -->
+    <div class="sidebar-toggler not-active" #sidebarToggler (click)="toggleSidebar($event)">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <div class="sidebar-body" (mouseenter)="operSidebarFolded()" (mouseleave)="closeSidebarFolded()" [perfectScrollbar]>
+    <!-- Side-nav-bar start -->
+    <mat-accordion>
+      <mat-expansion-panel hideToggle hidden="true">
+        <mat-expansion-panel-header>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+      <div *ngFor="let d of data ">
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <button mat-button [routerLink]="d.link" routerLinkActive="active">
+              <mat-icon>{{d.m_icon}}</mat-icon> {{d.m_label}}
+            </button>
+
+          </mat-expansion-panel-header>
+          <div class="submenu" *ngFor="let s of d.subItems">
+            <button mat-button [routerLink]="s.sM_link" routerLinkActive="active">{{s.sM_label}}</button>
+          </div>
+        </mat-expansion-panel>
+      </div>
+    </mat-accordion>
+
+  </div>
+</nav>

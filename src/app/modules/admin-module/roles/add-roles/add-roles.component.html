@@ -1,0 +1,27 @@
+<mat-card>
+    <mat-card-title>ADD ROLE</mat-card-title>
+    <br>
+    <mat-divider></mat-divider>
+    <mat-content>
+        <form [formGroup]="role_register">
+            <div class="row">
+                <div class="col-md-12">
+                    <mat-form-field class="example-full-width" appearance="legacy">                       
+                        <mat-label>Role *</mat-label>
+                        <input matInput formControlName="roleName" maxlength="70">
+                        <!-- <mat-error *ngIf="role_register.get('roleName').hasError('required')" >FirstName is required</mat-error>
+                        <mat-error *ngIf="role_register.get('roleName').hasError('invalidName') || role_register.get('roleName').hasError('pattern') ">
+                            Please enter Alphabet and space is not allowed in starting and ending
+                        </mat-error> -->
+                    </mat-form-field>
+                </div>
+            </div>
+            <mat-card-actions>
+                <div class="footer_button">
+                    <button id="save" mat-raised-button color="primary" (click)="save()">Save</button>
+                    <button routerLink="/base/admin/roles" id="cancel" mat-raised-button color="warn">Close</button>
+                </div>
+            </mat-card-actions>
+        </form>
+    </mat-content>
+</mat-card>

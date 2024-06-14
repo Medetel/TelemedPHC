@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>Edit Country</h1>
+<mat-divider></mat-divider>
+<!-- <div mat-dialog-content> -->
+    <form [formGroup]="country">
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field  class="example-full-width" appearance="legacy">
+                    <mat-label>Country Code</mat-label>                    
+                    <input matInput #input formControlName="country_code">                   
+                    <!-- <mat-error *ngIf="checkError('country_code', 'required')">Country Code is required</mat-error>-->
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                    <mat-label class="star">Country Name</mat-label>
+                    <input matInput placeholder="Eg.India" maxlength="45" formControlName="country_name" required>
+                    <mat-error *ngIf="checkError('country_name', 'required')">Country Name is required</mat-error>
+                    <mat-error *ngIf="country.get('country_name').hasError('alphaCheck')">
+                        Please enter alphabet characters
+                    </mat-error>
+                    <mat-error *ngIf="country.get('country_name').hasError('spaceCheck')">
+                        Country Name will not allow white space
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+<!-- </div> -->
+<br>
+<div mat-dialog-actions align="end">
+    <button id="save" mat-raised-button color="primary"  (click)="updateform()">Update</button>
+    <button mat-dialog-close id="cancel" mat-raised-button color="warn">Close</button>
+</div>

@@ -1,0 +1,401 @@
+<h1 mat-dialog-title>Edit Patient</h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content>
+    <form [formGroup]="patient">
+        <div class="row">
+            <div class="col-md-12">
+                <div align="center">
+                    <mat-label>Upload Image</mat-label>
+                    <br><br>
+                    <img class="images" matPrefix [src]="Image_Url" width="100px" height="100px" alt="image not found">
+                    <input type="file" formControlName="PR_Photo" (change)="onSelectFile($event)">
+                </div>
+            </div>
+            <!-- <div class="col-md-3">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Code</mat-label>
+                        <input matInput placeholder="" formControlName="PR_PatientCode">
+                    </mat-form-field>
+                </div> -->
+            <!-- <div class="col-md-3">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Hospital Network</mat-label>
+                        <mat-select formControlName="PR_RemoteHospitalName_Id_FK">
+                            <mat-option *ngFor="let n of networkdd" [value]="n.nE_Id">{{n.nE_Description}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div> -->
+            <fieldset>
+                <legend>Patient Info</legend>
+                <div class="row">
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>First Name</mat-label>
+                            <input matInput placeholder="" formControlName="PR_FirstName" required>
+                            <mat-error *ngIf="patient.controls['PR_FirstName'].hasError('required')" >First Name is required</mat-error>
+                            <!-- <mat-error *ngIf="patient.get('PR_FirstName').hasError('invalidName') || patient.get('PR_FirstName').hasError('pattern') ">
+                                Please enter Alphabet and space is not allowed in starting and ending
+                            </mat-error> -->
+                            <mat-error *ngIf="patient.get('PR_FirstName').hasError('alphaCheck')">
+                                Please enter alphabet characters
+                            </mat-error>
+                            <mat-error *ngIf="patient.get('PR_FirstName').hasError('spaceCheck')">
+                                First Name will not allow white space
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Last Name</mat-label>
+                            <input matInput placeholder="" formControlName="PR_LastName" >
+                            <!-- <mat-error *ngIf="patient.controls['PR_LastName'].hasError('required')" >LastName is required</mat-error> -->
+                            <!-- <mat-error *ngIf="patient.get('PR_LastName').hasError('invalidName') || patient.get('PR_LastName').hasError('pattern') ">
+                                Please enter Alphabet and space is not allowed in starting and ending
+                            </mat-error> -->
+                            <mat-error *ngIf="patient.get('PR_LastName').hasError('alphaCheck')">
+                                Please enter alphabet characters
+                            </mat-error>
+                            <mat-error *ngIf="patient.get('PR_LastName').hasError('spaceCheck')">
+                                Last Name will not allow white space
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>DOB</mat-label>
+                            <input matInput [matDatepicker]="dp" [max]="today" placeholder="Date of Birth"
+                                (dateChange)="dobchange($event)" formControlName="PR_DOB" readonly required>
+                            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                            <mat-datepicker #dp></mat-datepicker>
+                            <mat-error *ngIf="patient.controls['PR_DOB'].hasError('required')" >DOB is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Age</mat-label>
+                            <input matInput placeholder="" formControlName="PR_Age" readonly required>
+                            <mat-error *ngIf="patient.controls['PR_Age'].hasError('required')" >DOB is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label> Gender</mat-label>
+                            <mat-select formControlName="PR_Gender" required>
+                                <mat-option *ngFor="let g of gender" [value]="g.text">{{g.text}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Marital status</mat-label>
+                            <mat-select formControlName="PR_MaritalStatus" required>
+                                <mat-option value="Married">Married</mat-option>
+                                <mat-option value="Unmarried">Unmarried</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Blood Groups</mat-label>
+                            <mat-select formControlName="PR_BloodGroup" placeholder="bloodgroup">
+                                <mat-option value="O+">O+</mat-option>
+                                <mat-option value="O-">O-</mat-option>
+                                <mat-option value="AB+">AB+</mat-option>
+                                <mat-option value="AB-">AB-</mat-option>
+                                <mat-option value="B+">B+</mat-option>
+                                <mat-option value="A+">A+</mat-option>
+                                <mat-option value="B-">B-</mat-option>
+                                <mat-option value="A-">A-</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Nationality</mat-label>
+                            <mat-select formControlName="PR_NAL_Id_FK" required>
+                                <mat-option *ngFor="let n of nationality" [value]="n.id">{{n.nationality}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Religion</mat-label>
+                            <mat-select formControlName="PR_REG_Id_FK">
+                                <mat-option *ngFor="let r of religion" [value]="r.id">{{r.religion}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Caste</mat-label>
+                            <mat-select formControlName="PR_CAT_Id_FK">
+                                <mat-option *ngFor="let c of caste" [value]="c.id">{{c.caste}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Mother Tongue</mat-label>
+                            <mat-select formControlName="PR_MotherTongue">
+                                <mat-option *ngFor="let s of language" [value]="s.id">{{s.language}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <!-- <div class="col-md-3">
+                        <div class="col-md-12" [hidden]="true">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Prefered Languages</mat-label>
+                                <mat-select formControlName="toppingsControl" multiple>
+                                    <mat-select-trigger>
+                                        <mat-chip-list>
+                                            <mat-chip *ngFor="let topping of this.patient.value.toppingsControl"
+                                                [removable]="true" (removed)="onToppingRemoved(topping)">
+                                                {{topping.language}}
+                                                <mat-icon matChipRemove>cancel</mat-icon>
+                                            </mat-chip>
+                                        </mat-chip-list>
+                                    </mat-select-trigger>
+                                    <mat-option *ngFor="let c of language" [value]="c">{{c.language}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div> -->
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Identity Details</legend>
+                <div class="row">
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Identity Proof</mat-label>
+                            <mat-select formControlName="PR_IDN_Id_FK" (valueChange)="identitychange(selectval.value)" #selectval required>
+                                <mat-option *ngFor="let i of identity" [value]="i.id">{{i.doC_Name}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="patient.controls['PR_IDN_Id_FK'].hasError('required')" >Identity Proof is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Identity No</mat-label>
+                            <input matInput minlength={{min}}  maxlength={{max}} formControlName="PR_Identity_No" required>
+                        
+                        <!-- <mat-error *ngIf="patient.get('PR_Identity_No').hasError('invalidName') || patient.get('PR_Identity_No').hasError('pattern') ">
+                            Please enter Alpha Numerical and minimum:6/Maximum:15 characters only
+                        </mat-error> -->
+                        
+                        <mat-error *ngIf="patient.controls['PR_Identity_No'].hasError('required')" >Identity No is required</mat-error>
+                           
+                        <mat-error *ngIf="selectval.value==1 && patient.controls['PR_Identity_No'].hasError('pattern')">Please enter numbers only</mat-error>
+                           
+                        <mat-error *ngIf="selectval.value==1 && patient.controls['PR_Identity_No'].hasError('minlength')">
+                            Please enter valid 12-digit number</mat-error>
+                        <mat-error *ngIf="selectval.value==1 && patient.controls['PR_Identity_No'].hasError('maxlength')">
+                                Please enter valid 12-digit number</mat-error>        
+                        
+                        <mat-error *ngIf="selectval.value!=1 && (patient.controls['PR_Identity_No'].hasError('pattern') || patient.controls['PR_Identity_No'].hasError('invalidName'))">
+                            Please enter alphanumeric only</mat-error>
+                            <mat-error *ngIf="selectval.value!=1 && patient.controls['PR_Identity_No'].hasError('minlength')">
+                                Please enter valid 15-digit number</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>National Health Id</mat-label>
+                            <input matInput type="number" onKeyPress="if(this.value.length==14) return false;" placeholder="Eg.12345678914123" formControlName="National_Health_Id">
+                            <mat-error *ngIf="patient.get('National_Health_Id').invalid">Negative values are not
+                                allowed</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Occupation</mat-label>
+                            <mat-select formControlName="PR_OCU_Id_FK" required>
+                                <mat-option *ngFor="let o of occupation" [value]="o.id">{{o.occupation}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Income</mat-label>
+                            <mat-select formControlName="PR_Income">
+                                <mat-option value="0-1Lakhs">0-1Lakhs</mat-option>
+                                <mat-option value="1-2Lakhs">1-2Lakhs</mat-option>
+                                <mat-option value="2-3Lakhs">2-3Lakhs</mat-option>
+                                <mat-option value="4-5Lakhs">4-5Lakhs</mat-option>
+                                <mat-option value="More Than 5Lakhs">More Than 5Lakhs</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Insurance</mat-label>
+                            <mat-select formControlName="PR_Insurance" (selectionChange)="Insurance($event)">
+                                <mat-option value="Yes">Yes</mat-option>
+                                <mat-option value="No">No</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="patient.controls['PR_Insurance'].hasError('required')" >Insurance is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3" [hidden]="enable">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label class="star">Category</mat-label>
+                            <mat-select formControlName="PR_InsuranceCategory"
+                                (selectionChange)="InsuranceCategory($event)">
+                                <mat-option value="LIFE">Life</mat-option>
+                                <mat-option value="HEALTH">Health</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="patient.controls['PR_InsuranceCategory'].hasError('required')" >Category is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3" [hidden]="enable">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label class="star">Insurance Category</mat-label>
+                            <mat-select formControlName="PR_INU_Id_FK" #selectval>
+                                <mat-option *ngFor="let i of insurer" [value]="i.id">{{i.insurer}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="patient.controls['PR_INU_Id_FK'].hasError('required')" >Insurance Category is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3" [hidden]="enable">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label class="star">Sum Insured</mat-label>
+                            <input matInput maxlength="8" formControlName="PR_Insured_Sum">
+                            <mat-error
+                            *ngIf="patient.controls['PR_Insured_Sum'].hasError('invalidName')">
+                            Please enter numbers only
+                           </mat-error>
+                           <mat-error *ngIf="patient.get('PR_Insured_Sum').hasError('required')">Sum Insured is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Communication Details</legend>
+                <div class="row">
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Mobile Number</mat-label>
+                            <!-- <input matInput placeholder="" formControlName="PR_MobileNumber"> -->
+                            <input matInput #input  maxlength="10" minlength="10" placeholder="Eg.9000000001" formControlName="PR_MobileNumber" required>
+                            <mat-error *ngIf="patient.controls['PR_MobileNumber'].hasError('invalidName') || patient.controls['PR_MobileNumber'].hasError('pattern') ">
+                                Please enter valid 10 digit mobile number
+                            </mat-error>
+                            <mat-error *ngIf="patient.controls['PR_MobileNumber'].hasError('required')" >Mobile number is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Alternate Number</mat-label>
+                            <!-- <input matInput placeholder="" formControlName="PR_Alternative_No"> -->
+                            <input matInput placeholder="Eg.9000000001"  maxlength="10" minlength="10" formControlName="PR_Alternative_No" >
+                            <!-- <mat-error *ngIf="patient.controls['PR_Alternative_No'].hasError('required')" >Phone number is required</mat-error> -->
+                            <mat-error *ngIf="patient.controls['PR_Alternative_No'].hasError('invalidName') || patient.controls['PR_Alternative_No'].hasError('pattern') ">
+                                Please enter valid 10 digit Alternate number
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Landline Number</mat-label>
+                            <input matInput #input  maxlength="11" placeholder="Eg.080-30000000" formControlName="PR_LandlineNo">
+                            <mat-error *ngIf="patient.controls['PR_LandlineNo'].hasError('invalidName') || patient.controls['PR_LandlineNo'].hasError('pattern') ">
+                                Please enter valid 11 digit Landline number
+                                </mat-error> 
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Email Id</mat-label>
+                            <!-- <input matInput placeholder="" formControlName="PR_Email"> -->
+                            <input matInput placeholder="Eg.abc@gmail.com" formControlName="PR_Email" >
+                            <mat-error
+                                *ngIf="patient.controls['PR_Email'].hasError('invalidName') || patient.controls['PR_Email'].hasError('pattern')">
+                                Please enter a valid email address
+                            </mat-error>
+                            <!-- <mat-error *ngIf="patient.get('PR_Email').hasError('required')">
+                                Email is required
+                            </mat-error> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Address</mat-label>
+                            <textarea matInput formControlName="PR_Address" required></textarea>
+                            <mat-error *ngIf="patient.get('PR_Address').hasError('required')">Address is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Country</mat-label>
+                            <mat-select formControlName="PR_Country_Id_FK" #choosedValue
+                                (valueChange)="countrychange(choosedValue.value)" required>
+                                <mat-option *ngFor="let c of country" [value]="c.cntry_id">{{c.country_name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>State</mat-label>
+                            <mat-select formControlName="PR_S_Id_FK" #selectval (valueChange)="statechange($event)"
+                                required>
+                                <mat-option *ngFor="let s of state" [value]="s.stat_id">{{s.state_name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>District</mat-label>
+                            <mat-select formControlName="PR_D_Id_FK" #districtval
+                                (valueChange)="distritchange($event)" required>
+                                <mat-option *ngFor="let d of district" [value]="d.district_id">{{d.district_name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Taluk</mat-label>
+                            <mat-select formControlName="PR_Taluk_Id"  required>
+                                <mat-option *ngFor="let t of taluk" [value]="t.taluk_id">{{t.taluk_name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Village</mat-label>
+                            <input matInput maxlength="20" placeholder="" formControlName="PR_Village" required>
+                            <!-- <mat-select formControlName="PR_Gram_Id" #villageval
+                                (valueChange)="selectpincode(villageval.value)" required>
+                                <mat-option *ngFor="let g of gram" [value]="g.gram_id">{{g.gram_name}}</mat-option>
+                            </mat-select> -->
+                            <mat-error *ngIf="patient.get('PR_Village').hasError('required')">Village is required</mat-error>
+                            <mat-error *ngIf="patient.get('PR_Village').hasError('invalidName') || patient.get('PR_Village').hasError('pattern') ">
+                                Please enter alphabet and space is not allowed in starting and ending
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Postal Code</mat-label>
+                            <!-- <input matInput placeholder="" formControlName="PR_Postalcode"> -->
+                            <input matInput #input minlength="6" maxlength="6" placeholder="Eg.500000" formControlName="PR_Postalcode" required>
+                            <mat-error *ngIf="patient.get('PR_Postalcode').hasError('required')">Postal code is required</mat-error>
+                            <mat-error *ngIf="patient.get('PR_Postalcode').hasError && !patient.get('PR_Postalcode').hasError('required')">
+                                please enter valid postal code
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions align="end">
+    <button id="save" mat-raised-button color="primary" [disabled]="patient.invalid" (click)="updateform()">Update</button>
+    <button mat-dialog-close id="cancel" mat-raised-button color="warn">Close</button>
+</div>

@@ -1,0 +1,90 @@
+<h1 mat-dialog-title>Approve Hospital</h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content>
+    <form [formGroup]="hospital">
+        <div class="row">
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Code</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="hos_HospitalCode">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Registration Number</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="RegNo">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Name</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="hos_HospitalName">
+                        </mat-form-field>
+                    </div>
+                   
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Primary/Branch</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="primaryorBranch">
+                            <!-- <mat-select formControlName="primaryorBranch">
+                        <mat-option value="P">Primary</mat-option>
+                        <mat-option value="B">Branch</mat-option>
+                    </mat-select> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="hos_bran_hid">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Branch</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="hos_Branch">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="hos_netid">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Network</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="hos_NE_Id_FK">
+                        </mat-form-field>
+                    </div>
+
+                    <!-- <div class="col-md-4" [hidden]="hos_bran_hid">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Branch</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="hos_Branch">
+                        </mat-form-field>
+                    </div> -->
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Mobile Number</mat-label>
+                            <input style="color: seagreen;" matInput placeholder=""
+                                formControlName="hos_HospitalPhoneNo">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Address</mat-label>
+                            <textarea style="color: seagreen;" matInput
+                                formControlName="hos_HospitalAddress"></textarea>
+                            <!-- <input matInput placeholder="" formControlName="hos_HospitalAddress"> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>State</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="hos_ST_Id_FK">
+                            <!-- <mat-select formControlName="hos_ST_Id_FK">
+                        <mat-option *ngFor="let s of statedd"[value]="s.stat_id">{{s.state_name}}</mat-option>
+                    </mat-select> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Remarks</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="Remarks">
+                        </mat-form-field>
+                    </div>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions align="end">
+    <button id="save" mat-raised-button  color="primary" (click)="approveform()" >Approval</button>
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+</div>

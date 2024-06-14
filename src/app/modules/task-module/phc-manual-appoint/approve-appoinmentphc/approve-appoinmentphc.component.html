@@ -1,0 +1,185 @@
+<h1 mat-dialog-title>Approve Appointment</h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content>
+    <form [formGroup]="patient">
+        <fieldset>
+            <legend>Patient Details</legend>
+            <div class="row">
+                <div class="col-md-3">
+                    <h4>Patient Name :&nbsp; <span style="color: green;">{{patient_name}}</span></h4>
+                </div>
+                <div class="col-md-3">
+                    <h4>Patient ID :&nbsp; <span style="color: green;">{{patient_id}}</span></h4>
+                </div>
+                <!-- <div class="col-md-3">
+                        <img [src]="Image_Url" alt="">
+                    </div> -->
+                <div class="col-md-3">
+                    <img class="images" matPrefix [src]="Image_Url" width="100px" height="100px" alt="image not found">
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    <form [formGroup]="fixappointment">
+        <!-- <fieldset>
+            <legend>Vital-Signs</legend>
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>Temperature <span style="color: rgb(72, 135, 230);">(°C)</span>:&nbsp; <span
+                            style="color: green;">{{apt_temp}}</span></h4>
+
+                </div>
+                <div class="col-md-4">
+                    <h4>Blood Pressure <span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                            style="color: green;">{{apt_bloodpressure}}</span></h4>
+
+                </div>
+                <div class="col-md-4">
+                    <h4>Pulse <span style="color: rgb(72, 135, 230);">(Heart beats/min)</span>:&nbsp; <span
+                            style="color: green;">{{apt_pulse}}</span></h4>
+
+                </div>
+                <div class="col-md-4">
+                    <h4>Spo2 <span style="color: rgb(72, 135, 230);">(%)</span>:&nbsp; <span
+                            style="color: green;">{{apt_spo2}}</span></h4>
+
+                </div>
+                <div class="col-md-4">
+                    <h4>Hemoglobin <span style="color: rgb(72, 135, 230); ">(g/dl)</span>:&nbsp; <span
+                            style="color: green;">{{apt_hemoglobin}}</span></h4>
+
+                </div>
+                <div class="col-md-4">
+                    <h4>Glucose <span style="color: rgb(72, 135, 230); ">(mg/dl)</span>:&nbsp; <span
+                            style="color: green;">{{apt_glucose}}</span></h4>
+                </div>
+                <div class="col-md-4">
+                    <h4>Total Cholesterol <span style="color: rgb(72, 135, 230); ">(mg/dl)</span>:&nbsp; <span
+                            style="color: green;">{{lp_total_cholesterol}}</span></h4>
+                </div>
+                <div class="col-md-4">
+                    <h4>Triglycerides <span style="color: rgb(72, 135, 230); ">(mg/dl)</span>:&nbsp; <span
+                            style="color: green;">{{lp_triglycerides}}</span></h4>
+                </div>
+                <div class="col-md-4">
+                    <h4>HDL Cholesterol <span style="color: rgb(72, 135, 230); ">(mg/dl)</span>:&nbsp; <span
+                            style="color: green;">{{lp_hdl_cholesterol}}</span></h4>
+                </div>
+                <div class="col-md-4">
+                    <h4>LDL <span style="color: rgb(72, 135, 230); ">(mg/dl)</span>:&nbsp; <span
+                            style="color: green;">{{lp_ldl}}</span></h4>
+                </div>
+                <div class="col-md-4">
+                    <h4>Height <span style="color: rgb(72, 135, 230); ">(Cm)</span>:&nbsp; <span
+                            style="color: green;">{{apt_height}}</span></h4>
+                </div>
+                <div class="col-md-4">
+                    <h4>Weight <span style="color: rgb(72, 135, 230); ">(Kg)</span>:&nbsp; <span
+                            style="color: green;">{{apt_weight}}</span></h4>
+                </div>
+                <div class="col-md-3">
+                    <h4>BMI <span style="color: rgb(72, 135, 230); ">(kg/m²)</span>:&nbsp; <span
+                            style="color: green;">{{calculateBMI()}}</span></h4>
+                </div>
+            </div>
+        </fieldset> -->
+        <fieldset>
+            <legend>Other-Info</legend>
+            <div class="row">
+                <div class="col-md-12">
+                    <div>
+                        <h4>Present Complaints :
+                            <span style="color: green;" *ngFor="let da of complaint">
+                                {{da.cmst_Name}},&nbsp;
+                            </span>
+                        </h4>
+                    </div>
+                </div>
+                <!-- <div class="col-md-12">
+                        <div>
+                            <h4>Symptoms :
+                                <span style="color: green;" *ngFor="let da of symptoms">
+                                   {{da.smst_Name}},&nbsp;
+                                </span>
+                            </h4>
+                        </div>
+                    </div> -->
+
+                <!-- <div class="col-md-12">
+                        <div>
+                            <h4>Present Illness :
+                                <span style="color: green;" *ngFor="let da of Diseases">
+                                   {{da.diseases_Name}},&nbsp;
+                                </span>
+                            </h4>
+                        </div>
+                    </div> -->
+                <div class="col-md-12">
+                    <h4>Any Known Allergy :&nbsp; <span style="color: green;" *ngFor="let da of allergy">
+                            {{da.al_Name}}</span></h4>
+                </div>
+                <div class="col-md-12">
+                    <h4>Past/Current Medical History :&nbsp; <span style="color: green;"
+                            *ngFor="let da of medications">{{da.medic_name}}</span>
+                    </h4>
+                </div>
+                <!-- <div class="col-md-6">
+                    <h4>Under BP-Medication :&nbsp; <span style="color: green;">{{apt_bpmeditation}}</span></h4>
+            </div>
+            <div class="col-md-6">
+                <h4>Under Sugar-Medication :&nbsp; <span style="color: green;">{{apt_sugarmeditation}}</span></h4>
+        </div> -->
+            </div>
+        </fieldset>
+
+
+        <fieldset>
+            <legend>Consultation</legend>
+            <div class="row">
+                <div class="col-md-3">
+                    <h4>Date :&nbsp; <span style="color: green;">{{apt_date | date:'dd-MM-yyy'}}</span></h4>
+                </div>
+                <div class="col-md-3">
+                    <h4>From-Time :&nbsp; <span style="color: green;">{{apt_f_time | time24to12Transform}}</span></h4>
+                </div>
+                <div class="col-md-3">
+                    <h4>To-Time :&nbsp; <span style="color: green;">{{apt_to_time | time24to12Transform}}</span></h4>
+                </div>
+                <div class="col-md-3">
+                    <h4>Hospital :&nbsp; <span style="color: green;">{{app_hospital}}</span></h4>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Date</mat-label>
+                        <input matInput min="{{minDate | date :'yyyy-MM-dd'}}" [matDatepicker]="dp"
+                            formControlName="CON_ConsultedDate" required>
+                        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                        <mat-datepicker #dp></mat-datepicker>
+                        <mat-error *ngIf="fixappointment.get('CON_ConsultedDate').hasError('required')">Date is
+                            required</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Select Approval-Time</mat-label>
+                        <input matInput type="time" matInput formControlName="CON_ConsultedTime" min="09:00" max="18:00"
+                            required>
+                        <mat-error *ngIf="fixappointment.get('CON_ConsultedTime').hasError('required')">Time is
+                            required</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Remarks</mat-label>
+                        <input matInput placeholder="" formControlName="Remarks">
+                    </mat-form-field>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<div mat-dialog-actions align="end">
+    <button id="save" mat-raised-button color="primary" [disabled]="fixappointment.invalid"
+        (click)="approveform()">Approval</button>
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+</div>

@@ -1,0 +1,49 @@
+.tooltip-blue {
+    background: black;
+  }
+  
+  #view{
+    margin-left: 5px;
+  }
+
+
+table {
+    border-collapse:collapse;
+    width: 100%;
+}
+  
+td,th {
+    width: auto;
+    text-align: left;
+    padding: 8px;
+}
+h2{
+    font-weight: bold;
+}
+  
+// tr:nth-child(odd) {
+//     background-color: rgb(208, 208, 208);
+// }
+.close-button{
+  float: right;
+  top:-20px;
+  right:-20px;
+ }
+ 
+ // .close-icon {
+ // transition: 1s ease-in-out;
+ // }
+ 
+ // .close-icon:hover {
+ // transform: rotate(180deg);
+ // }
+ 
+ ::ng-deep .icon-outside .close-button{
+  float: right;
+  top:-52px;
+  right:-52px;
+ }
+ 
+ ::ng-deep .icon-outside .mat-dialog-container {
+  overflow: unset
+ }

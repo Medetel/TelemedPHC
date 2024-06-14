@@ -1,0 +1,42 @@
+.example-full-width {
+    width: 100%;
+}
+
+.button_add {
+    box-sizing: border-box;
+    justify-content: right;
+    justify-items: right;
+    padding-bottom: 10px;
+}
+
+#add {
+    float: right;
+    background-color: #3790e9;
+}
+
+.tooltip-red {
+    background: black;
+}
+
+.tooltip-blue {
+    background: black;
+}
+
+.tooltip-yellow {
+    background: black;
+}
+
+#approvel,
+#view,
+#edit,
+#delete {
+    margin-left: 5px;
+}
+
+.warn {
+    color: red;
+}
+
+.all {
+    color: seagreen;
+}

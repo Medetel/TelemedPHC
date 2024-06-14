@@ -1,0 +1,107 @@
+ .example-full-width {
+     width: 100%;
+ }.form {
+    background: #ffffff;
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+
+.width100 {
+    width: 100%;
+}
+
+.awardtable {
+    margin-top: -10px;
+}
+
+.awardtable td {
+    padding: 5px;
+    font-size: 15px;
+}
+
+.form .container {
+    background: #fff;
+}
+
+.padding0 {
+    padding: 0;
+}
+
+.form-label {
+    font-size: 16px;
+    width: 44%;
+    display: inline-block;
+    color: #797878;
+}
+
+.data {
+    font-size: 16px;
+    display: inline-block;
+    width: 50%;
+    padding: 5px;
+    vertical-align: middle;
+}
+
+.sub-title {
+    font-size: 18px;
+    padding-left: 20px;
+    text-decoration: underline;
+}
+
+.row {
+    padding: 10px;
+}
+
+.row:nth-child(odd) {
+    background: #ffffff;
+}
+
+.table-header {
+    background: grey;
+    color: #fff;
+}
+
+.highlight-row {
+    background: #f1ecec;
+}
+
+.sticky-back {
+    position: fixed;
+    left: 65px;
+    top: 165px;
+    z-index: 100;
+}
+
+@media print {
+    .print-hide {
+        display: none;
+    }
+}
+
+.warn {
+    color: red;
+}
+
+.all {
+    color: seagreen;
+}
+
+.edit {
+    color: cornflowerblue;
+}
+
+.btn-download {
+    background-color: #3790e9;
+}
+
+.close-button {
+    float: right;
+    top: -20px;
+    right: -20px;
+}
+
+// tr,
+// th,
+// td {
+//     border: 1px solid black;
+// }

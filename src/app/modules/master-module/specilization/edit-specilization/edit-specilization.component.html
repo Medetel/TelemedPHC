@@ -1,0 +1,44 @@
+<h1 mat-dialog-title>Edit Specialization</h1>
+<mat-divider></mat-divider>
+<!-- <div mat-dialog-content> -->
+    <form [formGroup]="specilization">
+        <div class="row">
+            
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Specialization Code</mat-label>                    
+                    <input matInput #input  maxlength="8" formControlName="sP_Code">
+                        <!-- <mat-error *ngIf="checkError('sP_Code', 'required')">Specilization Code is required</mat-error> -->                        
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Specialization Category</mat-label>
+                    <mat-select formControlName="sP_CD_Id">
+                        <mat-option *ngFor="let d of specilizationdd" [value]="d.spc_id">{{d.spc_Name}}</mat-option>
+                    </mat-select>
+                    <!-- <mat-error *ngIf="checkError('sP_CD_Id', 'required')">Specialization Category is required</mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                    <mat-label class="star">Specialization Description</mat-label>
+                    <input matInput maxlength="45" formControlName="sP_Specialization" required>
+                    <mat-error *ngIf="checkError('sP_Specialization', 'required')">Specialization Description  is required</mat-error>
+                    <mat-error *ngIf="specilization.get('sP_Specialization').hasError('alphaCheck')">
+                        Please enter alphabet characters
+                    </mat-error>
+                    <mat-error *ngIf="specilization.get('sP_Specialization').hasError('spaceCheck')">
+                        Specialization will not allow white space
+                    </mat-error>                   
+                </mat-form-field>
+            </div>
+           
+        </div>
+    </form>
+<!-- </div> -->
+<br>
+<div mat-dialog-actions align="end">
+    <button id="save" mat-raised-button color="primary" (click)="updateform()" >Update</button>
+    <button mat-dialog-close id="cancel" mat-raised-button color="warn">Close</button>
+</div>

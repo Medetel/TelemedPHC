@@ -1,0 +1,29 @@
+.mat-divider-vertical{
+  height: 100%;
+  width: 0px !important;
+  position: inherit !important;
+}
+
+.full-width {
+  width: 100%;
+}
+.star::after{
+  content: " *";
+  color: red;
+}
+
+.footer_button{
+  justify-content: center;
+  justify-items: center;
+  text-align: center !important;
+}
+
+a:link, a:visited {
+  background-color: #006387;
+  color: white;
+ 
+  text-align: center;
+  text-decoration: none;
+  
+  
+}

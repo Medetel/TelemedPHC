@@ -1,0 +1,46 @@
+.mat-expansion-panel{
+    background-color: #0b749c;
+    text-align: center;
+}
+a{
+    color: white;
+    text-align: center;
+    width: 100%;
+}
+.mat-button{
+    width: 100%;
+    text-align: left;
+    color: white;
+}
+.mat-button:hover{
+    color: red;
+}
+a:hover{
+    color: chocolate;
+}
+.mat-expansion-panel-header{
+    padding: 0 19px;
+    color: white;
+    text-align:center;
+}
+.mat-expansion-panel-header:hover{
+    color: chocolate;
+}
+.active{
+    color: wheat;
+}
+.active:focus{
+    color: coral;
+}
+.submenu{
+    padding-top: 5px;
+    font-size: 11pt;
+    width: 100%;
+    text-align: left;
+}
+.mat-expansion-panel-header .active:focus{
+    color: coral;
+}
+.sidebar-brand{
+    margin-left: 20px;
+}

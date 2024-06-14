@@ -1,0 +1,37 @@
+<h1 mat-dialog-title>View User</h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content>
+    <form [formGroup]="user_register">
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Role Name</mat-label>
+                    <input style="color: seagreen;" matInput placeholder=""  formControlName="role">
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>User Name</mat-label>
+                    <input  style="color: seagreen;" matInput placeholder="" formControlName="Username">
+                </mat-form-field>
+            </div>
+           
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Phone Number</mat-label>
+                    <input  style="color: seagreen;" matInput placeholder="" formControlName="Phonenumber">
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Email</mat-label>
+                    <input style="color: seagreen;" matInput placeholder="" type="email" formControlName="Email">
+                </mat-form-field>
+            </div>
+        </div>
+      </form>
+</div>
+<div mat-dialog-actions align="end" >
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+</div>
+

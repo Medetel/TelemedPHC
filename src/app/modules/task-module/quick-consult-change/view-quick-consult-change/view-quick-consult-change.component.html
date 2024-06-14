@@ -1,0 +1,88 @@
+
+<h1 mat-dialog-title>View Appointment</h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content>
+    <form  [formGroup]="patient">
+        <fieldset>
+            <legend>Patient Details</legend>
+                <div class="row">
+                    <div class="col-md-3">
+                        <h4>Patient ID :&nbsp; <span style="color: green;">{{patient_id}}</span></h4>
+                    </div>
+                    <div class="col-md-3">
+                        <h4>Patient Name :&nbsp; <span style="color: green;">{{patient_name}}</span></h4>
+                    </div>
+                    <div class="col-md-3" >
+                        <h4 class="gender">Gender: <span style="color: green;">{{patient_gender}}</span></h4>
+                    </div>
+                    <div class="col-md-3">
+                        <img class="images" matPrefix [src]="Image_Url" width="100px" height="100px" alt="image not found">
+                    </div>
+                        <div class="col-md-3" >
+                            <h4>DOB: <span style="color: green;">{{patient_dob | date:'dd-MM-yyy'}}</span></h4>
+                        </div>
+                        <div class="col-md-3" >
+                            <h4>Age: <span style="color: green;">{{patient_age}}</span></h4>
+                        </div> 
+                </div>
+           </fieldset>
+        </form>
+        <form [formGroup]="fixappointment">
+            <!-- <fieldset>
+                <legend>Vital-Signs</legend>
+                <div class="row">
+                    <div class="col-md-4">
+                        <h4>Height <span style="color: rgb(72, 135, 230); ">(Cm)</span>:&nbsp; <span style="color: green;">{{apt_height}}</span></h4>                        
+                    </div>
+                    <div class="col-md-4">
+                        <h4>Weight <span style="color: rgb(72, 135, 230); ">(Kg)</span>:&nbsp; <span style="color: green;">{{apt_weight}}</span></h4>                      
+                    </div>
+                </div>
+            </fieldset> -->
+
+                   
+            <fieldset>
+                <legend>Other-Info</legend>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div>
+                            <h4>Complaints :
+                                <span style="color: green;" *ngFor="let da of complaint">
+                                   {{da.cmst_Name}},&nbsp;
+                                </span>
+                            </h4>
+                        </div>
+                    </div>
+                    
+               
+           
+                </div>
+            </fieldset>
+
+                   
+            <fieldset>
+                <legend>Consultation</legend>
+                <div class="row">
+            <div class="col-md-3">
+                <h4>Date :&nbsp; <span style="color: green;">{{apt_date | date:'dd-MM-yyy'}}</span></h4>
+               
+            </div>
+            <div class="col-md-3">
+                <h4>From-Time :&nbsp; <span style="color: green;">{{apt_f_time | time24to12Transform}}</span></h4>
+               
+            </div>
+            <div class="col-md-3">
+                <h4>To-Time :&nbsp; <span style="color: green;">{{apt_to_time | time24to12Transform}}</span></h4>
+              
+            </div>
+
+            <div class="col-md-3">
+                <h4>Doctor :&nbsp; <span style="color: green;">{{app_doctor}}</span></h4>
+            </div>
+                </div>
+            </fieldset>
+        </form>
+</div>
+<div mat-dialog-actions align="end" >
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+</div>

@@ -1,0 +1,28 @@
+.full-width {
+    width: 100%;
+}
+
+/*
+  :host {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  */
+
+.mat-divider-vertical {
+    height: 100%;
+    width: 0px !important;
+    position: inherit !important;
+}
+
+.star::after {
+    content: " *";
+    color: red;
+}
+
+.footer_button {
+    justify-content: center;
+    justify-items: center;
+    text-align: center !important;
+}

@@ -1,0 +1,148 @@
+<div class="appoin">
+    <img src="../assets/images/doctors_schedule.png" class="img"> DOCTORS SCHEDULE
+</div>
+
+<mat-card style="margin-top: 1%;">
+    <form [formGroup]="scheduleadd" (submit)="schedule()" [hidden]="issave">
+      <div class="row">
+        <div class="col-md-3">
+          <mat-form-field class="example-full-width" appearance="legacy">
+            <mat-label>Select Doctor</mat-label>
+            <mat-select formControlName="dO_Id_FK" required>
+              <mat-option *ngFor="let d of doctordd" [value]="d.dO_Id">{{d.dO_Name}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="scheduleadd.touched && (!scheduleadd.value.doctor || scheduleadd.value.time_from.length == 0)" class="validation">
+            * Doctor is required {{scheduleadd.value.doctor}}
+          </mat-error>  
+        </mat-form-field>
+          
+        </div>
+        <div class="col-md-3">
+          <mat-form-field class="example-full-width" appearance="legacy">
+            <mat-label>Select Day</mat-label>
+            <mat-select formControlName="do_Scd_day" placeholder="">
+              <mat-option value="Monday">Monday</mat-option>
+              <mat-option value="Tuesday">Tuesday</mat-option>
+              <mat-option value="Wednesday">Wednesday</mat-option>
+              <mat-option value="Thursday">Thursday</mat-option>
+              <mat-option value="Friday">Friday</mat-option>
+              <mat-option value="Saturday">Saturday</mat-option>
+              <mat-option value="Sunday">Sunday</mat-option>
+            </mat-select>
+            <mat-error *ngIf="scheduleadd.touched && (!scheduleadd.value.do_Scd_day || scheduleadd.value.do_Scd_day.length == 0)" class="validation">
+                * Day is required {{scheduleadd.value.do_Scd_day}}
+              </mat-error>
+          </mat-form-field>
+          
+        </div>
+
+        
+    
+        <div class="col-md-3">
+          <mat-form-field class="example-full-width" appearance="legacy">
+            <mat-label>From-Time</mat-label>
+            <input matInput type="time" formControlName="time_from" min="09:00" max="18:00">
+            <mat-error *ngIf="scheduleadd.touched && (!scheduleadd.value.time_from || scheduleadd.value.time_from.length == 0)" class="validation">
+                * From time is required {{scheduleadd.value.time_from}}
+              </mat-error> 
+            <mat-error *ngIf="scheduleadd.controls['time_from'].hasError('pattern')">
+              Please enter correct time
+
+            </mat-error> 
+        </mat-form-field>
+          
+        </div>
+    
+        <div class="col-md-3">
+          <mat-form-field class="example-full-width" appearance="legacy">
+            <mat-label>To-Time</mat-label>
+            <input matInput type="time" formControlName="time_to" min="09:00" max="18:00">
+            <mat-error *ngIf="scheduleadd.touched && (!scheduleadd.value.time_to || scheduleadd.value.time_to.length == 0)" class="validation">
+                * To time is required {{scheduleadd.value.time_to}}
+              </mat-error>  
+        </mat-form-field>
+         
+        </div>
+      </div>
+      
+      <div style="margin-top:1%;" align="end"> 
+        <div class="row">
+          <div class="col-md-11">
+            <p style="margin-right: 0;">How to schedule doctors availability ? <a routerLink="/base/task/v2">click here</a></p>
+
+              <!-- <p style="margin-right: 0;">How to schedule doctors availability ? <a [routerLink]="['/base/task/consultation_demo', 'doctor_schedule']">click here</a></p> -->
+          </div>
+          <div class="col-md-1">
+              <button mat-raised-button color="primary" type="submit">Add</button>
+          </div>
+        </div>
+      </div>
+    </form>
+    
+  </mat-card>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+  
+        <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let i=index"> {{i+1}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="doctor">
+          <th mat-header-cell *matHeaderCellDef> Doctor </th>
+          <td mat-cell *matCellDef="let element">{{element.doctorName}}</td>
+      </ng-container>
+  
+        <!-- Name Column -->
+        <ng-container matColumnDef="Day">
+            <th mat-header-cell *matHeaderCellDef> Day</th>
+            <td mat-cell *matCellDef="let element"> {{element.do_Scd_day}} </td>
+        </ng-container>
+  
+        <!-- Weight Column -->
+        <ng-container matColumnDef="From-Time">
+            <th mat-header-cell *matHeaderCellDef> From Time</th>
+            <td mat-cell *matCellDef="let element">{{element.time_from}} </td>
+        </ng-container>
+  
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="To-Time">
+            <th mat-header-cell *matHeaderCellDef>To Time</th>
+            <td mat-cell *matCellDef="let element"> {{element.time_to}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="Action">
+            <th mat-header-cell *matHeaderCellDef>Action </th>
+            <td mat-cell *matCellDef="let element">
+              <!-- <button mat-icon-button style="color:rgb(27, 163, 134);" aria-label="Example icon button with a menu icon">
+                <mat-icon>remove_red_eye</mat-icon>
+              </button>   -->
+              <!-- <button mat-icon-button style="color:#2970db;" aria-label="Example icon button with a menu icon">
+                <mat-icon>edit</mat-icon>
+              </button>  -->
+              <button (click)="delete(element.doc_schedule_Id)" mat-icon-button color="warn" aria-label="Example icon button with a menu icon">
+                <mat-icon>delete</mat-icon>
+              </button>  
+            </td>
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+    </table>
+    <table>
+      <tr *ngIf="!dataSource.data.length">
+        <td style="text-align: center;" [attr.colspan]="displayedColumns.length">
+          No Records Found!
+        </td>
+      </tr>
+    </table>
+    <mat-paginator [hidden]="!dataSource.data.length" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+        aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>

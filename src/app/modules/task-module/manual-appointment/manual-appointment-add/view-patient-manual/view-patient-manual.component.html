@@ -1,0 +1,196 @@
+<h1 mat-dialog-title>View Patient</h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content>
+    <form [formGroup]="patient">
+        <div class="row">
+            <div class="col-md-12">
+                <div align="center">
+                    <h4>Patient Image</h4>
+                </div>
+                <div align="center">
+                    <img class="images" matPrefix  [src]="Image_Url.url" width="100px" height="100px"
+                        alt="image not found">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Code</mat-label>
+                    <input style="color: seagreen;"matInput  placeholder="" formControlName="PR_PatientCode" >
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Hospital Network</mat-label>
+                    <input style="color: seagreen;"matInput  placeholder="" formControlName="PR_RemoteHospitalName_Id_FK">
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>FirstName</mat-label>
+                    <input style="color: seagreen;"matInput  placeholder="" formControlName="PR_FirstName" >
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>LastName</mat-label>
+                    <input style="color: seagreen;"matInput placeholder="" formControlName="PR_LastName">
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>DOB</mat-label>
+                    <input style="color: seagreen;"matInput [matDatepicker]="picker" formControlName="PR_DOB">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Age</mat-label>
+                    <input style="color: seagreen;"matInput placeholder="" formControlName="PR_Age">
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label> Gender</mat-label>
+                    <input style="color: seagreen;"matInput placeholder="" formControlName="PR_Gender">
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Mobile Number</mat-label>
+                    <input style="color: seagreen;"matInput placeholder="" formControlName="PR_MobileNumber">
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Alternate Number</mat-label>
+                    <input style="color: seagreen;"matInput placeholder="" formControlName="PR_Alternative_No">
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Landline Number</mat-label>
+                    <input style="color: seagreen;"matInput placeholder="" formControlName="PR_LandlineNo">
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Email Id</mat-label>
+                    <input style="color: seagreen;"matInput placeholder="" formControlName="PR_Email">
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Address</mat-label>
+                   <textarea style="color: seagreen;"matInput formControlName="PR_Address"></textarea>
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label> Martial Status</mat-label>
+                    <input style="color: seagreen;"matInput formControlName="PR_MaritalStatus" >
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Father Name</mat-label>
+                    <input style="color: seagreen;"matInput formControlName="PR_FatherName" >
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Religion</mat-label>
+                    <input style="color: seagreen;"matInput formControlName="PR_Religion" >
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Nationality</mat-label>
+                    <input style="color: seagreen;"matInput formControlName="PR_Nationality" >
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Caste</mat-label>
+                    <input style="color: seagreen;"matInput formControlName="PR_Caste" >
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>BloodGroup</mat-label>
+                    <input style="color: seagreen;"matInput formControlName="PR_BloodGroup" >
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Mother Tongue</mat-label>
+                    <input style="color: seagreen;"matInput formControlName="PR_MotherTongue" >
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Occupation</mat-label>
+                    <input style="color: seagreen;"matInput formControlName="PR_Occupation" >
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Income</mat-label>
+                    <input style="color: seagreen;"matInput formControlName="PR_Income" >
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Insurance</mat-label>
+                    <input style="color: seagreen;"matInput formControlName="PR_Insurance" >
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Passport Number</mat-label>
+                    <input style="color: seagreen;"matInput formControlName="PR_PassportNo" >
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Country</mat-label>
+                    <input style="color: seagreen;"matInput placeholder="" formControlName="PR_Country" readonly>
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>State</mat-label>
+                    <input style="color: seagreen;"matInput formControlName="PR_S_Id_FK" >
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>District</mat-label>
+                    <input style="color: seagreen;"matInput formControlName="PR_D_Id_FK" >
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Taluk</mat-label>
+                    <input style="color: seagreen;"matInput formControlName="PR_Taluk" >
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Village</mat-label>
+                    <input style="color: seagreen;"matInput placeholder="" formControlName="PR_Village">
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Postal Code</mat-label>
+                    <input style="color: seagreen;"matInput placeholder="" formControlName="PR_Postalcode">
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions align="end" >
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+</div>

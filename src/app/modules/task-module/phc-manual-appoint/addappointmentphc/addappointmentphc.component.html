@@ -1,0 +1,860 @@
+<button mat-icon-button class="close-button" [mat-dialog-close]="true">
+    <mat-icon class="close-icon" color="warn">close</mat-icon>
+</button>
+
+<h1 mat-dialog-title>Add Appointment &rarr; Doctor</h1>
+<mat-divider></mat-divider>
+<div class="row">
+    <div class="col-md-2" id="dvc" *ngIf="showVitalSigns">
+
+        <div id="mview">
+
+            <div align="center" id="dvc1">
+                <button mat-button data-toggle="modal" data-target="#loaderFunction"
+                    (click)="deviceConnected = 'pulseOximeter';checkBLEDeviceConnected()"><img
+                        style="width:50px !important ;" class="mes"
+                        src="assets/images/teleicons/Remedi kit-Icons/pulse-oximeter-remidid.png" />
+                    <br>Pulse Oximeter
+                </button>
+            </div>
+
+            <div align="center" id="dvc2">
+                <button mat-button data-toggle="modal" data-target="#loaderFunction"
+                    (click)="deviceConnected = 'bloodPressure';checkBLEDeviceConnected()"> <img class="mes"
+                        src="assets/images/teleicons/Remedi kit-Icons/blood-pressure-remidi.png" />
+                    <br>Blood Pressure
+                </button>
+            </div>
+        </div>
+
+        <div id="mview">
+            <div align="center" id="dvc3">
+                <button mat-button data-toggle="modal" data-target="#loaderFunction"
+                    (click)="deviceConnected = 'thermometer';checkBLEDeviceConnected()"><img
+                        style="width:60px !important ;" class="mes"
+                        src="assets/images/teleicons/Remedi kit-Icons/thermometer.remidi.png" />
+                    <br>Temperature
+                </button>
+            </div>
+
+            <div align="center" id="dvc4">
+                <button mat-button data-toggle="modal" data-target="#loaderFunction"
+                    (click)="deviceConnected = 'glucometer';checkParamWS()"> <img style="width:100px !important ;"
+                        class="mes" src="assets/images/teleicons/Remedi kit-Icons/blood-tests-remedi.jpg" />
+                    <br>Glucose
+                </button>
+            </div>
+            <div align="center" id="dvc5">
+                <button mat-button data-toggle="modal" data-target="#loaderFunction"
+                    (click)="deviceConnected = 'lipid'; checkParamWS()"> <img style="width:60px !important ;"
+                        class="mes" src="assets/images/teleicons/Remedi kit-Icons/lipid_care.jpg" />
+                    <br>Lipid Profile
+                </button>
+            </div>
+
+        </div>
+
+        <div id="mview">
+
+            <div align="center" id="dvc6">
+                <button mat-button data-toggle="modal" data-target="#loaderFunction"
+                    (click)="deviceConnected = 'hemoglobin';checkParamWS()"> <img style="width:50px !important ;"
+                        class="mes" src="assets/images/teleicons/Remedi kit-Icons/hemoglobin-remedi.png" />
+                    <br>Hemoglobin Test
+                </button>
+            </div>
+
+            <div align="center" id="dvc7">
+                <button mat-button data-toggle="modal" data-target="#loaderFunction"
+                    (click)="deviceConnected = 'ecg'; checkBLEDeviceConnected()"> <img style="width:60px !important ;"
+                        class="mes" src="assets/images/teleicons/Remedi kit-Icons/ECG-remidi.jpg" />
+                    <br>ECG Monitor
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-10">
+        <mat-card [ngClass]="getPatientDetailsClass()">
+            <form [formGroup]="patient">
+                <fieldset>
+                    <legend>Patient Details</legend>
+                    <div class="row">
+                        <!-- <div class="col-md-3">
+                            <div>
+                              <img class="images" matPrefix [src]="Image_Url.url" width="50px" height="50px" alt="image not found">
+                            </div>
+                          </div> -->
+                        <div class="col-md-10">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h4>Code: <span style="color: cornflowerblue;">{{PR_PatientCode}}</span></h4>
+                                    <!-- <mat-form-field appearance="legacy">
+                                            <mat-label style="color:#000000;font-size: 18px !important;">Code</mat-label>
+                                            <input class="mt-2" style="color: seagreen;" matInput placeholder=""
+                                                formControlName="PR_PatientCode" readonly>
+                                        </mat-form-field> -->
+                                </div>
+                                <div class="col-md-4">
+                                    <h4>Name: <span style="color: cornflowerblue;">{{patientName}}</span></h4>
+            
+                                    <!-- <mat-form-field appearance="legacy">
+                                            <mat-label style="color:#000000;font-size: 18px !important;">Patient Name</mat-label>
+                                            <input class="mt-2" style="color: seagreen;" matInput placeholder=""
+                                                formControlName="patientName" readonly>
+                                        </mat-form-field> -->
+            
+                                </div>
+            
+                                <div class="col-md-4">
+                                    <h4>DOB: <span style="color: cornflowerblue;">{{Dob}}</span></h4>
+            
+                                    <!-- <mat-form-field appearance="legacy">
+                                            <mat-label style="color:#000000;font-size: 18px !important;">DOB</mat-label>
+                                            <input class="mt-2" style="color: seagreen;" matInput placeholder=""
+                                                formControlName="Dob" readonly>
+                                        </mat-form-field> -->
+                                </div>
+                                <div class="col-md-4">
+                                    <h4>Age: <span style="color: cornflowerblue;">{{Age}}</span></h4>
+            
+                                    <!-- <mat-form-field appearance="legacy">
+                                            <mat-label style="color:#000000;font-size: 18px !important;">Age</mat-label>
+                                            <input class="mt-2" style="color: seagreen;" matInput placeholder=""
+                                                formControlName="Age" readonly>
+                                        </mat-form-field> -->
+                                </div>
+                                <div class="col-md-4">
+                                    <h4>Gender: <span style="color: cornflowerblue;">{{Gender}}</span></h4>
+                                    <!-- <mat-form-field appearance="legacy">
+                                            <mat-label style="color:#000000;font-size: 18px !important;">Gender</mat-label>
+                                            <input class="mt-2" style="color: seagreen;" matInput placeholder=""
+                                                formControlName="Gender" readonly>
+                                        </mat-form-field> -->
+                                </div>
+                                <div class="col-md-4">
+                                    <h4>Blood Group: <span style="color: cornflowerblue;">{{Bg}}</span></h4>
+            
+                                    <!-- <mat-form-field appearance="legacy">
+                                            <mat-label style="color:#000000;font-size: 18px !important;">Blood Group</mat-label>
+                                            <input class="mt-2" style="color: seagreen;" matInput placeholder=""
+                                                formControlName="Bg" readonly>
+                                        </mat-form-field> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <img class="images" matPrefix [src]="Image_Url" alt="Image" width="100px" height="100px"
+                                style="margin-top:-5px;border-radius: 4px;">
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+
+
+            <form [formGroup]="fixappointment">
+                <fieldset *ngIf="showVitalSigns">
+                    <legend>Vital-Signs</legend>
+                    <div class="row">
+                        <div class="col-md-4" style="margin-top: -5px;">
+                            <!-- <mat-form-field class="example-full-width" appearance="legacy"> -->
+                            <mat-label style="color: rgb(0, 0, 0); ">Pulse oximeter(spo2)<span
+                                    style="color: rgb(72, 135, 230); ">(bpm
+                                    )/( % )</span></mat-label>
+                            <!-- <a id="view" (click)="pulseOximeterDisplay()" target="_blank" [hidden]="viewhid" 
+                  mat-icon-button color="primary" matTooltip="View"
+                  [matTooltipPosition]="TooltipPosition" matTooltipClass="tooltip-blue"
+                  aria-label="Button that displays a tooltip in various positions">
+                  <mat-icon id="vis">visibility</mat-icon>
+              </a> -->
+                            <div class="row">
+                                <div class="col-md-5 mt-2" style="border-bottom: solid #777777 1px;">
+                                    <input matInput placeholder="Saturation %" formControlName="oxygenSaturation">
+                                </div>
+                                <mat-error
+                                    *ngIf="fixappointment.controls['oxygenSaturation'].hasError('invalidName') || fixappointment.controls['oxygenSaturation'].hasError('pattern') ">
+                                    Please enter Number only
+                                </mat-error>
+                                <div class="mt-2">/</div>
+                                <div class="col-md-6 mt-2" style="border-bottom: solid #777777 1px;">
+                                    <input matInput placeholder="Pulse Rate (bpm)" formControlName="pulseRate">
+                                </div>
+                                <mat-error
+                                    *ngIf="fixappointment.controls['pulseRate'].hasError('invalidName') || fixappointment.controls['pulseRate'].hasError('pattern') ">
+                                    Please enter Number only
+                                </mat-error>
+                            </div>
+
+
+                            <!-- </mat-form-field> -->
+                        </div>
+                        <div class="col-md-4" style="margin-top: -5px;">
+                            <mat-label style="color: rgb(0, 0, 0); ">Blood Pressure<span
+                                    style="color: rgb(72, 135, 230); ">( mm )/(
+                                    Hg )</span></mat-label>
+                            <div class="row">
+                                <div class="col-md-5 mt-2" style="border-bottom: solid #777777 1px;">
+                                    <input matInput placeholder="( mm )" formControlName="bpmm">
+                                </div>
+                                <mat-error
+                                    *ngIf="fixappointment.controls['bpmm'].hasError('invalidName') || fixappointment.controls['bpmm'].hasError('pattern') ">
+                                    Please enter Number only
+                                </mat-error>
+                                <div class="mt-2">/</div>
+                                <div class="col-md-6 mt-2" style="border-bottom: solid #777777 1px;">
+                                    <input matInput placeholder="( Hg )" formControlName="bphg">
+                                </div>
+                                <mat-error
+                                    *ngIf="fixappointment.controls['bphg'].hasError('invalidName') || fixappointment.controls['bphg'].hasError('pattern') ">
+                                    Please enter Number only
+                                </mat-error>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Temperature <span style="color: rgb(72, 135, 230);">(°F)</span></mat-label>
+                                <input matInput formControlName="tempInCelsius" maxlength="7" placeholder=""
+                                    [ngClass]="{'all': (patient.controls.tempInCelsius>=1 && patient.controls.tempInCelsius==90)? false:true,'warn':tempInFahrenheit==0 ,'edit':tempInFahrenheit>=90}">
+                                <mat-error
+                                    *ngIf="fixappointment.controls['tempInCelsius'].hasError('invalidName') || fixappointment.controls['tempInCelsius'].hasError('pattern') ">
+                                    Please enter Number only
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- <div class="col-md-4">
+              <mat-label>Blood Pressure<span style="color: rgb(72, 135, 230); "></span></mat-label>
+              <div class="row">
+                <div class="col-md-5">
+                  <input matInput maxlength="7" formControlName="bpmm" placeholder="( mm )" >
+                </div>
+                <div style="margin-top: 2%;font-size: 20px;">/</div>
+                <div class="col-md-6">
+                  <input matInput maxlength="7" formControlName="bphg" placeholder="( Hg )" >
+                </div>
+              </div>
+            </div> -->
+                        <!-- <div class="col-md-2">
+              <mat-form-field class="example-full-width" appearance="legacy">
+                <mat-label>BP <span style="color: rgb(72, 135, 230);">(mm)</span></mat-label>
+                <input matInput maxlength="7" formControlName="bpmm" placeholder="" >
+                <mat-error
+                  *ngIf="fixappointment.controls['bpmm'].hasError('invalidName') || fixappointment.controls['bpmm'].hasError('pattern') ">
+                  Please enter Number only
+                </mat-error>
+              </mat-form-field>
+            </div> 
+            <div style="margin-top: 2%;font-size: 20px;">/</div>
+            <div class="col-md-2">
+              <mat-form-field class="example-full-width2" appearance="legacy">
+                <mat-label> <span style="color: rgb(72, 135, 230);">(Hg)</span></mat-label>
+                <input matInput maxlength="7" formControlName="bphg" placeholder="" >
+                <mat-error
+                  *ngIf="fixappointment.controls['bphg'].hasError('invalidName') || fixappointment.controls['bpmm'].hasError('pattern') ">
+                  Please enter Number only
+                </mat-error>
+              </mat-form-field>
+            </div> -->
+                        <!-- <div class="col-md-3">
+              <mat-form-field class="example-full-width1" appearance="legacy">
+                <mat-label>Respiratory Rate <span style="color: rgb(72, 135, 230);">(Breaths/min)</span></mat-label>
+                <input matInput maxlength="7" formControlName="respiratoryRate" placeholder="" >
+                <mat-error
+                  *ngIf="fixappointment.controls['respiratoryRate'].hasError('invalidName') || fixappointment.controls['respiratoryRate'].hasError('pattern') ">
+                  Please enter Number only
+                </mat-error>
+              </mat-form-field>
+            </div> -->
+                        <!-- <div class="col-md-4">
+              <mat-form-field class="example-full-width" appearance="legacy">
+                <mat-label>Spo2 <span style="color: rgb(72, 135, 230);">(%)</span></mat-label>
+                <input matInput maxlength="7" formControlName="oxygenSaturation" placeholder="" >
+                <mat-error
+                  *ngIf="fixappointment.controls['oxygenSaturation'].hasError('invalidName') || fixappointment.controls['oxygenSaturation'].hasError('pattern') ">
+                  Please enter Number only
+                </mat-error>
+              </mat-form-field>
+            </div> -->
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Glucose<span style="color: rgb(72, 135, 230); ">(mg/dl)</span></mat-label>
+                                <input matInput maxlength="7" formControlName="sugar" placeholder="">
+                                <mat-error
+                                    *ngIf="fixappointment.controls['sugar'].hasError('invalidName') || fixappointment.controls['sugar'].hasError('pattern') ">
+                                    Please enter Number only
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Hemoglobin <span style="color: rgb(72, 135, 230); ">(g/dl)</span></mat-label>
+                                <input matInput maxlength="7" placeholder="" formControlName="hemoglobin">
+                                <mat-error
+                                    *ngIf="fixappointment.controls['hemoglobin'].hasError('invalidName') || fixappointment.controls['hemoglobin'].hasError('pattern') ">
+                                    Please enter Number only
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Pulse Of ECG <span style="color: rgb(72, 135, 230);">( ECG
+                                        )</span></mat-label>
+                                <input matInput formControlName="" maxlength="7" placeholder="">
+
+                            </mat-form-field>
+                        </div>
+                        <!-- lipid profile -->
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Total Cholesterol <span
+                                        style="color: rgb(72, 135, 230); ">(mg/dL)</span></mat-label>
+                                <input matInput maxlength="20" formControlName="lp_total_cholesterol">
+
+                                <mat-error *ngIf="fixappointment.controls['lp_total_cholesterol'].hasError('pattern') ">
+                                    Please enter a valid integer or decimal value
+                                    with upto 2 decimal places.
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Triglycerides <span
+                                        style="color: rgb(72, 135, 230); ">(mg/dL)</span></mat-label>
+                                <input matInput maxlength="20" formControlName="lp_triglycerides">
+
+                                <mat-error *ngIf="fixappointment.controls['lp_triglycerides'].hasError('pattern') ">
+                                    Please enter a valid integer or decimal value
+                                    with upto 2 decimal places.
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>HDL Cholesterol <span
+                                        style="color: rgb(72, 135, 230); ">(mg/dL)</span></mat-label>
+                                <input matInput maxlength="20" formControlName="lp_hdl_cholesterol">
+
+                                <mat-error *ngIf="fixappointment.controls['lp_hdl_cholesterol'].hasError('pattern') ">
+                                    Please enter a valid integer or decimal value
+                                    with upto 2 decimal places.
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>LDL <span style="color: rgb(72, 135, 230); ">(mg/dL)</span></mat-label>
+                                <input matInput maxlength="20" formControlName="lp_ldl">
+
+                                <mat-error *ngIf="fixappointment.controls['lp_ldl'].hasError('pattern') ">
+                                    Please enter a valid integer or decimal value
+                                    with upto 2 decimal places.
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Height <span style="color: rgb(72, 135, 230); ">(Cm)</span></mat-label>
+                                <input matInput maxlength="7" formControlName="height" placeholder="">
+                                <mat-error
+                                    *ngIf="fixappointment.controls['height'].hasError('invalidName') || fixappointment.controls['height'].hasError('pattern') ">
+                                    Please enter Number only
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Weight <span style="color: rgb(72, 135, 230); ">(Kg)</span></mat-label>
+                                <input matInput maxlength="7" formControlName="weight" placeholder="" (change)="Get_bmi(fixappointment.get('height').value,$event)">
+                                <mat-error
+                                    *ngIf="fixappointment.controls['weight'].hasError('invalidName') || fixappointment.controls['weight'].hasError('pattern') ">
+                                    Please enter Number only
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- bmi -->
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                              <mat-label>Body Mass Index(BMI) <span style="color: rgb(72, 135, 230); ">(Kg/m2)</span></mat-label>
+                              <input matInput maxlength="7" formControlName="bmi" placeholder="">
+                            </mat-form-field>
+                          </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Other-Info</legend>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label >Present Complaints</mat-label>
+                                <mat-select formControlName="complaint" multiple
+                                    (openedChange)="resetComplaintSearchInput()" required>
+                                    <mat-select-trigger>
+                                        <mat-chip-list>
+                                            <mat-chip *ngFor="let topping of this.fixappointment.value.complaint"
+                                                [removable]="true" (removed)="onToppingRemoved(topping)">
+                                                {{topping.cmst_Name}}
+                                                <mat-icon matChipRemove>cancel</mat-icon>
+                                            </mat-chip>
+                                        </mat-chip-list>
+                                    </mat-select-trigger>
+                                    <input type="text" class="p-2" autocomplete="off" matInput
+                                        placeholder="Search by name..." #multiUserSearch (input)="onInputChange()" />
+                                        <div class="row">
+                                            <div class="col-md-6" *ngFor="let c of complaint">
+                                                <mat-option [value]="c" [disabled]="isOptionDisabled3(c)">{{c.cmst_Name}}</mat-option>
+                                            </div>
+                                        </div>
+                                </mat-select>
+                                <!-- <mat-error *ngIf="fixappointment.get('complaint').hasError('required')">Field is required</mat-error> -->
+                                <mat-error
+                                    *ngIf="fixappointment.get('complaint').invalid && fixappointment.get('complaint').touched">Field
+                                    is required</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <!-- <div class="col-md-12">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label >Symptoms</mat-label>
+                                <mat-select formControlName="symptoms" multiple
+                                    (openedChange)="resetSymptomsSearchInput()" required>
+                                    <mat-select-trigger>
+                                        <mat-chip-list>
+                                            <mat-chip *ngFor="let topping of this.fixappointment.value.symptoms"
+                                                [removable]="true" (removed)="onToppingRemoveds(topping)">
+                                                {{topping.smst_Name}}
+                                                <mat-icon matChipRemove>cancel</mat-icon>
+                                            </mat-chip>
+                                        </mat-chip-list>
+                                    </mat-select-trigger>
+                                    <input type="text" class="p-2" autocomplete="off" matInput
+                                        placeholder="Search by name..." #multiUserSearch1 (input)="onInputChange1()" />
+                                        <div class="row">
+                                            <div class="col-md-6" *ngFor="let c of symptoms">
+                                                <mat-option  [value]="c" [disabled]="isOptionDisabled2(c)">{{c.smst_Name}}</mat-option>
+                                            </div>
+                                        </div>
+                                </mat-select>
+                            </mat-form-field>
+                        </div> -->
+                        <!-- <div class="col-md-12">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label >Present Illness</mat-label>
+                                <mat-select formControlName="diseasesDtl" multiple
+                                    (openedChange)="resetDiseasesSearchInput()">
+                                    <mat-select-trigger>
+                                        <mat-chip-list>
+                                            <mat-chip *ngFor="let topping of this.fixappointment.value.diseasesDtl"
+                                                [removable]="true" (removed)="onToppingRemovedd(topping)">
+                                                {{topping.diseases_Name}}
+                                                <mat-icon matChipRemove>cancel</mat-icon>
+                                            </mat-chip>
+                                        </mat-chip-list>
+                                    </mat-select-trigger>
+                                    <input type="text" class="p-2" autocomplete="off" matInput
+                                        placeholder="Search by name..." #multiUserSearch2 (input)="onInputChange2()" />
+                                        <div class="row">
+                                            <div class="col-md-4" *ngFor="let c of Diseases">
+                                                  <mat-option  [value]="c" [disabled]="isOptionDisabled1(c)">{{c.diseases_Name}}</mat-option>
+                                            </div>
+                                        </div>
+                                </mat-select>
+                            </mat-form-field>
+                        </div> -->
+
+                        <div class="col-md-12">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label >Any Known Allergy</mat-label>
+                                <mat-select formControlName="allergySigns_DTL" multiple
+                                    (selectionChange)="onAllergySelectionChange()" required>
+                                    <mat-select-trigger>
+                                        <mat-chip-list>
+                                            <mat-chip *ngFor="let topping of this.fixappointment.value.allergySigns_DTL"
+                                                [removable]="true" (removed)="onToppingRemoval(topping)">
+                                                {{topping.al_Name}}
+                                                <mat-icon matChipRemove>cancel</mat-icon>
+                                            </mat-chip>
+                                        </mat-chip-list>
+                                    </mat-select-trigger>
+                                    <div class="row">
+                                        <div class="col-md-4" *ngFor="let a of Allergy">
+                                    <mat-option  [value]="a" [disabled]="isOptionDisabled(a)">{{a.al_Name}}</mat-option>
+                                        </div></div>
+                                </mat-select>
+                                <!-- <mat-error *ngIf="fixappointment.get('allergySigns_DTL').hasError('required')">Field is
+                  required</mat-error> -->
+                                <mat-error
+                                    *ngIf="fixappointment.get('allergySigns_DTL').invalid && fixappointment.get('allergySigns_DTL').touched">Field
+                                    is
+                                    required</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-12">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Past/Current Medical History</mat-label>
+                                <mat-select formControlName="underMedication" multiple (openedChange)="resetMedicationSearchInput()" required>
+                                    <mat-select-trigger>
+                                        <mat-chip-list>
+                                            <mat-chip *ngFor="let topping of this.fixappointment.value.underMedication" [removable]="true"
+                                                (removed)="onToppingRemovedm(topping)">
+                                                {{topping.medic_name}}
+                                                <mat-icon matChipRemove>cancel</mat-icon>
+                                            </mat-chip>
+                                        </mat-chip-list>
+                                    </mat-select-trigger>
+                                    <input type="text" class="p-2" autocomplete="off" matInput placeholder="Search by name..." #multiUserSearch3
+                                        (input)="onInputChange3()" />
+                                        <div class="row">
+                                            <div class="col-md-4" *ngFor="let m of medication">
+                                                  <mat-option  [value]="m" [disabled]="isOptionDisabledm(m)">{{m.medic_name}}</mat-option>
+                                            </div>
+                                        </div>
+                                </mat-select>
+                                <!-- <mat-error *ngIf="fixappointment.get('complaint').hasError('required')">Field is required</mat-error> -->
+                                <mat-error *ngIf="fixappointment.get('underMedication').invalid && fixappointment.get('underMedication').touched">Field
+                                    is required</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- <div class="col-md-6">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Under Hypertension-medication</mat-label>
+                                <mat-select formControlName="underBPMedication" required>
+                                    <mat-option value="Yes">Yes</mat-option>
+                                    <mat-option value="No">No</mat-option>
+                                </mat-select>
+                                <mat-error
+                                    *ngIf="fixappointment.get('underBPMedication').invalid && fixappointment.get('underBPMedication').touched">Field
+                                    is
+                                    required</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field  class="example-full-width" appearance="legacy">
+                                <mat-label>Under Diabetes-medication</mat-label>
+                                <mat-select formControlName="underSugarMedication" required>
+                                    <mat-option value="Yes">Yes</mat-option>
+                                    <mat-option value="No">No</mat-option>
+                                </mat-select>
+                                <mat-error
+                                    *ngIf="fixappointment.get('underSugarMedication').invalid && fixappointment.get('underSugarMedication').touched">Field
+                                    is
+                                    required</mat-error>
+                            </mat-form-field>
+                        </div> -->
+                    </div>
+                </fieldset>
+
+                <!-- <fieldset>
+                    <legend>Appointment</legend>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <mat-form-field  class="example-full-width" appearance="legacy">
+                                <mat-label >Date</mat-label>
+                                <input matInput [matDatepicker]="dp" id="select_day"
+                                    min="{{minDate | date:'yyyy-MM-dd'}}" formControlName="select_day"
+                                    name="select_day" required>
+                                <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                                <mat-datepicker #dp></mat-datepicker>
+                                <mat-error *ngIf="fixappointment.get('select_day').hasError('required')">Date is
+                                    required</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>From-Time</mat-label>
+                                <input matInput type="time" matInput formControlName="select_FrmTime" min="09:00"
+                                    max="18:00" required>
+                                <mat-error *ngIf="fixappointment.get('select_FrmTime').hasError('required')">From time
+                                    is
+                                    required</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>To-Time</mat-label>
+                                <input matInput type="time" matInput formControlName="select_toTime" required
+                                    (change)="Get_Doctor(fixappointment.get('select_day').value,fixappointment.get('select_FrmTime').value,$event)"
+                                    min="09:00" max="18:00">
+                                <mat-error *ngIf="fixappointment.get('select_toTime').hasError('required')">To time is
+                                    required</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Available Hospital</mat-label>
+                                <mat-select formControlName="hos_Id" required>
+                                    <mat-option *ngFor="let h of hospitaldd"
+                                        [value]="h.hos_Id">{{h.hos_HospitalName}}&nbsp;{{h.dO_LastName}}</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="fixappointment.get('hos_Id').hasError('required')">Hospital is required</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </fieldset> -->
+                <fieldset>
+                    <legend>Appointment</legend>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4" *ngIf="hideFields && hideFieldsHos">
+                                    <input type="checkbox" [(ngModel)]="hideFieldsGen" (change)="onCheckboxChangeGen($event)">
+                                    Need General Practitioner
+                                </div>
+                                <div class="col-md-4" *ngIf="hideFieldsGen && hideFieldsHos">
+                                    <input type="checkbox" [(ngModel)]="hideFields" (change)="onCheckboxChange($event)">
+                                    Need Specialization Doctor
+                                </div>
+                                <!-- <div class="col-md-4" *ngIf="hideFields && hideFieldsGen">
+                                    <input type="checkbox" [(ngModel)]="hideFieldsHos" (change)="onCheckboxChangeHos($event)">
+                                    Need Hospital
+                                </div> -->
+                            </div>
+                        </div>
+                
+                
+                        <br><br>
+                
+                        <div class="col-md-4">
+                            <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                                <mat-label class="star">Date</mat-label>
+                                <input matInput [matDatepicker]="dp" id="select_day" min="{{minDate | date:'yyyy-MM-dd'}}"
+                                    formControlName="select_day" name="select_day" required>
+                                <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                                <mat-datepicker #dp></mat-datepicker>
+                                <mat-error *ngIf="fixappointment.get('select_day').hasError('required')">Date is required</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label class="star">From-Time</mat-label>
+                                <input matInput type="time" matInput formControlName="select_FrmTime" min="09:00" max="18:00">
+                                <mat-error *ngIf="fixappointment.get('select_FrmTime').hasError('required')">From time is
+                                    required</mat-error>
+                                <!-- <mat-error *ngIf="fixappointment.get('select_FrmTime').hasError('timeError')">From time cannot be
+                                  greater than to time.</mat-error> -->
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label class="star">To-Time</mat-label>
+                                <input matInput type="time" matInput formControlName="select_toTime"
+                                    (change)="hideFields ? onSpecializationChange($event) : null" min="09:00" max="18:00">
+                                <mat-error *ngIf="fixappointment.get('select_toTime').hasError('required')">To time is
+                                    required</mat-error>
+                                <mat-error *ngIf="fixappointment.get('select_toTime').hasError('timeComparison')">To time cannot be less
+                                    than
+                                    from time.</mat-error>
+                            </mat-form-field>
+                        </div>
+                
+                        <div class="col-md-4" *ngIf="!hideFields">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label class="star">Specialization</mat-label>
+                                <mat-select  formControlName="Sp_Id" [disabled]="!fixappointment.get('select_toTime').value" (selectionChange)="onSpecializationChange($event)">
+                                    <mat-option *ngFor="let d of special" [value]="d.sD_Id">{{d.sD_ClinicalSpecilist}}</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="fixappointment.get('Sp_Id').hasError('required')">Available doctor is
+                                    required</mat-error>
+                            </mat-form-field>
+                        </div>
+                
+                        <div class="col-md-4">
+                            <!-- <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label class="star">{{ hideFields ? 'General Practitioner/Family Physician' : 'Available Specialization Doctor' }}</mat-label>
+                                <mat-select formControlName="appt_DO_Id_FK">
+                                  <mat-option *ngFor="let d of doctordd" [value]="d.appt_DO_Id_FK"
+                                    matTooltip="{{d.doc_Name}}">{{d.doc_Name}}</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="fixappointment.get('appt_DO_Id_FK').hasError('required')">Available doctor is
+                                  required</mat-error>
+                              </mat-form-field> -->
+                            <mat-form-field class="example-full-width" appearance="legacy" *ngIf="!hideFieldsGen">
+                                <mat-label class="star">General Practitioner/Family Physician</mat-label>
+                                <mat-select formControlName="appt_DO_Id_FK">
+                                    <mat-option *ngFor="let d of doctordd" [value]="d.appt_DO_Id_FK"
+                                        matTooltip="{{d.doc_Name}}">{{d.doc_Name}}</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="fixappointment.get('appt_DO_Id_FK').hasError('required')">Available doctor is
+                                    required</mat-error>
+                            </mat-form-field>
+                
+                            <mat-form-field class="example-full-width" appearance="legacy" *ngIf="!hideFields">
+                                <mat-label class="star">Specialization Doctor</mat-label>
+                                <mat-select formControlName="appt_DO_Id_FK">
+                                    <mat-option *ngFor="let d of doctordd" [value]="d.appt_DO_Id_FK"
+                                        matTooltip="{{d.doc_Name}}">{{d.doc_Name}}</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="fixappointment.get('appt_DO_Id_FK').hasError('required')">Available doctor is
+                                    required</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <!-- <div class="col-md-4" *ngIf="!hideFieldsHos">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label class="star">Empanelled Hospital</mat-label>
+                                <mat-select formControlName="hos_Id">
+                                    <mat-option *ngFor="let h of hospitaldd"
+                                        [value]="h.hos_Id">{{h.hos_HospitalName}}&nbsp;{{h.dO_LastName}}</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="fixappointment.get('hos_Id').hasError('required')">Hospital is
+                                    required</mat-error>
+                            </mat-form-field>
+                        </div> -->
+                    </div>
+                </fieldset>
+            </form>
+
+        </mat-card>
+    </div>
+</div>
+<div mat-dialog-content>
+
+</div>
+<div mat-dialog-actions align="end">
+    <button id="save" mat-raised-button color="primary" (click)="updateform()">Fix Appointment</button>
+    <button mat-dialog-close id="cancel" mat-raised-button color="warn">Close</button>
+</div>
+
+<div class="modal fade" id="loaderFunction" tabindex="-1" aria-labelledby="loaderFunction" aria-hidden="true">
+    <div class="modal-dialog" [ngClass]="{'ecgContainer': deviceConnected == 'ecg' }">
+        <div class="modal-content" [ngClass]="{'w1350': deviceConnected == 'ecg' }">
+            <div class="modal-header">
+                <div class="battery"
+                    *ngIf="deviceConnected == 'ecg' || deviceConnected == 'bloodPressure' || deviceConnected == 'thermometer' || deviceConnected == 'pulseOximeter'">
+                    <img src="../../assets/images/10.png" *ngIf="batteryPower < 4"> <small
+                        *ngIf="batteryPower < 4">10%</small>
+                    <img src="../../assets/images/50.png" *ngIf="batteryPower == 4"><small
+                        *ngIf="batteryPower == 4">33%</small>
+                    <img src="../../assets/images/75.png" *ngIf="batteryPower == 5"><small
+                        *ngIf="batteryPower == 5">66%</small>
+                    <img src="../../assets/images/100.png" *ngIf="batteryPower == 6"><small
+                        *ngIf="batteryPower == 6">100%</small>
+                </div>
+                <p class="text-center p-0 m-0" *ngIf="deviceConnected == 'ecg'">12 Channel ECG</p>
+                <p class="text-center p-0 m-0" *ngIf="deviceConnected == 'bloodPressure'">Blood Pressure</p>
+                <p class="text-center p-0 m-0" *ngIf="deviceConnected == 'glucometer'">Glucose (Sugar)</p>
+                <p class="text-center p-0 m-0" *ngIf="deviceConnected == 'lipid'">Lipid Profile</p>
+                <p class="text-center p-0 m-0" *ngIf="deviceConnected == 'thermometer'">Thermometer</p>
+                <p class="text-center p-0 m-0" *ngIf="deviceConnected == 'pulseOximeter'">Pulse Oximeter</p>
+                <p class="text-center p-0 m-0" *ngIf="deviceConnected == 'hemoglobin'">Hemoglobin</p>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+            <div class="text-center">{{popupDeviceStatusLabel}}</div>
+            <div class="modal-body">
+                <div class="text-center" *ngIf="loading">
+                    <div class="spinner-border ui-spinner-input text-success" role="status">
+                    </div>
+                    <p class="mt-3 text-loading">Loading ..</p>
+                </div>
+                <div *ngIf="deviceConnected == 'ecg'">
+                    <div class="card p-3 mt-3">
+                        <app-ecg-monitor></app-ecg-monitor>
+                    </div>
+                </div>
+                <div *ngIf="deviceConnected == 'bloodPressure'">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="bloodPressure col-12 col-sm-6">
+                                <table>
+                                    <tr *ngIf="bloodPressureSystolic">
+                                        <th>Systolic</th>
+                                        <td>{{bloodPressureSystolic}}</td>
+                                    </tr>
+                                    <tr *ngIf="bloodPressureDiastolic">
+                                        <th>Diastolic</th>
+                                        <td>{{bloodPressureDiastolic}}</td>
+                                    </tr>
+                                    <tr *ngIf="bloodPressurePulse">
+                                        <th>Pulse</th>
+                                        <td>{{bloodPressurePulse}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-12 col-sm-6" *ngIf="bloodPressure.length > 0">
+                                <google-chart #chart [title]="'bloodPressure'" [type]="chartType" [options]="BPoptions"
+                                    [data]="bloodPressure">
+                                </google-chart>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="deviceConnected == 'lipid'">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="bloodPressure col-12 col-sm-6">
+                                <table>
+                                    <tr *ngIf="total_cholesterol">
+                                        <th>Total Cholesterol</th>
+                                        <td>{{total_cholesterol}}</td>
+                                    </tr>
+                                    <tr *ngIf="triglycerides">
+                                        <th>Triglycerides</th>
+                                        <td>{{triglycerides}}</td>
+                                    </tr>
+                                    <tr *ngIf="hdl_cholesterol">
+                                        <th>HDL Cholesterol</th>
+                                        <td>{{hdl_cholesterol}}</td>
+                                    </tr>
+                                    <tr *ngIf="ldl">
+                                        <th>LDL</th>
+                                        <td>{{ldl}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="deviceConnected == 'glucometer'">
+                    <div class="col-12">
+                        <div class="card text-center p-3 mt-3" *ngIf="glucose">
+                            <label class="gulcoseLabel">Glucose Result : {{glucose}} g/dL</label>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="deviceConnected == 'thermometer'">
+                    <div class="col-12 text-center">
+                        <app-temprature *ngIf="api.temperature"></app-temprature>
+                        <div>
+                            <label>Temperature : <b>{{api.temperature}}</b> Fahrenheit</label>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="deviceConnected == 'pulseOximeter'">
+                    <div class="col-12">
+                        <div>
+                            <div>
+                                <google-chart #chart [title]="'Pulse Oxymeter'" [type]="pulseType"
+                                    [options]="pulseoptions" [data]="pulseOxyMeterData">
+                                </google-chart>
+                            </div>
+                            <div class="card text-center p-3 mt-3" *ngIf="spo2SaturationPercentage">
+                                <label class="gulcoseLabel">SPO2 Saturation Percentage : {{spo2SaturationPercentage}}
+                                    %</label>
+                            </div>
+                            <div class="card text-center p-3 mt-3" *ngIf="spo2PulseRate">
+                                <label class="gulcoseLabel">Pulse Rate : {{spo2PulseRate}} bpm</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="deviceConnected == 'hemoglobin'">
+                        <div class="col-12">
+                            <div class="card text-center p-3 mt-3" *ngIf="hemoglobin">
+                                <label class="haemoglobinLabel">Hemoglobin Result : {{hemoglobin}} g/dl</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="modal-footer">
+            </div> -->
+            </div>
+        </div>
+    </div>

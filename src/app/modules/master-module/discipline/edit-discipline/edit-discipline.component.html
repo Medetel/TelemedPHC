@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>Edit Department</h1>
+<mat-divider></mat-divider>
+<!-- <div mat-dialog-content> -->
+    <form [formGroup]="discipline">
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                    <mat-label>Department Code</mat-label>
+                    <!-- <input matInput placeholder="" formControlName="cD_Code" required>
+                    <mat-error *ngIf="checkError('cD_Code', 'required')">Discipline Code is required</mat-error> -->
+                    <input matInput #input  maxlength="8" formControlName="cD_Code" >
+                    <!-- <mat-error *ngIf="checkError('cD_Code', 'required')">Discipline Code is required</mat-error>
+                    <mat-error *ngIf="discipline.controls['cD_Code'].hasError('invalidName') || discipline.controls['cD_Code'].hasError('pattern') ">
+                        Please enter Alpha Numerical characters only minimum:1/Maximum:5
+                    </mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                    <mat-label class="star">Department</mat-label>
+                    <input matInput maxlength="45" formControlName="cD_ClinicalDiscipline" required>
+                    <mat-error *ngIf="checkError('cD_ClinicalDiscipline', 'required')">Department is required</mat-error>
+                    <mat-error *ngIf="discipline.get('cD_ClinicalDiscipline').hasError('alphaCheck')">
+                        Please enter alphabet characters
+                    </mat-error>
+                    <mat-error *ngIf="discipline.get('cD_ClinicalDiscipline').hasError('spaceCheck')">
+                        Department will not allow white space
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+<!-- </div> -->
+<br>
+<div mat-dialog-actions align="end">
+    <button id="save" mat-raised-button color="primary" (click)="updateform()" >Update</button>
+    <button mat-dialog-close id="cancel" mat-raised-button color="warn">Close</button>
+</div>

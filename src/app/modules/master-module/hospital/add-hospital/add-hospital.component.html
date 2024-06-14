@@ -1,0 +1,330 @@
+<mat-card>
+    <mat-card-title>Add Hospital</mat-card-title>
+    <mat-divider></mat-divider>
+    <form [formGroup]="hospital">
+        <div class="row">
+            <fieldset>
+                <legend>Hospital Info</legend>
+                <div class="row">
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Code</mat-label>
+                            <input matInput #input maxlength="10" placeholder="Eg.Hos01"
+                                formControlName="hos_HospitalCode" required>
+                            <mat-error *ngIf="hospital.get('hos_HospitalCode').hasError('required')">Code is
+                                required</mat-error>
+                            <mat-error
+                                *ngIf="hospital.get('hos_HospitalCode').hasError('invalidName') || hospital.get('hos_HospitalCode').hasError('pattern') ">
+                                Please enter alpha numerical characters only
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Registration Number</mat-label>
+                            <input matInput #input maxlength="20" placeholder="Eg.ABC00101" formControlName="RegNo"
+                                required>
+                            <mat-error *ngIf="hospital.get('RegNo').hasError('required')">Registration Number is
+                                required</mat-error>
+                            <mat-error
+                                *ngIf="hospital.get('RegNo').hasError('invalidName') || hospital.get('RegNo').hasError('pattern') ">
+                                Please enter alpha numerical characters only
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Name</mat-label>
+                            <input matInput placeholder="" maxlength="25" formControlName="hos_HospitalName" required>
+                            <mat-error *ngIf="hospital.get('hos_HospitalName').hasError('required')">Name is
+                                required</mat-error>
+                            <mat-error
+                                *ngIf="hospital.get('hos_HospitalName').hasError('invalidName') || hospital.get('hos_HospitalName').hasError('pattern') ">
+                                Please enter alphabet and space is not allowed in starting and ending
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Category</mat-label>
+                            <mat-select formControlName="Hos_cat_Id" required>
+                                <mat-option *ngFor="let c of catagory" [value]="c.id">{{c.name}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="hospital.get('Hos_cat_Id').hasError('required')">Catagory is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Type</mat-label>
+                            <mat-select formControlName="Hos_Type_Id" required>
+                                <mat-option *ngFor="let t of hospitaltypedd" [value]="t.id">{{t.type}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="hospital.get('Hos_Type_Id').hasError('required')">Type is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Primary/Branch</mat-label>
+                            <mat-select formControlName="primaryorBranch" #pbvalue
+                                (selectionChange)="hos_p_b(pbvalue.value)" required>
+                                <mat-option value="Primary">Primary</mat-option>
+                                <mat-option value="Branch">Branch</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="hospital.get('primaryorBranch').hasError('required')">Primary/Branch is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <!-- <div class="col-md-4" [hidden]="branch_hid">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Branch</mat-label>
+                            <mat-select formControlName="hos_Branch" #brval
+                                (selectionChange)="change_branch(brval.value)">
+                                <mat-option *ngFor="let b of branch" [value]="b.hos_Id">{{b.hos_HospitalName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div> -->
+                    <div class="col-md-4" [hidden]="branch_hid">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Branch</mat-label>
+                            <mat-select formControlName="hos_Branch" required>
+                                <mat-option *ngFor="let b of branch" [value]="b.hos_Id">{{b.hos_HospitalName}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="hospital.get('hos_Branch').hasError('required')">Branch is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="network_hid">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Network</mat-label>
+                            <mat-select formControlName="hos_NE_Id_FK" required>
+                                <mat-option *ngFor="let n of networkdd" [value]="n.nE_Id">{{n.nE_Description}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="hospital.get('hos_NE_Id_FK').hasError('required')">Network is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>GST</mat-label>
+                            <input matInput #input minlength="15" maxlength="15" placeholder="Eg.22AAAAA0000A1s3"
+                                formControlName="GsTno" required>
+                            <mat-error
+                                *ngIf="hospital.get('GsTno').hasError('invalidName') || hospital.get('GsTno').hasError('pattern') ">
+                                Please enter valid 15 digits alphanumeric GST No
+                            </mat-error>
+                            <mat-error *ngIf="hospital.get('GsTno').hasError('required')">GST is required</mat-error>
+                            <mat-error *ngIf="hospital.get('GsTno').hasError('minlength')">
+                                Please enter a minimum of 15 digits
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>PAN No</mat-label>
+                            <input matInput #input minlength="10" maxlength="10" placeholder="Eg.AAAAA1234A"
+                                formControlName="PaNno" required>
+                            <mat-error
+                                *ngIf="hospital.get('PaNno').hasError('invalidName') || hospital.get('PaNno').hasError('pattern') ">
+                                Please enter valid 10 digits alphanumeric PAN No
+                            </mat-error>
+                            <mat-error *ngIf="hospital.get('PaNno').hasError('required')">Pan Number is
+                                required</mat-error>
+                            <mat-error *ngIf="hospital.get('PaNno').hasError('minlength')">
+                                Please enter a minimum of 10 digits
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-5">
+                        <mat-label>Upload Hospital Logo</mat-label>
+                        <div class="d-flex">
+
+                            <img class="images" [hidden]="imgs" matPrefix [src]="Image_Url.url" width="100px"
+                                height="100px" alt="image not found">
+                            <input class="file" type="file" formControlName="hos_HospitalLogo"
+                                (change)="onSelectFile($event)">
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <mat-label>Upload Network Logo</mat-label>
+                        <div class="d-flex">
+
+                            <img class="images1" [hidden]="imgs1" matPrefix [src]="Image_Url1.url" width="100px"
+                                height="100px" alt="image not found">
+                            <input class="file" type="file" formControlName="Hos_NetworkLogo"
+                                (change)="onSelectFile1($event)">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-label>Upload Mou Document</mat-label>
+                        <div>
+                            <input type="file" formControlName="MOUDocument" accept=".pdf"
+                                (change)="onselectfiles($event)">
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Communication Details</legend>
+                <div class="row">
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Mobile Number</mat-label>
+                            <input matInput #input minlength="10" maxlength="10" placeholder="Eg.9000000001"
+                                formControlName="hos_HospitalPhoneNo" required>
+                            <mat-error *ngIf="hospital.get('hos_HospitalPhoneNo').hasError('required')"> Mobile Number
+                                is required</mat-error>
+                            <mat-error
+                                *ngIf="hospital.controls['hos_HospitalPhoneNo'].hasError('invalidName') || hospital.controls['hos_HospitalPhoneNo'].hasError('pattern') ">
+                                Please enter valid 10 digit mobile number
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Alternate Number</mat-label>
+                            <input matInput #input minlength="10" maxlength="10" placeholder="Eg.9000000001"
+                                formControlName="hos_Alterno">
+                            <mat-error
+                                *ngIf="hospital.controls['hos_Alterno'].hasError('invalidName') || hospital.controls['hos_Alterno'].hasError('pattern') ">
+                                Please enter valid 10 digit alternate number
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Landline Number</mat-label>
+                            <input matInput #input minlength="5" maxlength="11" placeholder="Eg.080-30000000"
+                                formControlName="hos_Landline">
+                            <mat-error
+                                *ngIf="hospital.controls['hos_Landline'].hasError('invalidName') || hospital.controls['hos_Landline'].hasError('pattern') ">
+                                Please enter valid 11 digit landline number
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4 mt-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Email Id</mat-label>
+                            <input matInput placeholder="Eg.abc@gmail.com" formControlName="hos_HospitalEmail" required>
+                            <mat-error *ngIf="hospital.get('hos_HospitalEmail').hasError('required')">Email is
+                                required</mat-error>
+                            <mat-error
+                                *ngIf="hospital.controls['hos_HospitalEmail'].hasError('email') || hospital.controls['hos_HospitalEmail'].hasError('pattern')">
+                                Please enter a valid email address
+                            </mat-error>
+                            <!-- <mat-error *ngIf="hospital.touched && (!hospital.value.hos_HospitalEmail || hospital.value.hos_HospitalEmail.length==0)">
+                                                    Please enter a valid email address{{hospital.hos_HospitalEmail}}
+                                                </mat-error> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Address</mat-label>
+                            <textarea matInput placeholder="" formControlName="hos_HospitalAddress" required></textarea>
+                            <mat-error *ngIf="hospital.get('hos_HospitalAddress').hasError('required')"> Address is
+                                required</mat-error>
+                            <!-- <input matInput placeholder="" formControlName="hos_HospitalAddress"> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4 mt-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Country</mat-label>
+                            <mat-select formControlName="Hos_Country_Id_FK" #choosedValue
+                                (valueChange)="countrychange(choosedValue.value)" required>
+                                <mat-option *ngFor="let c of country" [value]="c.cntry_id">{{c.country_name}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="hospital.get('Hos_Country_Id_FK').hasError('required')"> country is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>State</mat-label>
+                            <mat-select formControlName="Hos_ST_Id_FK" #selectval
+                                (valueChange)="statechange(selectval.value)" required>
+                                <mat-option *ngFor="let s of state" [value]="s.stat_id">{{s.state_name}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="hospital.get('Hos_ST_Id_FK').hasError('required')"> State is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>District</mat-label>
+                            <mat-select formControlName="Hos_DI_Id_FK" #districtval
+                                (valueChange)="distritchange(districtval.value)" required>
+                                <mat-option *ngFor="let d of district" [value]="d.district_id">{{d.district_name}}
+                                </mat-option>
+
+                            </mat-select>
+                            <mat-error *ngIf="hospital.get('Hos_DI_Id_FK').hasError('required')"> District is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Taluk</mat-label>
+                            <mat-select formControlName="Hos_Taluk_Id" required>
+                                <mat-option *ngFor="let t of taluk" [value]="t.taluk_id">{{t.taluk_name}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="hospital.get('Hos_Taluk_Id').hasError('required')"> Taluk is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Village</mat-label>
+                            <!-- <mat-select formControlName="Hos_Gram_Id" #villageval
+                                (valueChange)="selectpincode(villageval.value)" required>
+                                <mat-option *ngFor="let g of gram" [value]="g.gram_id">{{g.gram_name}}</mat-option>
+                            </mat-select> -->
+                            <input matInput #input maxlength="20" placeholder="" formControlName="Hos_Village" required>
+                            <mat-error *ngIf="hospital.get('Hos_Village').hasError('required')"> Village is
+                                required</mat-error>
+                            <mat-error
+                                *ngIf="hospital.get('Hos_Village').hasError('invalidName') || hospital.get('Hos_Village').hasError('pattern') ">
+                                Please enter alphabet and space is not allowed in starting and ending
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Postal Code</mat-label>
+                            <input matInput #input minlength="6" maxlength="6" placeholder="Eg.500000"
+                                formControlName="hos_PostalCode" required>
+                            <mat-error *ngIf="hospital.get('hos_PostalCode').hasError('required')">Postal Code is
+                                required</mat-error>
+                            <mat-error
+                                *ngIf="hospital.controls['hos_PostalCode'].hasError('invalidName') || hospital.controls['hos_PostalCode'].hasError('pattern')">
+                                Please enter 6 digit postal code
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Website URL </mat-label>
+                            <input matInput placeholder="" formControlName="Hos_web_url" maxlength="30">
+                            <mat-error *ngIf="hospital.controls['Hos_web_url'].hasError('pattern')">
+                                Please enter valid url
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="footer_button">
+                    <button routerLink="/base/master/hospital" class="cancel" mat-raised-button
+                        color="warn">Close</button>
+                    <button class="save" mat-raised-button color="primary" [disabled]="hospital.invalid"
+                        (click)="save()">Save</button>
+                </div>
+            </fieldset>
+        </div>
+    </form>
+</mat-card>

@@ -1,0 +1,209 @@
+<h1 mat-dialog-title>View Hospital</h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content>
+    <form [formGroup]="hospital">
+        <div class="row">
+            
+            <fieldset>
+                <legend>Hospital Info</legend>
+                <div class="row">
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Code</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="hos_HospitalCode">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Registration Number</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="RegNo">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Name</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="hos_HospitalName">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label> Catagory</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="Hos_cat_Id">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Type</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="hos_HospitalType">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Primary/Branch</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="primaryorBranch">
+                            <!-- <mat-select formControlName="primaryorBranch">
+                        <mat-option value="P">Primary</mat-option>
+                        <mat-option value="B">Branch</mat-option>
+                    </mat-select> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="hos_bran_hid">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Branch</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="hos_Branch">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="hos_netid">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Network</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="hos_NE_Id_FK">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>GST</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="GsTno">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>PAN Number</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="PaNno">
+                        </mat-form-field>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <mat-label>View Hospital Logo</mat-label>
+                        
+                                <div align="center">
+                                    <img class="images" matPrefix [src]="Image_Url" width="100" height="100" alt="image not found">
+                                </div>
+                                
+                    </div>
+                    <div class="col-md-4">
+                        <mat-label>View Network Logo</mat-label>
+                        
+                                <div align="center">
+                                    <img class="images" matPrefix [src]="Image_Url1" width="100" height="100" alt="image not found">
+                                </div>
+                                
+                    </div>
+                    <!-- <div class="col-md-3">
+                        <mat-label>View Experience Document</mat-label>
+                        <!-- <button id="view" (click)="view(d)" [hidden]="viewhid"
+                                mat-icon-button color="primary" matTooltip="View"
+                                    [matTooltipPosition]="TooltipPosition" matTooltipClass="tooltip-blue"
+                                    aria-label="Button that displays a tooltip in various positions">
+                                    <mat-icon id="vis">visibility</mat-icon>
+                                </button> -->
+                                <br>
+                                <br>
+                                <!-- <span> <a id="viewDocUrl"  href="{{Doc_Url}}" target="_blank">View</a></span> -->
+                     
+                    <div class="col-md-4">
+                        <mat-label>View MOU Document</mat-label>
+                                <br>
+                                <br>
+                                <!-- <span> <a id="viewDocUrl"  href="{{MOU_Url}}" target="_blank">View</a></span> -->
+                                <button mat-raised-button color="primary" (click)="viewDocument()">View</button>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Communication Details</legend>
+                <div class="row">
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Mobile Number</mat-label>
+                            <input style="color: seagreen;" matInput placeholder=""
+                                formControlName="hos_HospitalPhoneNo">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Alternate Number</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="hos_Alterno">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Landline Number</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="hos_Landline">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Email Id</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="hos_HospitalEmail">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Address</mat-label>
+                            <textarea style="color: seagreen;" matInput
+                                formControlName="hos_HospitalAddress"></textarea>
+                            <!-- <input matInput placeholder="" formControlName="hos_HospitalAddress"> -->
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Country</mat-label>
+                            <input style="color: seagreen;" matInput formControlName="hos_Country" readonly>
+                            <!-- <mat-select formControlName="hos_Country">
+                        <mat-option *ngFor="let c of countrydd" [value]="c.cntry_id">{{c.country_name}}</mat-option>
+                    </mat-select> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>State</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="hos_ST_Id_FK">
+                            <!-- <mat-select formControlName="hos_ST_Id_FK">
+                        <mat-option *ngFor="let s of statedd"[value]="s.stat_id">{{s.state_name}}</mat-option>
+                    </mat-select> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>District</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="hos_DI_Id_FK">
+                            <!-- <mat-select formControlName="hos_DI_Id_FK">
+                        <mat-option *ngFor="let d of districtdd"[value]="d.district_id">{{d.district_name}}</mat-option>
+                    </mat-select> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Taluk</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="hos_Taluk">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Village</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="hos_village">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Postal Code</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="hos_PostalCode">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Website URL</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="Hos_web_url">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+</div>

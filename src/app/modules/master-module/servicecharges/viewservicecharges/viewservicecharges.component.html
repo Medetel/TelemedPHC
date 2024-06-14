@@ -1,0 +1,51 @@
+<h1 mat-dialog-title>View Service Charge</h1>
+<!-- <div mat-dialog-content> -->
+    <form [formGroup]="viewservicecharge">
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Service Name</mat-label> <br/>
+                    <input style="color: seagreen;" matInput  formControlName="service_name" >
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Service Code</mat-label><br/>
+                    <input style="color: seagreen;"  matInput  formControlName="service_code" >
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Charge (Rs)</mat-label> <br/>
+                    <input style="color: seagreen; word-wrap: break-word; white-space: pre-wrap;"  matInput  formControlName="service_charge" type="multiline" >
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Package Name</mat-label>
+                    <input style="color: seagreen;" matInput formControlName="package_desc">
+                </mat-form-field>
+            </div>
+            <!-- <div class="col-md-6">
+                <div>
+                    <h4>Test Details :
+                        <span style="color: green;" *ngFor="let da of test">
+                            {{da.test_desc}},&nbsp;
+                        </span>
+                    </h4>
+                </div>
+            </div> -->
+
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Test Details</mat-label>
+                    <input style="color: green;" matInput formControlName="test_desc">
+                </mat-form-field>
+            </div>
+           
+        </div>
+      </form>
+<!-- </div> -->
+<div mat-dialog-actions align="end" >
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+</div>

@@ -1,0 +1,91 @@
+<h1 mat-dialog-title>Edit Service Charge</h1>
+<mat-divider></mat-divider>
+ <div mat-dialog-content> 
+    <form [formGroup]="servicecharge">
+        <div class="row">            
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>ServiceName</mat-label>
+                    <mat-select formControlName="service_name">
+                        <mat-option *ngFor="let c of servicedata_dd" [value]="c.service_Id">{{c.service}}</mat-option>
+                       
+                    </mat-select>
+                   
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Service Code</mat-label>                    
+                    <input matInput #input formControlName="service_code">                    
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                    <mat-label class="star">Service Charges Rs.</mat-label>
+                    <input maxlength="4" placeholder="Eg.9999" matInput formControlName="service_charge">
+                    <mat-error *ngIf="checkError('service_charge', 'required')">Charges is required</mat-error>
+                    <mat-error *ngIf="servicecharge.get('service_charge').hasError('serviceCheck')">
+                        Please enter numeric value.
+                    </mat-error>
+                    <!-- <mat-error *ngIf="servicecharge.get('service_charge').hasError('spaceCheck')">
+                        Charges will not allow white space.
+                    </mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="col-md-6" *ngIf="servicecharge.get('service_name').value === 5">
+                <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                    <mat-label class="star">Package Name</mat-label>
+                    <input matInput placeholder="" maxlength="200" formControlName="package_desc" required>
+                    <mat-error *ngIf="checkError('package_desc', 'required')">Package Name is required</mat-error>
+                    <mat-error *ngIf="servicecharge.get('package_desc').hasError('alphaCheck')">
+                        Please enter alphabet characters
+                    </mat-error>
+                    <mat-error *ngIf="servicecharge.get('package_desc').hasError('spaceCheck')">
+                    Package Name will not allow white space
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <!-- <div class="col-md-6" *ngIf="servicecharge.get('service_name').value === 5">
+                <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                    <mat-label class="star">Test Names</mat-label>
+                    <mat-select formControlName="test_desc" multiple required [(value)]="complaintselected">
+                        <mat-option [value]="c" *ngFor="let c of testpack">{{c.test_desc}}</mat-option>
+                    </mat-select>
+                    <mat-error
+                        *ngIf="servicecharge.get('test_desc').invalid && servicecharge.get('test_desc').touched">Field is
+                        required</mat-error>
+                        <mat-error *ngIf="checkError('test_desc', 'required')">Field is required</mat-error>
+                </mat-form-field>
+            </div> -->
+            <div class="col-md-6" *ngIf="servicecharge.get('service_name').value === 5">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Test Names</mat-label>
+                    <mat-select formControlName="test_desc" [(value)]="testselected" 
+                        [compareWith]="objectComparisonFunctiontests" multiple required>
+                        <mat-select-trigger>
+                            <mat-chip-list>
+                                <mat-chip *ngFor="let testpack of servicecharge.value.test_desc" >
+                                    {{testpack.test_desc}}
+                                </mat-chip>
+                            </mat-chip-list>
+                        </mat-select-trigger>
+                        <mat-option [value]="c" *ngFor="let c of testpack">{{c.test_desc}}</mat-option>
+                    </mat-select>
+                    <mat-error
+                        *ngIf="servicecharge.get('test_desc').invalid && servicecharge.get('test_desc').touched">
+                        Field is required
+                    </mat-error>
+                    <mat-error *ngIf="servicecharge.get('test_desc').required">
+                        Field is required
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+ </div> 
+<div mat-dialog-actions align="end">
+    <button id="save" mat-raised-button color="primary" (click)="updateform()" >Update</button>
+    <button mat-dialog-close id="cancel" mat-raised-button color="warn">Close</button>
+</div>
+

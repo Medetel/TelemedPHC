@@ -1,0 +1,82 @@
+<mat-card>
+  <div class="row">
+    <div class="col-md-8">
+      <mat-card-title>Patient History</mat-card-title>
+    </div>
+    <div class="col-md-4">
+            <p class="mt-2" style="margin-left:20px;">How to initiate video call? <a
+                routerLink="/base/task/v6">click here</a></p>
+
+      <!-- <p class="mt-2" style="margin-left:20px;">How to initiate video call? <a  [routerLink]="['/base/task/consultation_demo', 'video_call']">click here</a></p> -->
+    </div>
+  </div>
+
+      <mat-form-field appearance="standard">
+          <mat-label><mat-icon>search</mat-icon>&nbsp;Search Keywords Here....</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
+        </mat-form-field>
+      
+      <div class="mat-elevation-z8">
+          <table mat-table [dataSource]="dataSource">
+              
+            <ng-container matColumnDef="position">
+              <th mat-header-cell *matHeaderCellDef>Appointment No </th>
+              <td mat-cell *matCellDef="let data"> {{data.Appt_Id}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="position2">
+              <th mat-header-cell *matHeaderCellDef>Appointment Date </th>
+              <td mat-cell *matCellDef="let data"> {{data.Select_date | date: 'dd-MM-yyyy'}} </td>
+            </ng-container>
+
+        
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>Doctor Name </th>
+              <td mat-cell *matCellDef="let data"> {{data.Appt_DO_Name}} </td>
+            </ng-container>
+      
+            <ng-container matColumnDef="weight">
+              <th mat-header-cell *matHeaderCellDef> Hospital Name </th>
+              <td mat-cell *matCellDef="let data">{{data.HospitalName}} </td>
+            </ng-container>
+      
+            <!-- <ng-container matColumnDef="position1">
+              <th mat-header-cell *matHeaderCellDef> Application Type </th>
+              <td mat-cell *matCellDef="let data"> {{data.Appt_Type}} </td>
+            </ng-container> -->
+        
+            <ng-container matColumnDef="name1">
+              <th mat-header-cell *matHeaderCellDef>Status </th>
+              <td mat-cell *matCellDef="let data"> {{data.status_name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="name2">
+              <th mat-header-cell *matHeaderCellDef>Action</th>
+              <td mat-cell *matCellDef="let data">
+                <button id="view" (click)="openDialog(data)" [hidden]="viewhid" 
+                mat-icon-button color="primary" matTooltip="View"
+                [matTooltipPosition]="TooltipPosition" matTooltipClass="tooltip-blue"
+                aria-label="Button that displays a tooltip in various positions">
+                <mat-icon id="vis">visibility</mat-icon>
+                </button></td>
+            </ng-container>
+                                
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+      
+          <table>
+              <tr *ngIf="!dataSource.data.length">
+                <td style="text-align: center;" [attr.colspan]="displayedColumns.length">
+                  No Records Found!
+                </td>
+              </tr>
+            </table>
+        
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                         showFirstLastButtons 
+                         aria-label="Select page of periodic elements">
+          </mat-paginator>
+        </div> 
+
+</mat-card>

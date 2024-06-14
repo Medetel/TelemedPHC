@@ -1,0 +1,75 @@
+<h1 mat-dialog-title>Approve Assistant/Admin</h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content>
+    <form [formGroup]="assistant">
+        <div class="row">
+            
+             <div class="col-md-4">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Code</mat-label>
+                    <input style="color: seagreen;" matInput placeholder="" formControlName="Assi_code" >
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>FirstName</mat-label>
+                    <input style="color: seagreen;" matInput  placeholder="" formControlName="Assi_FirstName"  >
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>LastName</mat-label>
+                    <input style="color: seagreen;" matInput placeholder="" formControlName="Assi_LastName">
+                </mat-form-field>
+            </div>           
+           
+            <div class="col-md-4">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label> Gender</mat-label>
+                    <input style="color: seagreen;" matInput placeholder="" formControlName="Assi_Gender" >
+                </mat-form-field>
+            </div>           
+            <div class="col-md-4">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Designation</mat-label>
+                    <input style="color: seagreen;"matInput placeholder="" formControlName="Assi_Des_Id_FK">
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Skill Set</mat-label>
+                    <input style="color: seagreen;"matInput placeholder="" formControlName="Assi_Skill_Desc">
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Hospital</mat-label>
+                    <input style="color: seagreen;"matInput placeholder="" formControlName="Assi_Hos_Id_FK">
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Mobile Number</mat-label>
+                    <input style="color: seagreen;" matInput placeholder="" formControlName="Assi_MobileNumber">
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Address</mat-label>
+                   <textarea style="color: seagreen;"matInput formControlName="Assi_Address"></textarea>
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Remarks</mat-label>
+                   <input style="color: seagreen;"matInput formControlName="Remarks">
+                </mat-form-field>
+            </div>
+           
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions align="end" >
+    <button id="save" mat-raised-button color="primary" (click)="approveform()" >Approval</button>
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+</div>

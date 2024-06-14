@@ -1,0 +1,71 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.smart-scheduler {
+    height: 100%;
+}
+.validation{
+    color: red;
+}
+
+.mat-form-field+.mat-form-field {
+    margin-left: 8px;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.time {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    background-color: #9eb7ee;
+    color: white;
+}
+
+.appoin {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.img {
+    width: 7%;
+    height: 70px;
+}
+
+mat-panel-description .span {
+    text-align: end;
+    justify-content: end;
+    display: flex;
+}
+
+.demo-inline-calendar-card {
+    width: 309px!important;
+    height: 360px!important;
+    margin-top: 2%;
+    background-color: #96dfcf;
+    //color: white;
+}
+
+table {
+    width: 100%;
+    margin-top: 1%;
+}
+
+.mat-header-cell {
+    color: white !important;
+    background-color: #2970db;
+}
+
+// .demo-inline-calendar-card  {
+//     width: 409px!important;
+//     height: 300px!important;
+// }
+
+[hidden] {
+    display: none !important;
+}

@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>Edit Network</h1>
+<mat-divider></mat-divider>
+<!-- <div mat-dialog-content> -->
+    <form [formGroup]="network">
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Network Code</mat-label>                   
+                    <input matInput #input maxlength="8" formControlName="nE_Code" >
+                        <!-- <mat-error *ngIf="checkError('nE_Code', 'required')">Network Code is required</mat-error> -->                       
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                    <mat-label class="star">Network Description</mat-label>
+                    <input matInput placeholder="Eg. Bengnetwork" maxlength="45" formControlName="nE_Description" required>
+                    <mat-error *ngIf="checkError('nE_Description', 'required')">Network Description  is required</mat-error>
+                    <mat-error *ngIf="network.get('nE_Description').hasError('alphaCheck')">
+                        Please enter alphabet characters
+                    </mat-error>
+                    <mat-error *ngIf="network.get('nE_Description').hasError('spaceCheck')">
+                        Network description will not allow white space
+                    </mat-error>                    
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+<!-- </div> -->
+<br>
+<div mat-dialog-actions align="end">
+    <button id="save" mat-raised-button color="primary" (click)="updateform()">Update</button>
+    <button mat-dialog-close id="cancel" mat-raised-button color="warn">Close</button>
+</div>

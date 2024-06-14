@@ -1,0 +1,482 @@
+<h1 mat-dialog-title>Edit Doctor</h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content>
+    <form [formGroup]="doctor">
+        <div class="row">
+            <!-- <div class="col-md-12">
+                <div align="center">
+                    <h4>Doctor Image</h4>
+                </div> 
+                <div align="center">
+                    <img class="images" matPrefix [src]="Image_Url" width="100px" height="100px" alt="image not found">
+                    <input type="file" formControlName="DO_Photo" (change)="onSelectFile($event)">
+                </div>
+            </div> -->
+            <div class="col-md-12">
+                <div align="center">
+
+                </div>
+            </div>
+            <fieldset>
+                <legend>Doctor Info</legend>
+                <div class="row">
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Registration Number</mat-label>
+                            <input matInput #input maxlength="20" placeholder="Eg.Doc01" formControlName="Regno"
+                                required>
+                            <mat-error *ngIf="doctor.get('Regno').hasError('required')">Registration Number</mat-error>
+                            <mat-error
+                                *ngIf="doctor.get('Regno').hasError('invalidName') || doctor.get('Regno').hasError('pattern') ">
+                                Please enter Alpha Numerical characters
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>First Name</mat-label>
+                            <input matInput placeholder="" maxlength="45" formControlName="DO_FirstName" required>
+                            <mat-error *ngIf="doctor.get('DO_FirstName').hasError('required')">First Name is
+                                required</mat-error>
+                            <!-- <mat-error
+                                *ngIf="doctor.get('DO_FirstName').hasError('invalidName') || doctor.get('DO_FirstName').hasError('pattern') ">
+                                Please enter Alphabet and space is not allowed in starting and ending
+                            </mat-error> -->
+                            <mat-error *ngIf="doctor.get('DO_FirstName').hasError('alphaCheck')">
+                                Please enter alphabet characters
+                            </mat-error>
+                            <mat-error *ngIf="doctor.get('DO_FirstName').hasError('spaceCheck')">
+                                First Name will not allow white space
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Last Name</mat-label>
+                            <input matInput placeholder="" maxlength="45" formControlName="DO_LastName" required>
+                            <mat-error *ngIf="doctor.get('DO_LastName').hasError('required')">Last Name is required
+                            </mat-error>
+                            <!-- <mat-error
+                                *ngIf="doctor.get('DO_LastName').hasError('invalidName') || doctor.get('DO_LastName').hasError('pattern') ">
+                                Please enter Alphabet and space is not allowed in starting and ending
+                            </mat-error> -->
+                            <mat-error *ngIf="doctor.get('DO_LastName').hasError('alphaCheck')">
+                                Please enter alphabet characters
+                            </mat-error>
+                            <mat-error *ngIf="doctor.get('DO_LastName').hasError('spaceCheck')">
+                                Last Name will not allow white space
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>DOB</mat-label>
+                            <input matInput [matDatepicker]="picker" formControlName="DO_DOB"
+                                max="{{maxDate | date:'yyyy-MM-dd'}}" readonly required>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                            <mat-error *ngIf="doctor.get('DO_DOB').hasError('required')">DOB is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label> Gender</mat-label>
+                            <mat-select formControlName="DO_Gender" required>
+                                <mat-option *ngFor="let g of gender" [value]="g.text">{{g.text}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="doctor.get('DO_Gender').hasError('required')">Gender is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Mother Tongue</mat-label>
+                            <mat-select formControlName="DO_MotherTongue" required>
+                                <mat-option *ngFor="let s of languagedd" [value]="s.id">{{s.language}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="doctor.get('DO_MotherTongue').hasError('required')">Mother Tongue is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <!-- <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Prefered Language</mat-label>
+                            <mat-select formControlName="DoctorLanguage">
+                                <mat-option *ngFor="let s of languagedd" [value]="s.id">{{s.languages}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div> -->
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Pan Card No</mat-label>
+                            <input matInput #input maxlength="10" placeholder="Eg.AAAAA1234A" formControlName="PaNno"
+                                required>
+                            <!-- <mat-error *ngIf="doctor.get('PaNno').hasError('required')" >PAN No is required</mat-error> -->
+                            <mat-error
+                                *ngIf="doctor.get('PaNno').hasError('invalidName') || doctor.get('PaNno').hasError('pattern') ">
+                                please enter alphanumarical characters and maximum 10 characters only
+                            </mat-error>
+                            <mat-error *ngIf="doctor.get('PaNno').hasError('required')">Pan Number is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Qualification</mat-label>
+                            <mat-select formControlName="DO_QU_Id_FK" required>
+                                <mat-option *ngFor="let q of qualificationdd" [value]="q.qualification_id">
+                                    {{q.qualification_Name}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="doctor.get('DO_QU_Id_FK').hasError('required')">Qualification is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Designation</mat-label>
+                            <mat-select formControlName="DO_DE_Id_FK" required>
+                                <mat-option *ngFor="let d of designationdd" [value]="d.designation_id">
+                                    {{d.designation_desc}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="doctor.get('DO_DE_Id_FK').hasError('required')">Designation is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Department</mat-label>
+                            <mat-select formControlName="DO_CD_Id_FK" required>
+                                <mat-option *ngFor="let s of disciplinedd" [value]="s.cD_Id">{{s.cD_ClinicalDiscipline}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="doctor.get('DO_CD_Id_FK').hasError('required')">Discipline is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Specialist Doctor</mat-label>
+                            <mat-select formControlName="DO_Spc_Id_FK" required>
+                                <mat-option *ngFor="let s of specialistdoctordd" [value]="s.sD_Id">{{s.sD_ClinicalSpecilist}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="doctor.get('DO_Spc_Id_FK').hasError('required')">Specialist Doctor is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Specialization Category</mat-label>
+                            <mat-select formControlName="DO_SC_Id_FK" (valueChange)="typescategorys($event)"
+                                required>
+                                <mat-option *ngFor="let s of specs" [value]="s.spc_id">{{s.spc_Name}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="doctor.get('DO_SC_Id_FK').hasError('required')">Specilization Category is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Specialization Description</mat-label>
+                            <mat-select formControlName="DO_SP_Id_FK" required>
+                                <mat-option *ngFor="let d of discriptiondd" [value]="d.sP_Id">
+                                    {{d.sP_Specialization}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="doctor.get('DO_SP_Id_FK').hasError('required')">Specialization
+                                Description is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <!-- <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Specilization</mat-label>
+                            <mat-select formControlName="DO_SP_Id_FK" required>
+                                <mat-option *ngFor="let s of specs" [value]="s.sP_Id">{{s.sP_Specialization}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="doctor.get('DO_SP_Id_FK').hasError('required')">Specilization is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div> -->
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Hospital</mat-label>
+                            <mat-select formControlName="DO_HO_Id_FK">
+                                <mat-option *ngFor="let h of hospitaldd" [value]="h.hos_Id">{{h.hos_HospitalName}}
+                                </mat-option>
+                            </mat-select>
+                            <!-- <mat-error *ngIf="doctor.get('DO_HO_Id_FK').hasError('required')">Hospital is
+                                required</mat-error> -->
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Clinic Name</mat-label>
+                            <input matInput placeholder="" formControlName="ClinicName" required>
+                            <mat-error *ngIf="doctor.get('ClinicName').hasError('required')">Clinic name is
+                                required</mat-error>
+                            <mat-error
+                                *ngIf="doctor.get('ClinicName').hasError('invalidName') || doctor.get('ClinicName').hasError('pattern') ">
+                                Please enter Alphabet and space is not allowed in starting and ending
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Network</mat-label>
+                            <mat-select formControlName="DO_NE_Id_FK" required>
+                                <mat-option *ngFor="let n of networkdd" [value]="n.nE_Id">{{n.nE_Description}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="doctor.get('DO_NE_Id_FK').hasError('required')">Network is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-5">
+                        <mat-label>Upload Photo</mat-label>
+                        <div class="d-flex">
+
+                            <input type="file" formControlName="DO_Photo" accept="image/*"
+                                (change)="onSelectPhoto($event)">
+                            <img class="images" matPrefix [src]="Image_Url" width="100px" height="100px"
+                                alt="image not found">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+
+                        <mat-label>Upload Experience Document</mat-label>
+                        <div>
+                            <!-- <span> <a id="viewDocUrl" href="{{Doc_Url}}" target="_blank">View</a></span> -->
+                            <button mat-raised-button color="primary" (click)="viewdocument()">View</button>
+                            <br>
+                            <br>
+                            <img class="uploaddoc">
+                            <input type="file" formControlName="DO_Choose_Document" accept=".pdf"
+                                (change)="onSelectFile($event)">
+                        </div>
+
+
+                        <!-- <mat-error *ngIf="doctor.get('DO_SP_Id_FK').hasError('required')" >Specilization is required</mat-error> -->
+                        <!-- </mat-form-field>  -->
+                    </div>
+                    <div class="col-md-4">
+
+                        <mat-label>Upload MOU Document</mat-label>
+                        <div>
+                            <!-- <span> <a id="viewDocUrl" href="{{MOU_Url}}" target="_blank">View</a></span> -->
+                            <button mat-raised-button color="primary" (click)="viewDocument()">View</button>
+                            <br><br>
+                            <img class="uploaddoctor">
+                            <input type="file" formControlName="MOUDocument" accept=".pdf"
+                                (change)="onselectfiles($event)">
+                        </div>
+                    </div>
+
+                        <div class="col-md-4">
+                            <mat-label>Upload Digital Signature</mat-label>
+                            <div class="d-flex">
+                        
+                                <input type="file" formControlName="Doc_Signature_Doc" accept="image/*" (change)="onSelectSig($event)">
+                                <img class="images" matPrefix [src]="Sign_Url" width="100px" height="100px"
+                                    alt="image not found">
+                            </div>
+                        </div>
+
+                       
+
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>ServiceName</mat-label>
+                            <mat-select formControlName="services_FK" #choosedServiceValue
+                                (valueChange)="servicechange(choosedServiceValue.value)" required>
+                                <mat-option *ngFor="let c of servcharge"
+                                    [value]="c.service_Id">{{c.service}}</mat-option>
+
+                            </mat-select>
+                            <!-- <mat-error *ngIf="checkError('services_FK', 'required')">Service Name is required</mat-error>  -->
+                            <mat-error *ngIf="doctor.get('services_FK').hasError('required')">Servicename is
+                                required</mat-error>
+                        </mat-form-field>
+
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Servicecode</mat-label>
+                            <mat-select formControlName="price_Id_FK" #choosedChargeValue
+                                (valueChange)="codechange(choosedChargeValue.value)" required>
+                                <mat-option *ngFor="let c of servcode"
+                                    [value]="c.price_Id">{{c.serviceCode}}</mat-option>
+
+                            </mat-select>
+                            <!-- <mat-error *ngIf="checkError('price_Id_FK', 'required')">code is required</mat-error> -->
+                            <mat-error *ngIf="doctor.get('price_Id_FK').hasError('required')">
+                                Please select code
+                            </mat-error>
+                        </mat-form-field>
+
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                            <mat-label class="star">Service Charges</mat-label>
+                            <input maxlength="4" matInput formControlName="service_charge">
+
+                        </mat-form-field>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Communication Details</legend>
+                <div class="row">
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Mobile Number</mat-label>
+                            <!-- <input matInput placeholder="" formControlName="DO_MobileNumber"> -->
+                            <input matInput #input maxlength="10" minlength="10" placeholder="Eg.9000000001"
+                                formControlName="DO_MobileNumber" required>
+                            <mat-error *ngIf="doctor.get('DO_MobileNumber').hasError('required')"> Mobile Number is
+                                required</mat-error>
+                            <mat-error
+                                *ngIf="doctor.controls['DO_MobileNumber'].hasError('invalidName') || doctor.controls['DO_MobileNumber'].hasError('pattern') ">
+                                Please enter valid 10 digit mobile number
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Alternate Number</mat-label>
+                            <!-- <input matInput placeholder="" formControlName="DO_Alernative_Numb"> -->
+                            <input matInput #input maxlength="10" minlength="10" placeholder="Eg.9000000001"
+                                formControlName="DO_Alernative_Numb">
+                            <mat-error
+                                *ngIf="doctor.controls['DO_Alernative_Numb'].hasError('invalidName') || doctor.controls['DO_Alernative_Numb'].hasError('pattern') ">
+                                Please enter valid 10 digit mobile number
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Landline Number</mat-label>
+                            <input matInput #input maxlength="11" placeholder="Eg.080-30000000"
+                                formControlName="DO_OfficialNumber">
+                            <mat-error
+                                *ngIf="doctor.controls['DO_OfficialNumber'].hasError('invalidName') || doctor.controls['DO_OfficialNumber'].hasError('pattern') ">
+                                Please enter valid 11 digit Landline number
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4 mt-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Email Id</mat-label>
+                            <!-- <input matInput placeholder="" formControlName="DO_Email"> -->
+                            <input matInput placeholder="Eg.abc@gmail.com" formControlName="DO_Email" required>
+                            <!-- <mat-error *ngIf="doctor.get('DO_Email').hasError && !doctor.get('DO_Email').hasError('required')">
+                                Please enter a valid email id
+                            </mat-error> -->
+                            <mat-error *ngIf="doctor.get('DO_Email').hasError('required')">Email is required</mat-error>
+                            <mat-error
+                                *ngIf="doctor.controls['DO_Email'].hasError('invalidName') || doctor.controls['DO_Email'].hasError('pattern') ">
+                                Please enter a valid email address
+                            </mat-error>
+                            <!-- <mat-error
+                                *ngIf="doctor.touched && (!doctor.value.DO_Email || doctor.value.DO_Email.length==0)">
+                                Please enter a valid email address{{doctor.value.DO_Email}}
+                            </mat-error> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Address</mat-label>
+                            <textarea matInput formControlName="DO_Address" required></textarea>
+                            <mat-error *ngIf="doctor.get('DO_Address').hasError('required')"> Address is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4 mt-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Country</mat-label>
+                            <mat-select formControlName="DO_Country_Id_FK" #choosedValue
+                                (valueChange)="countrychange(choosedValue.value)" required>
+                                <mat-option *ngFor="let c of country" [value]="c.cntry_id">{{c.country_name}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="doctor.get('DO_Country_Id_FK').hasError('required')"> Country is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>State</mat-label>
+                            <mat-select formControlName="DO_ST_Id_FK" #selectval
+                                (valueChange)="statechange(selectval.value)" required>
+                                <mat-option *ngFor="let s of state" [value]="s.stat_id">{{s.state_name}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="doctor.get('DO_ST_Id_FK').hasError('required')"> State is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>District</mat-label>
+                            <mat-select formControlName="DO_DI_Id_FK" #districtval
+                                (valueChange)="distritchange(districtval.value)" required>
+                                <mat-option *ngFor="let d of district" [value]="d.district_id">{{d.district_name}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="doctor.get('DO_DI_Id_FK').hasError('required')"> District is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Taluk</mat-label>
+                            <mat-select formControlName="DO_Taluk_Id" required>
+                                <mat-option *ngFor="let t of taluk" [value]="t.taluk_id">{{t.taluk_name}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="doctor.get('DO_Taluk_Id').hasError('required')"> Taluk is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Village</mat-label>
+                            <input matInput maxlength="20" placeholder="" formControlName="DO_Village" required>
+                            <!-- <mat-select formControlName="DO_Gram_Id"  #villageval
+                            (valueChange)="selectpincode(villageval.value)" required>
+                                <mat-option *ngFor="let g of gram" [value]="g.gram_id">{{g.gram_name}}</mat-option>
+                            </mat-select> -->
+                            <mat-error *ngIf="doctor.get('DO_Village').hasError('required')"> Village is
+                                required</mat-error>
+                            <mat-error
+                                *ngIf="doctor.get('DO_Village').hasError('invalidName') || doctor.get('DO_Village').hasError('pattern') ">
+                                Please enter alphabet and space is not allowed in starting and ending
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Postal Code</mat-label>
+                            <!-- <input matInput placeholder="" formControlName="DO_PostalCode"> -->
+                            <input matInput #input minlength="6" maxlength="6" placeholder="Eg.500000"
+                                formControlName="DO_PostalCode" required>
+                            <!-- <mat-error *ngIf="doctor.get('DO_PostalCode').hasError && !doctor.get('DO_PostalCode').hasError('required')">
+                                Postal code contains 6 digits
+                            </mat-error> -->
+                            <mat-error *ngIf="doctor.get('DO_PostalCode').hasError('required')"> Postal code is
+                                required</mat-error>
+                            <mat-error
+                                *ngIf="doctor.controls['DO_PostalCode'].hasError('invalidName') || doctor.controls['DO_PostalCode'].hasError('pattern') ">
+                                Please enter valid 6 digit postal code
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions align="end">
+    <button id="save" mat-raised-button color="primary" [disabled]="doctor.invalid"
+        (click)="updateform()">Update</button>
+    <button mat-dialog-close id="cancel" mat-raised-button color="warn">Close</button>
+</div>

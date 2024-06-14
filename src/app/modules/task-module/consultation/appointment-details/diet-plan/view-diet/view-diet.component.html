@@ -1,0 +1,56 @@
+<mat-card-title>View Diet-Plan</mat-card-title>
+    <mat-card-content>
+        <div class="button_add">
+            <form class="form-inline" [formGroup]="Dietplan" [hidden]="issave">
+                <fieldset>
+                    <legend>Diet-Info</legend>
+                    <div class="row">
+
+                        <div class="col-md-3">
+                            <p style="color:rgb(0, 0, 0); font-size: 15px; margin-top: 3%;">Intake & Duration</p>
+                        </div>
+                        <div class="col-md-4">
+                            <input style="color: seagreen;" type="text" class="form-control dosage1 border border-primary"
+                            formControlName="dp_intake" placeholder="10">
+                            <!-- <select id="input" class="form-control food border border-primary"
+                                formControlName="dp_intake" aria-label="Search">
+                                <option value="">Select...</option>
+                                <option value="Morning">Morning</option>
+                                <option value="After Noon">After Noon</option>
+                                <option value="Night">Night</option>
+                            </select> -->
+                        </div>
+                        <div class="col-md-2">
+                            <label for="inputPassword2" class="sr-only"></label>
+                            <input style="color: seagreen;" type="text" class="form-control dosage1 border border-primary"
+                                formControlName="dp_duration" placeholder="10">
+                        </div>
+                        <div class="col-md-2">
+                            <input type="text" style="color: seagreen;" class="form-control dosage1 border border-primary"
+                                formControlName="dp_dura_interof" placeholder="10">
+                            <!-- <select id="input" class="form-control food1 border border-primary"
+                                formControlName="dp_dura_interof">
+                                <option value="">Select...</option>
+                                <option value="Days">Days...</option>
+                                <option value="Weeks">Weeks</option>
+                                <option value="Months">Months</option>
+                            </select> -->
+                        </div>
+                        <div class="col-md-3">
+                            <P style="color:rgb(0, 0, 0); font-size: 15px; margin-top: 13%;">Instruction</P>
+                        </div>
+                        <div class="col-md-9">
+                            <label for="inputPassword2" class="sr-only"></label>
+                            <input style="color: seagreen;" type="text" formControlName="dp_instruction"
+                                class="form-control dosage border border-primary" placeholder="10">
+                        </div>
+                        </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="col-md-12">
+            <div align="end" style="margin-top: 3%;">
+                <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+            </div>
+        </div>
+    </mat-card-content>

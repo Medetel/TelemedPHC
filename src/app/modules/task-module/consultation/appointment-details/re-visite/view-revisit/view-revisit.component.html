@@ -1,0 +1,50 @@
+<mat-card-title>View Re-Visit</mat-card-title>
+    <mat-card-content >
+        <form [formGroup]="revisit" >
+            <div class="button_add">
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Date</mat-label>
+                            <input matInput formControlName="date" placeholder="" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Hospital</mat-label>
+                            <input matInput formControlName="hos_Id" placeholder="" readonly>
+                            <!-- <mat-select formControlName="hos_Id" required>
+                                <mat-option *ngFor="let s of splhospt" [value]="s.hos_Id">{{s.hos_HospitalName}}
+                                </mat-option>
+                            </mat-select> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Revisit Date</mat-label>
+                            <input matInput [matDatepicker]="dp" formControlName="rV_Date" readonly>
+                            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                            <mat-datepicker #dp></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Revisit Time</mat-label>
+                            <input matInput formControlName="rV_Time" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Remarks</mat-label>
+                            <input matInput placeholder="" formControlName="remarks" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-12">
+                        <div align="center">
+                            <button mat-raised-button color="warn" mat-dialog-close>close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>

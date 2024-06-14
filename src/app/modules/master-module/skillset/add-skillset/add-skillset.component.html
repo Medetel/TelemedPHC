@@ -1,0 +1,39 @@
+<mat-card>
+    <mat-card-title>Add Skillset</mat-card-title>
+    <mat-divider></mat-divider>
+        <form [formGroup]="skillset">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                        <mat-label class="star">Qualification</mat-label>
+                        <mat-select formControlName="qualification_id" required>
+                            <mat-option *ngFor="let q of qualification" [value]="q.qualification_id">{{q.qualification_Name}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="checkError('qualification_id', 'required')">Qualification is required</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                        <mat-label class="star">Skillset</mat-label>
+                        <input matInput placeholder="Eg.paramedics" maxlength="45" formControlName="skillset_name" required>
+                        <mat-error *ngIf="checkError('skillset_name', 'required')">Skillset is required</mat-error>
+                        <mat-error *ngIf="skillset.get('skillset_name').hasError('alphaCheck')">
+                            Please enter alphabet characters
+                        </mat-error>
+                        <mat-error *ngIf="skillset.get('skillset_name').hasError('spaceCheck')">
+                            Skillset will not allow white space
+                        </mat-error>
+                        <!-- <mat-error *ngIf="skillset.get('skillset_name').hasError('invalidName') || skillset.get('skillset_name').hasError('pattern') ">
+                            Please enter Alphabet and space is not allowed in starting and ending
+                        </mat-error> -->
+                    </mat-form-field>
+                </div>
+            </div>
+            <br>
+            <div class="footer_button">
+                <button id="save" mat-raised-button color="primary" (click)="save()">Save</button>
+                <!-- <button id="cancel" mat-raised-button color="accent" (click)="reset()">Clear</button> -->
+                <button routerLink="/base/master/skillset" id="cancel" mat-raised-button color="warn">Close</button>
+            </div>
+        </form>
+</mat-card>

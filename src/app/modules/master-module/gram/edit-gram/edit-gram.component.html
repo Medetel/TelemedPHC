@@ -1,0 +1,82 @@
+<h1 mat-dialog-title>Edit Gram</h1>
+<mat-divider></mat-divider>
+<!-- <div mat-dialog-content> -->
+    <form [formGroup]="gram">
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Country</mat-label>
+                    <mat-select formControlName="cntry_id" #choosedValue (valueChange)="countrychange(choosedValue.value)">
+                        <mat-option *ngFor="let c of country" [value]="c.cntry_id">{{c.country_name}}</mat-option>
+                    </mat-select>
+                    <!-- <mat-error *ngIf="checkError('cntry_id', 'required')">Country Name is required</mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>State</mat-label>
+                    <mat-select formControlName="state_id" #selectval (valueChange)="statechange(selectval.value)">
+                        <mat-option *ngFor="let s of state" [value]="s.stat_id">{{s.state_name}}</mat-option>
+                    </mat-select>
+                    <!-- <mat-error *ngIf="checkError('state_id', 'required')">State Name is required</mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>District</mat-label>
+                    <mat-select formControlName="dist_id" #districtval (valueChange)="distritchange(districtval.value)">
+                        <mat-option *ngFor="let d of district" [value]="d.district_id">{{d.district_name}}</mat-option>
+                    </mat-select>
+                    <!-- <mat-error *ngIf="checkError('dist_id', 'required')">District Name is required</mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Taluk</mat-label>
+                    <mat-select formControlName="taluk_id">
+                        <mat-option *ngFor="let t of taluk" [value]="t.taluk_id">{{t.taluk_name}}</mat-option>
+                    </mat-select>
+                    <!-- <mat-error *ngIf="checkError('taluk_id', 'required')">Taluk Name is required</mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Gram Code</mat-label>                    
+                    <input matInput  formControlName="gram_code" >
+                        <!-- <mat-error *ngIf="checkError('gram_code', 'required')">Gram Code is required</mat-error>
+                        <mat-error *ngIf="gram.controls['gram_code'].hasError('invalidName') || gram.controls['gram_code'].hasError('pattern') ">
+                            Please enter Alpha Numerical characters only minimum:1/Maximum:5
+                        </mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                    <mat-label class="star">Gram Name</mat-label>
+                    <input matInput placeholder="Eg.Achanur" maxlength="45" formControlName="gram_name" required>
+                    <mat-error *ngIf="checkError('gram_name', 'required')">Gram Name is required</mat-error>
+                    <mat-error *ngIf="gram.get('gram_name').hasError('alphaCheck')">
+                        Please enter alphabet characters
+                    </mat-error>
+                    <mat-error *ngIf="gram.get('gram_name').hasError('spaceCheck')">
+                         Gram Name will not allow white space
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                    <mat-label class="star">Postal Code</mat-label>                   
+                    <input matInput  minlength="6" maxlength="6" placeholder="Eg.560078" formControlName="postal_Code" required>
+                    <mat-error *ngIf="checkError('postal_Code', 'required')">Postal Code is required</mat-error>
+                    <mat-error *ngIf="gram.get('postal_Code').hasError('postalCheck')">
+                        Please enter 6 digit Postal Code
+                     </mat-error>   
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+<!-- </div> -->
+
+<div mat-dialog-actions align="end">
+    <button id="save" mat-raised-button color="primary" (click)="updateform()" >Update</button>
+    <button mat-dialog-close id="cancel" mat-raised-button color="warn">Close</button>
+</div>

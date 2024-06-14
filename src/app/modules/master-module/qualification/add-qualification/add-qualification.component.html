@@ -1,0 +1,41 @@
+<mat-card>
+    <mat-card-title>Add Qualification</mat-card-title>
+    <mat-divider></mat-divider>
+        <form [formGroup]="qualification">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                        <mat-label class="star">Qualification Code</mat-label>
+                        <input matInput #input maxlength="10" placeholder="Eg.QUA00001" formControlName="qualification_code" required>
+                        <mat-error *ngIf="checkError('qualification_code', 'required')">Qualification Code is required</mat-error>
+                        <mat-error *ngIf="qualification.controls['qualification_code'].hasError('alphaNumCheck') || qualification.controls['qualification_code'].hasError('pattern') ">
+                        Qualification Code must start with "QUA" followed by numeric characters
+                        </mat-error>
+                        <!-- <mat-error *ngIf="qualification.controls['qualification_code'].hasError('invalidName') || qualification.controls['qualification_code'].hasError('pattern') ">
+                            Please enter Alpha Numerical characters only minimum:1/Maximum:5
+                        </mat-error> -->
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                        <mat-label class="star">Qualification</mat-label>
+                        <input matInput placeholder="Eg.BE,BTech" formControlName="qualification_Name" required>
+                        <mat-error *ngIf="checkError('qualification_Name', 'required')">Qualification Name is required</mat-error>
+                        <mat-error *ngIf="qualification.get('qualification_Name').hasError('alphaCheck')">
+                            Please enter alphabet characters
+                        </mat-error>
+                        <mat-error *ngIf="qualification.get('qualification_Name').hasError('spaceCheck')">
+                            Qualification Name will not allow white space
+                        </mat-error>
+                       
+                    </mat-form-field>
+                </div>
+            </div>
+            <br>
+            <div class="footer_button">
+                <button id="save" mat-raised-button color="primary" (click)="save()">Save</button>
+                <!-- <button id="cancel" mat-raised-button color="accent" (click)="reset()">Clear</button> -->
+                <button routerLink="/base/master/qualification" id="cancel" mat-raised-button color="warn">Close</button>
+            </div>
+        </form>
+</mat-card>

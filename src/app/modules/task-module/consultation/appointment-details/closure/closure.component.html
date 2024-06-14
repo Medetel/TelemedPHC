@@ -1,0 +1,22 @@
+<mat-dialog-content class="mat-typography" >
+    <div align="center">
+        <mat-icon color="warn" style="width: 200px;">warning</mat-icon>
+        <h3>Do You Want to Close Consultation</h3>
+       
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="center" >
+    <button mat-raised-button color="primary" mat-dialog-close (click)="delete()" >Yes</button>
+    <button mat-raised-button color="warn" mat-dialog-close>No</button>
+</mat-dialog-actions>
+
+<!-- <div align="center" [hidden]="enable">
+    <h4>Please Enter Your Remarks</h4>
+        <mat-form-field class="example-full-width" appearance="legacy" >
+            <mat-label>Remarks</mat-label>
+            <input matInput placeholder="" formControlName="" >
+        </mat-form-field>
+</div>
+<mat-dialog-actions align="end" [hidden]="enable">
+    <button class="save" mat-raised-button color="primary" mat-dialog-close>Save</button>
+</mat-dialog-actions> -->

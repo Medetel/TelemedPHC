@@ -1,0 +1,214 @@
+<mat-card-title>View Diagnostic</mat-card-title>
+<mat-divider></mat-divider>
+<form [formGroup]="diagnostic">
+    <div class="row">
+        <!-- <div class="col-md-12">
+            <div align="center">
+                <h4>Diagnostic Logo</h4>
+            </div>
+            <div align="center">
+                <img class="images" matPrefix [src]="Image_Url" width="100px" height="100px" alt="image not found">
+            </div>
+        </div> -->
+        <fieldset>
+            <legend>Personal Info</legend>
+            <div class="row">
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label> Code</mat-label>
+                        <input style="color: seagreen;" matInput placeholder="" formControlName="dgstC_Code">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label> Registration Number</mat-label>
+                        <input style="color: seagreen;" matInput placeholder="" formControlName="regNo">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Name</mat-label>
+                        <input style="color: seagreen;" matInput placeholder="" formControlName="dgstC_Name">
+                    </mat-form-field>
+                </div>
+                <!-- <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Diagnostic Catagory</mat-label>
+                        <mat-select formControlName="Hos_cat_Id">
+                            <mat-option *ngFor="let c of catagory" [value]="c.id">{{c.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div> -->
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label> Type</mat-label>
+                        <input style="color: seagreen;" matInput placeholder="" formControlName="dgstC_Type_Id">
+                        <!-- <mat-select formControlName="dgstC_Type_Id">
+                            <mat-option *ngFor="let t of diagnostictypedd" [value]="t.id">{{t.type}}</mat-option>
+                        </mat-select> -->
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Primary/Branch</mat-label>
+                        <input style="color: seagreen;" matInput placeholder="" formControlName="primaryOrBranch">
+                        <!-- <mat-select formControlName="primaryOrBranch" #pbvalue (selectionChange)="hos_p_b(pbvalue.value)">
+                            <mat-option value="Primary">Primary</mat-option>
+                            <mat-option value="Branch">Branch</mat-option>
+                        </mat-select> -->
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4" [hidden]="branch_hid">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label> Branch</mat-label>
+                        <input style="color: seagreen;" matInput placeholder="" formControlName="dgstC_Branch">
+                        <!-- <mat-select formControlName="dgstC_Branch" #brval (selectionChange)="change_branch(brval.value)">
+                            <mat-option *ngFor="let b of branch" [value]="b.hos_Id">{{b.hos_HospitalName}}</mat-option>
+                        </mat-select> -->
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Network</mat-label>
+                        <input style="color: seagreen;" matInput placeholder="" formControlName="dgstC_NE_Id">
+                        <!-- <mat-select formControlName="dgstC_NE_Id">
+                            <mat-option *ngFor="let n of networkdd" [value]="n.nE_Id">{{n.nE_Description}}</mat-option>
+                        </mat-select> -->
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label> GST</mat-label>
+                        <input style="color: seagreen;" matInput placeholder="" formControlName="gstNoOrPANno">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label> PAN No</mat-label>
+                        <input style="color: seagreen;" matInput placeholder="" formControlName="gstNoOrPANno">
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-4">
+                    <mat-label>View Logo</mat-label>
+
+                    <div align="center">
+                        <img class="images" matPrefix [src]="Image_Url" width="100" height="100" alt="image not found">
+                    </div>
+
+                </div>
+                <div class="col-md-5">
+                    <mat-label>View Mou Document</mat-label>
+                    <!-- <button id="view" (click)="view(d)" [hidden]="viewhid"
+                            mat-icon-button color="primary" matTooltip="View"
+                                [matTooltipPosition]="TooltipPosition" matTooltipClass="tooltip-blue"
+                                aria-label="Button that displays a tooltip in various positions">
+                                <mat-icon id="vis">visibility</mat-icon>
+                            </button> -->
+                    <br>
+                    <br>
+                    <span> <a id="viewDocUrl" href="{{MOU_Url}}" target="_blank">View</a></span>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Communication Details</legend>
+            <div class="row">
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>PhoneNumber</mat-label>
+                        <input style="color: seagreen;" matInput placeholder="" formControlName="dgstC_MobileNumber">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Alternate Number</mat-label>
+                        <input style="color: seagreen;" matInput placeholder="" formControlName="dgstC_AlterNumber">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Landline Number</mat-label>
+                        <input style="color: seagreen;" matInput placeholder="" formControlName="dgstC_LandLineNo">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Email Id</mat-label>
+                        <input style="color: seagreen;" matInput placeholder="" formControlName="dgstC_Email">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Address</mat-label>
+                        <textarea style="color: seagreen;" matInput placeholder=""
+                            formControlName="dgstC_Address"></textarea>
+                        <!-- <input matInput placeholder="" formControlName="hos_HospitalAddress"> -->
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Country</mat-label>
+                        <input style="color: seagreen;" matInput placeholder="" formControlName="dgstC_COUN_Id_FK">
+                        <!-- <mat-select formControlName="dgstC_COUN_Id_FK" #choosedValue (valueChange)="countrychange(choosedValue.value)" required>
+                            <mat-option *ngFor="let c of country" [value]="c.cntry_id">{{c.country_name}}</mat-option>
+                        </mat-select> -->
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>State</mat-label>
+                        <input style="color: seagreen;" matInput placeholder="" formControlName="dgstC_ST_Id_FK">
+                        <!-- <mat-select formControlName="dgstC_ST_Id_FK" #selectval (valueChange)="statechange(selectval.value)"required>
+                            <mat-option *ngFor="let s of state" [value]="s.stat_id">{{s.state_name}}</mat-option>
+                        </mat-select> -->
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>District</mat-label>
+                        <input style="color: seagreen;" matInput placeholder="" formControlName="dgstC_DI_Id_FK">
+                        <!-- <mat-select formControlName="dgstC_DI_Id_FK" #districtval (valueChange)="distritchange(districtval.value)" required>
+                            <mat-option *ngFor="let d of district" [value]="d.district_id">{{d.district_name}}</mat-option>
+                        </mat-select> -->
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Taluk</mat-label>
+                        <input style="color: seagreen;" matInput placeholder="" formControlName="dgstC_TL_Id_FK">
+                        <!-- <mat-select formControlName="dgstC_TL_Id_FK" #talukval (valueChange)="talukchange(talukval.value)" required>
+                            <mat-option *ngFor="let t of taluk" [value]="t.taluk_id">{{t.taluk_name}}</mat-option>
+                        </mat-select> -->
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Village</mat-label>
+                        <input style="color: seagreen;" matInput placeholder="" formControlName="dgstC_Village">
+                        <!-- <mat-select formControlName="dgstC_GR_Id_FK" #villageval (valueChange)="selectpincode(villageval.value)" required>
+                            <mat-option *ngFor="let g of gram" [value]="g.gram_id">{{g.gram_name}}</mat-option>
+                        </mat-select> -->
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Postal Code</mat-label>
+                        <input style="color: seagreen;" matInput placeholder="" formControlName="dgstC_PostalCode">
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Website URL</mat-label>
+                        <input style="color: seagreen;" matInput placeholder="" formControlName="dgstC_web_url">
+                    </mat-form-field>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</form>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+</div>

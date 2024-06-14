@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-md-2" style="background-color: #dfdbdb;">
+            <div class="patient">
+                <div align="center">
+                    <h3 style="font-weight:bold; color: #0B749C;">Patient Information</h3>
+                    <img class="images" matPrefix  [src]="Image_Url" width="70px" height="63px"
+                        alt="image not found">
+                </div>
+                <h4>Code : <span>{{patient_code}}</span></h4>
+                <h4>Name : <span>{{patient_name}}&nbsp;{{patient_lname}}</span> </h4>
+                <h4>Gender : <span>{{patient_gender}}&nbsp;</span> </h4>
+                <!-- <h4>DOB:<span>{{patient_dob | date:'dd-MM-yyyy'}}</span></h4> -->
+                <h4>Age : <span style="font-size: small;">{{patient_age}}</span></h4>
+                <h4>Ph.No : <span style="font-size: small;">{{patient_mobile}}</span></h4>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="patient">
+                <div align="center">
+                    <h3 style="font-weight:bold; color: #0B749C;">Consultation Details</h3>
+                </div>
+                <h4>Date :<span> {{consult_date | date : 'dd/MM/YYY' }}</span></h4>
+                <h4>Time :<span> {{consult_time | time24to12Transform}}</span> </h4>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="patient">
+                <div align="center">
+                    <h3 style="font-weight:bold; color: #0B749C;">Appointment Details</h3>
+                </div>
+                <h4>Date : <span>{{app_day | date:'dd/MM/yyyy'}}</span></h4>
+                <h4>From-Time : <span>{{app_f_time | time24to12Transform}}</span> </h4>
+                <h4>To-Time : <span>{{app_t_time | time24to12Transform}}</span> </h4>
+            </div>
+    </div>
+    <div class="col-md-8">
+        <router-outlet></router-outlet>
+    </div>
+    <div id="reight" class="col-md-2" style="background-color: #dfdbdb;">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="butt">
+                       <!-- <h4 style="color:white; background-color:blue;width:34px;font-size: 12px;text-align: center;border-radius: 3px;">EMR</h4> -->
+                        <button (click)="parameters()" mat-button style="width: 100%;height: 40px;"><mat-icon>apps</mat-icon>Vital-Signs</button>
+                        <button (click)="compliant()" mat-button style="width: 100%;height: 40px;"><mat-icon>assignment</mat-icon>Clinical Notes</button>
+                        <button (click)="pastrecord()" mat-button style="width: 100%;height: 40px;"><mat-icon>folder_shared</mat-icon>Past Records</button> 
+                        <button (click)="clickVC()" mat-button style="width: 100%;height: 40px;"><mat-icon>video_call</mat-icon>Video Consultation</button>
+                        <button (click)="diagnois()" mat-button style="width: 100%;height: 40px;"><mat-icon>inbox</mat-icon>Clinical Diagnosis</button>
+                        <button (click)="prescriptions()" mat-button style="width: 100%;height: 40px;"><mat-icon>receipt</mat-icon>Drug Prescription</button>
+                        <button (click)="labtest()" mat-button style="width: 100%;height: 40px;"><mat-icon>pageview</mat-icon>Diagnostic Test</button> 
+                        <!-- <button (click)="imagingtest()" mat-button style="width: 100%;height: 40px;"><mat-icon> theaters</mat-icon>Digital Test</button> -->
+                        <button (click)="dietplan()" mat-button style="width: 100%;height: 40px;"><mat-icon> note_add</mat-icon>Diet Plan</button>
+                        <button (click)="referral()" mat-button style="width: 100%;height: 40px;"><mat-icon> supervisor_account</mat-icon>Referral</button>
+                        <button (click)="patient()" mat-button style="width: 100%;height: 40px;"><mat-icon>access_time</mat-icon>Patient History</button>
+                        <button (click)="re_visite()" mat-button style="width: 100%;height: 40px;"><mat-icon>autorenew</mat-icon>Re-visit</button>
+                        <!-- <button (click)="clickVC()" mat-button style="width: 100%;height: 40px;"><mat-icon>video_call</mat-icon>Video Consultation</button> -->
+                        <button (click)="closure()" mat-button style="width: 100%;height: 40px;  background-color: rgb(12, 12, 241); color: white; border-radius: 20px;"><mat-icon style="color: white;" >cancel_presentation</mat-icon>Closure</button>
+                        <!-- <button (click)="closure()" mat-button style="width: 100%;height: 40px;  background-color: rgb(12, 12, 241); color: white; border-radius: 20px;"><mat-icon style="color: white;" >cancel_presentation</mat-icon>Closure</button> -->
+                        <button mat-button style="width: 100%;height: 40px; background-color: rgb(243, 3, 3); margin-top: 3%; color: white; border-radius: 20px;" (click)="close()"><mat-icon style="color: white;">keyboard_backspace</mat-icon>Back</button>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>

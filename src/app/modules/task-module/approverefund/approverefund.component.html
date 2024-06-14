@@ -1,0 +1,51 @@
+<mat-card>
+    <mat-card-content>
+        <div class="row">
+            <div class="col-md-8">
+                <mat-card-title>Approve Refund</mat-card-title>
+            </div>
+            <br>
+            <br>
+            <div class="table-responsive">
+                <div class="table-responsive" *ngIf="data?.length > 0">
+                    <table [dtOptions]="dtOptions" datatable class="table table-border ">
+                        <thead class="thead-dark">
+                            <tr align="center">
+                                <th>SL.NO.</th>
+                                <th>Doctor Name</th>
+                                <th>Patient Name</th>
+                                <th>Consultation Status</th>
+                                <th>Payment Date</th>
+                                <th>Consultation Refund Fee ( ₹ ) </th>
+                                <th>Package Fee ( ₹ )</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr align="center" *ngFor="let d of data;let i=index" style="color: seagreen ;">
+                                <td>{{i+1}}</td>
+                                <td>{{d.doctor_name}}</td>
+                                <td>{{d.patient_name}}</td>
+                                <td>{{d.cons_status}}</td>
+                                <td>{{d.payment_date}}</td>
+                                <td>{{d.consultation_fee}}</td>
+                                <td>{{d.package_fee}}</td>
+                                <td>{{d.refund_status}}</td>
+                                <td>
+                                    <button id="addb" (click)="refund(d.tracking_id,d.consultation_fee)"
+                                        mat-raised-button color="primary" matTooltip="Refund"
+                                        [matTooltipPosition]="TooltipPosition" matTooltipClass="tooltip-yellow"
+                                        aria-label="Button that displays a tooltip in various positions"
+                                        [disabled]="d.refund_status === 'Confirmed'">
+                                        Approve Refund
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,36 @@
+<button mat-icon-button class="close-button" [mat-dialog-close]="true">
+    <mat-icon class="close-icon" color="warn">close</mat-icon>
+</button>
+<br><br>
+
+<mat-card class="Payments" style="background-color: #57dcff;">
+      <mat-card-title align="center">Packages</mat-card-title>
+</mat-card>
+    <br><br><br><br>
+    <div class="col-md-12" [hidden]="enable">
+        <div class="package-card-row">
+            <mat-card *ngFor="let package of packages" class="package-card" [ngClass]="{
+                    'hovered-card': hoveredCard === package.price_Id,
+                    'selected-package': selected === package.price_Id
+                }" (mouseenter)="hoveredCard = package.price_Id" (mouseleave)="hoveredCard = null"
+                (click)="toggleSelection(package.price_Id)" style="margin-bottom: 20px;">
+                <mat-card-header>
+                    <mat-card-title class="single-line-package-name">{{ package.service }} ({{ package.serviceCode }})</mat-card-title>
+                    <mat-card-subtitle>{{ package.serviceCode }}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <p><strong>Package Name : </strong>{{ package.package_desc }}</p>
+                    <p><strong>Package Tests : </strong><span *ngFor="let test of package.packageTestlist; let last = last">{{ test.test_desc }}{{ !last ? ', ' : '' }}</span></p>
+                    <p><strong>Charges  : </strong> {{ package.charges }}</p>
+                </mat-card-content>
+                
+            </mat-card>
+        </div>
+    </div>
+
+
+<div align="end" class="buton">
+    <button (click)="savepackage()" mat-raised-button color="primary" mat-dialog-close cdkFocusInitial>Add Package
+    </button>
+</div>
+

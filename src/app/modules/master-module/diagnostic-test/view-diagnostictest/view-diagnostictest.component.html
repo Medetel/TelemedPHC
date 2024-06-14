@@ -1,0 +1,51 @@
+<!-- <mat-card> -->
+    <h1 mat-dialog-title>View Diagnostic Test</h1>
+    <mat-divider></mat-divider>
+    <form  [formGroup]="diagnostictest">
+        <!-- <div class="row">
+            <fieldset> -->
+                <!-- <legend>Diagnostic Info</legend> -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Code</mat-label>
+                            <input style="color: seagreen;" matInput  formControlName="dT_Code"> 
+                            <!-- <mat-error *ngIf="diagnostictest.get('dT_Code').hasError('required')" >Code is required</mat-error>
+                            <mat-error *ngIf="diagnostictest.get('dT_Code').hasError('invalidName') || diagnostictest.get('dT_Code').hasError('pattern') ">
+                                Please enter Alpha Numerical characters only minimum:1/Maximum:5
+                            </mat-error> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy" >
+                            <mat-label>Type</mat-label>
+                            <input matInput style="color: seagreen;" formControlName="dT_Type" >
+                            <!-- <mat-select formControlName="dT_Type" #typevalue (valueChange)="typeschange(typevalue.value)" required>
+                                <mat-option *ngFor="let t of type" [value]="t.id">{{t.type}}</mat-option>
+                            </mat-select> -->
+                        </mat-form-field>
+                    </div>  
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Category</mat-label>
+                            <input matInput style="color: seagreen;" formControlName="dT_Category" >
+                            <!-- <mat-select formControlName="dT_Category" required>
+                                <mat-option *ngFor="let c of category" [value]="c.id">{{c.name}}</mat-option>
+                            </mat-select> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Description</mat-label>
+                            <input matInput style="color: seagreen;" formControlName="dT_Desc" required>
+                        </mat-form-field>
+                    </div>  
+                </div>
+            </form>
+                <div mat-dialog-actions align="end">
+                    <button id="cancel" mat-raised-button mat-dialog-close color="warn">Close</button>
+                </div>
+            <!-- </fieldset>
+        </div> -->
+   
+<!-- </mat-card> -->

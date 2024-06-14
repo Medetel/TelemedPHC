@@ -1,0 +1,73 @@
+<mat-card>
+    <mat-card-title>Roles Details</mat-card-title>
+    <mat-card-content>
+        <div class="button_add">
+            <div class="row">
+                <div class="col-md-12">
+                    <button id="add" mat-raised-button color="primary" [hidden]="addhid" routerLink="/base/admin/roles/add-roles">
+                        <mat-icon>add</mat-icon>Add Role
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+             <button id="reload" (click)="reload()" mat-icon-button color="accent"
+             matTooltip="Refresh Data" [matTooltipPosition]="TooltipPosition"
+             matTooltipClass="tooltip-red">
+             <mat-icon id="vis">refresh</mat-icon>
+             </button>
+            </div>
+         </div>
+        <div class="row">
+            <div class="table-responsive" *ngIf="data?.length>0">
+                <table [dtOptions]="dtOptions" datatable class="table table-striped table-bordered table-sm row-border hover">
+                    <thead class="thead-dark">
+                        <tr align="center">
+                            <th>SlNo</th>
+                            <th>Role</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr align="center" *ngFor="let d of data;let i=index" [ngClass]="{'warn':d.inactive=='Y','approve':(d.inactive=='N' || d.inactive==null)}">
+                            <td>{{ i+1}}</td>
+                            <td>{{ d.name }}</td>
+                            <td>
+                                <button id="view" [hidden]="viewhid" (click)="view(d)" mat-icon-button color="primary"
+                                    matTooltip="view" [matTooltipPosition]="TooltipPosition"
+                                    matTooltipClass="tooltip-red"
+                                    aria-label="Button that displays a tooltip in various positions">
+                                    <mat-icon id="vis">remove_red_eye</mat-icon>
+                                </button>
+                                <button id="edit" [hidden]="edithid" (click)="edit(d)" mat-icon-button color="accent"
+                                    matTooltip="edit" [matTooltipPosition]="TooltipPosition"
+                                    matTooltipClass="tooltip-red"
+                                    aria-label="Button that displays a tooltip in various positions">
+                                    <mat-icon id="vis">edit_outline</mat-icon>
+                                </button>
+                                <!-- <button id="delete" [hidden]="deletehid" (click)="delete(d)" mat-icon-button color="warn" matTooltip="delete"
+                                [matTooltipPosition]="TooltipPosition" matTooltipClass="tooltip-red"
+                                aria-label="Button that displays a tooltip in various positions">
+                                <mat-icon id="vis">delete_outline</mat-icon>
+                            </button> -->
+                            <button id="delete" [hidden]="d.inactive === 'N' " (click)="Inactive(d)" mat-icon-button color="warn"
+                            matTooltip="Active" [matTooltipPosition]="TooltipPosition"
+                            matTooltipClass="tooltip-red"
+                            aria-label="Button that displays a tooltip in various positions">
+                            <mat-icon id="addicon">add</mat-icon>
+                        </button>
+                        <button id="delete" [hidden]="d.inactive === 'Y' " (click)="Inactive(d)" mat-icon-button color="warn"
+                            matTooltip="Inactive" [matTooltipPosition]="TooltipPosition"
+                            matTooltipClass="tooltip-red"
+                            aria-label="Button that displays a tooltip in various positions">
+                            <mat-icon>remove</mat-icon>
+                        </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

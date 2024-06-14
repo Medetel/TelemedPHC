@@ -1,0 +1,45 @@
+<h1 mat-dialog-title>Edit State</h1>
+<mat-divider></mat-divider>
+<!-- <div mat-dialog-content> -->
+    <form [formGroup]="state">
+        <div class="row">            
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Country Name</mat-label>
+                    <mat-select formControlName="cntry_id">
+                        <mat-option *ngFor="let c of country" [value]="c.cntry_id">{{c.country_name}}</mat-option>
+                        <!-- <mat-error *ngIf="checkError('cntry_id', 'required')">Country Name is required</mat-error> -->
+                    </mat-select>
+                   
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>State Code</mat-label>                    
+                    <input matInput #input formControlName="state_code">
+                    <!-- <mat-error *ngIf="checkError('state_code', 'required')">State code is required</mat-error>
+                    <mat-error *ngIf="state.controls['state_code'].hasError('invalidName') || state.controls['state_code'].hasError('pattern') ">
+                        Please enter Alpha Numerical characters only minimum:1/Maximum:5
+                    </mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                    <mat-label class="star">State Name</mat-label>
+                    <input maxlength="45" matInput formControlName="state_name" required>
+                    <mat-error *ngIf="checkError('state_name', 'required')">State Name is required</mat-error>
+                    <mat-error *ngIf="state.get('state_name').hasError('alphaCheck')">
+                        Please enter alphabet characters
+                    </mat-error>
+                    <mat-error *ngIf="state.get('state_name').hasError('spaceCheck')">
+                        State Name will not allow white space
+                    </mat-error>    
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+<!-- </div> -->
+<div mat-dialog-actions align="end">
+    <button id="save" mat-raised-button color="primary" (click)="updateform()" >Update</button>
+    <button mat-dialog-close id="cancel" mat-raised-button color="warn">Close</button>
+</div>

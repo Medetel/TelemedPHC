@@ -1,0 +1,288 @@
+<mat-card>
+    <mat-card-title>Add Appointment PHC</mat-card-title>
+    <mat-divider></mat-divider>
+    <form [formGroup]="patient">
+        <fieldset>
+            <legend>Patient Details</legend>
+                <div class="row">
+                    <div class="col-md-3">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Patient ID</mat-label>
+                                <input matInput  placeholder="" maxlength="8" formControlName="pR_Id" required>
+                                <mat-error *ngIf="patient.get('pR_Id').hasError('required')"> Patient id is required</mat-error>
+                                <mat-error
+                                    *ngIf="patient.controls['pR_Id'].hasError('invalidName') || patient.controls['pR_Id'].hasError('maxlength')">
+                                    Please enter number only
+                                </mat-error>
+                            </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <button mat-raised-button color="primary" [disabled]="patient.invalid" (click)="patientget()">Get Patient</button>
+                    </div>
+                   
+                        <div class="col-md-3" *ngFor="let p of pat">
+                            <h4>Name: <span style="color: cornflowerblue;">{{p.pR_FirstName}} {{p.pR_LastName}}</span></h4>
+                         </div>
+                         <div class="col-md-3" *ngFor="let p of pat">
+                            <img [src]="Image_Url" alt="">
+                        </div>
+                        <!-- <div class="col-md-3" *ngFor="let p of pat">
+                            <h4>LastName: <span style="color: cornflowerblue;">{{p.pR_LastName}}</span></h4>
+                        </div> -->
+                        <div class="col-md-3" *ngFor="let p of pat">
+                            <h4>DOB: <span style="color: cornflowerblue;">{{p.pR_DOB | date:'dd-MM-yyy'}}</span></h4>
+                        </div>
+                        <div class="col-md-3" *ngFor="let p of pat">
+                            <h4>Age: <span style="color: cornflowerblue;">{{p.pR_Age}}</span></h4>
+                        </div>
+                        <div class="col-md-3" *ngFor="let p of pat">
+                            <h4>Gender: <span style="color: cornflowerblue;">{{p.pR_Gender}}</span></h4>
+                        </div>
+                        <div class="col-md-3" *ngFor="let p of pat">
+                            <h4>BloodGroup: <span style="color: cornflowerblue;">{{p.pR_BloodGroup}}</span></h4>
+                        </div>              
+                </div>
+           </fieldset>
+        </form>
+        <form [formGroup]="fixappointment">
+            <fieldset>
+                <legend>Vital-Signs</legend>
+                <div class="row">
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Temperature <span style="color: rgb(72, 135, 230);">(°C)</span></mat-label>
+                            <input matInput formControlName="tempInCelsius" maxlength="7" placeholder="" 
+                                [ngClass]="{'all': (patient.controls.tempInCelsius>=1 && patient.controls.tempInCelsius==90)? false:true,'warn':tempInFahrenheit==0 ,'edit':tempInFahrenheit>=90}" >
+                                <mat-error *ngIf="fixappointment.controls['tempInCelsius'].hasError('invalidName') || fixappointment.controls['tempInCelsius'].hasError('pattern') ">
+                                    Please enter Number only
+                                    </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-2">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>BP <span style="color: rgb(72, 135, 230);">(mm)</span></mat-label>
+                            <input matInput maxlength="7" formControlName="bpmm" placeholder="" >
+                            <mat-error *ngIf="fixappointment.controls['bpmm'].hasError('invalidName') || fixappointment.controls['bpmm'].hasError('pattern') ">
+                                Please enter Number only
+                                </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div style="margin-top: 2%;font-size: 20px;">/</div>
+                    <div class="col-md-2">
+                        <mat-form-field class="example-full-width2" appearance="legacy">
+                            <mat-label>BP <span style="color: rgb(72, 135, 230);">(Hg)</span></mat-label>
+                            <input matInput maxlength="7" formControlName="bphg" placeholder="" >
+                            <mat-error *ngIf="fixappointment.controls['bphg'].hasError('invalidName') || fixappointment.controls['bphg'].hasError('pattern') ">
+                                Please enter Number only
+                                </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width1" appearance="legacy">
+                            <mat-label>Pulse <span style="color: rgb(72, 135, 230);">(bpm)</span></mat-label>
+                            <input matInput maxlength="7" formControlName="pulseRate" placeholder="">
+                            <mat-error *ngIf="fixappointment.controls['pulseRate'].hasError('invalidName') || fixappointment.controls['pulseRate'].hasError('pattern') ">
+                                Please enter Number only
+                                </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Respiratory Rate <span style="color: rgb(72, 135, 230);">(Breaths/min)</span></mat-label>
+                            <input matInput maxlength="7" formControlName="respiratoryRate" placeholder="" >
+                            <mat-error *ngIf="fixappointment.controls['respiratoryRate'].hasError('invalidName') || fixappointment.controls['respiratoryRate'].hasError('pattern') ">
+                                Please enter Number only
+                                </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Spo2 <span style="color: rgb(72, 135, 230);">(%)</span></mat-label>
+                            <input matInput maxlength="7" formControlName="oxygenSaturation" placeholder="" >
+                            <mat-error *ngIf="fixappointment.controls['oxygenSaturation'].hasError('invalidName') || fixappointment.controls['oxygenSaturation'].hasError('pattern') ">
+                                Please enter Number only
+                                </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Hemoglobin <span style="color: rgb(72, 135, 230); ">(g/dl)</span></mat-label>
+                            <input matInput maxlength="7" placeholder="" formControlName="hemoglobin">
+                            <mat-error *ngIf="fixappointment.controls['hemoglobin'].hasError('invalidName') || fixappointment.controls['hemoglobin'].hasError('pattern') ">
+                                Please enter Number only
+                                </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Diabetes <span style="color: rgb(72, 135, 230); ">(mg/dl)</span></mat-label>
+                            <input matInput maxlength="7" formControlName="sugar" placeholder="">
+                            <mat-error *ngIf="fixappointment.controls['sugar'].hasError('invalidName') || fixappointment.controls['sugar'].hasError('pattern') ">
+                                Please enter Number only
+                                </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Height <span style="color: rgb(72, 135, 230); ">(Cm)</span></mat-label>
+                            <input matInput maxlength="7" formControlName="height" placeholder="">
+                            <mat-error *ngIf="fixappointment.controls['height'].hasError('invalidName') || fixappointment.controls['height'].hasError('pattern') ">
+                                Please enter Number only
+                                </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Weight <span style="color: rgb(72, 135, 230); ">(Kg)</span></mat-label>
+                            <input matInput maxlength="7" formControlName="weight" placeholder="">
+                            <mat-error *ngIf="fixappointment.controls['weight'].hasError('invalidName') || fixappointment.controls['weight'].hasError('pattern') ">
+                                Please enter Number only
+                                </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Other-Info</legend>
+                <div class="row">
+                    <div class="col-md-12">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Complaints</mat-label>
+                            <mat-select formControlName="complaint" multiple required>
+                                <mat-select-trigger>
+                                    <mat-chip-list>
+                                        <mat-chip *ngFor="let topping of this.fixappointment.value.complaint" [removable]="true"
+                                            (removed)="onToppingRemoved(topping)">
+                                            {{topping.cmst_Name}}
+                                            <mat-icon matChipRemove>cancel</mat-icon>
+                                        </mat-chip>
+                                    </mat-chip-list>
+                                </mat-select-trigger>
+                                <mat-option *ngFor="let c of complaint" [value]="c">{{c.cmst_Name}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="fixappointment.get('complaint').hasError('required')">Field is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-12">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Symptoms</mat-label>
+                            <mat-select formControlName="symptoms" multiple required>
+                                <mat-select-trigger>
+                                    <mat-chip-list>
+                                        <mat-chip *ngFor="let topping of this.fixappointment.value.symptoms" [removable]="true"
+                                            (removed)="onToppingRemoveds(topping)">
+                                            {{topping.smst_Name}}
+                                            <mat-icon matChipRemove>cancel</mat-icon>
+                                        </mat-chip>
+                                    </mat-chip-list>
+                                </mat-select-trigger>
+                                <mat-option *ngFor="let c of symptoms" [value]="c">{{c.smst_Name}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="fixappointment.get('symptoms').hasError('required')">Field is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-12">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Present Illness</mat-label>
+                            <mat-select formControlName="diseasesDtl" multiple required>
+                                <mat-select-trigger>
+                                    <mat-chip-list>
+                                        <mat-chip *ngFor="let topping of this.fixappointment.value.diseasesDtl" [removable]="true"
+                                            (removed)="onToppingRemovedd(topping)">
+                                            {{topping.diseases_Name}}
+                                            <mat-icon matChipRemove>cancel</mat-icon>
+                                        </mat-chip>
+                                    </mat-chip-list>
+                                </mat-select-trigger>
+                                <mat-option *ngFor="let c of Diseases" [value]="c">{{c.diseases_Name}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="fixappointment.get('diseasesDtl').hasError('required')">Field is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                   
+                    <div class="col-md-12">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Allergy Signs</mat-label>
+                            <mat-select formControlName="allergySigns_DTL" multiple required>
+                                <mat-select-trigger>
+                                    <mat-chip-list>
+                                        <mat-chip *ngFor="let topping of this.fixappointment.value.allergySigns_DTL" [removable]="true"
+                                            (removed)="onToppingRemovedd(topping)">
+                                            {{topping.al_Name}}
+                                            <mat-icon matChipRemove>cancel</mat-icon>
+                                        </mat-chip>
+                                    </mat-chip-list>
+                                </mat-select-trigger>
+                                <mat-option *ngFor="let a of Allergy" [value]="a">{{a.al_Name}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="fixappointment.get('allergySigns_DTL').hasError('required')">Field is required</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Under Hypertension-medication</mat-label>
+                            <mat-select formControlName="underBPMedication" required>
+                                <mat-option value="Yes">Yes</mat-option>
+                                <mat-option value="No">No</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="fixappointment.get('underBPMedication').hasError('required')">Field is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Under Diabetes-medication</mat-label>
+                            <mat-select formControlName="underSugarMedication" required>
+                                <mat-option value="Yes">Yes</mat-option>
+                                <mat-option value="No">No</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="fixappointment.get('underSugarMedication').hasError('required')">Field is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Consultation</legend>
+                <div class="row">
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Date</mat-label>
+                            <input matInput [matDatepicker]="dp" min="{{mindate | date:'yyyy-MM-dd'}}" formControlName="select_day" required>
+                        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                        <mat-datepicker #dp></mat-datepicker>
+                        <mat-error *ngIf="fixappointment.get('select_day').hasError('required')">Date is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>From-Time</mat-label>
+                            <input matInput type="time" matInput required formControlName="select_FrmTime"  min="09:00" max="18:00">
+                            <mat-error *ngIf="fixappointment.get('select_FrmTime').hasError('required')">From time is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>To-Time</mat-label>
+                            <input matInput type="time" matInput required formControlName="select_toTime" min="09:00" max="18:00">
+                            <mat-error *ngIf="fixappointment.get('select_toTime').hasError('required')">To time is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Hospital</mat-label>
+                            <mat-select formControlName="hos_Id" required>
+                                <mat-option *ngFor="let h of hospitaldd" [value]="h.hos_Id">{{h.hos_HospitalName}}&nbsp;{{h.dO_LastName}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="fixappointment.get('hos_Id').hasError('required')">Hospital is required</mat-error>
+                        </mat-form-field>
+                    </div>   
+                </div>
+                <div class="footer_button">
+                    <button  class="cancel" mat-raised-button  color="warn" routerLink="/base/task/manualappointmentphc">Close</button>
+                    <button class="save" mat-raised-button color="primary" [disabled]="fixappointment.invalid"(click)="updateform()">Fix Appointment</button>
+                </div>
+            </fieldset>
+        </form>      
+</mat-card>

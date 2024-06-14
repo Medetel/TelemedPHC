@@ -1,0 +1,116 @@
+<h1 mat-dialog-title>Approve Appointment</h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content>
+    <form  [formGroup]="patient">
+        <fieldset>
+            <legend>Patient Details</legend>
+                <div class="row" *ngFor="let d of data1">
+                    <div class="col-md-3">
+                        <h4>Patient Name :&nbsp; <span style="color: green;">{{d.appt_P_Name}}</span></h4>
+                    </div>
+                    <div class="col-md-3">
+                        <h4>Patient ID :&nbsp; <span style="color: green;">{{d.appt_PatientId_FK}}</span></h4>
+                    </div>
+                    <!-- <div class="col-md-3">
+                        <img class="images" matPrefix [src]="Image_Url" width="100px" height="100px" alt="image not found">
+                    </div> -->
+                </div>
+           </fieldset>
+        </form>
+        <form [formGroup]="fixappointment">
+
+                  
+            <fieldset>
+                <legend>Other-Info</legend>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div>
+                            <h4>Present Complaints :
+                                <span style="color: green;" *ngFor="let d of data.complaintslist">
+                                   {{d.cmst_Name}},&nbsp;
+                                </span>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div>
+                            <h4>Symptoms :
+                                <span style="color: green;" *ngFor="let d of data.symptomslist">
+                                   {{d.smst_Name}},&nbsp;
+                                </span>
+                            </h4>
+                        </div>
+                    </div>
+                   
+                    <!-- <div class="col-md-12">
+                        <div>
+                            <h4>Present Illness :
+                                <span style="color: green;" *ngFor="let d of data.diseaseslist">
+                                   {{d.diseases_Name}},&nbsp;
+                                </span>
+                            </h4>
+                        </div>
+                    </div> -->
+                    <div class="col-md-12">
+                        <h4>Any Known Allergy:&nbsp; <span style="color: green;" *ngFor="let d of data.allergylist">{{d.al_Name}}</span></h4>
+                    </div>
+                    <div class="col-md-12">
+                        <h4>Past/Current Medical History :&nbsp; <span style="color: green;" *ngFor="let d of data.medicationlist">{{d.medic_name}}</span></h4>
+                    </div>
+                <!-- <div class="col-md-6">
+                    <h4>Under Hypertension-Medication :&nbsp; <span style="color: green;">{{data.underBPMedication}}</span></h4>
+                </div>
+                <div class="col-md-6">
+                    <h4>Under Diabetes-Medication :&nbsp; <span style="color: green;">{{data.underSugarMedication}}</span></h4>
+                 </div> -->
+                </div>
+            </fieldset>
+          
+            <fieldset>
+                <legend>Consultation</legend>
+                <div class="row">
+            <div class="col-md-3">
+                <h4>Date :&nbsp; <span style="color: green;" *ngFor="let d of data1">{{d.select_date | date:'dd-MM-yyy'}}</span></h4>
+               
+            </div>
+            <div class="col-md-3">
+                <h4>From-Time :&nbsp; <span style="color: green;" *ngFor="let d of data1">{{d.select_FrmTime | time24to12Transform }}</span></h4>
+               
+            </div>
+            <div class="col-md-3">
+                <h4>To-Time :&nbsp; <span style="color: green;" *ngFor="let d of data1">{{d.select_toTime | time24to12Transform}}</span></h4>
+              
+            </div>
+            <div class="col-md-3">
+                <h4>Available Doctor :&nbsp; <span style="color: green;" *ngFor="let d of data1">{{d.appt_DO_Name}}</span></h4>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Date</mat-label>
+                    <input matInput [matDatepicker]="dp" min="{{minDate | date:'yyyy-MM-dd'}}" formControlName="CON_ConsultedDate" required>
+                <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                <mat-datepicker #dp></mat-datepicker>
+                <mat-error *ngIf="fixappointment.get('CON_ConsultedDate').hasError('required')">Date is required</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Select Approval-Time</mat-label>
+                    <input matInput type="time" matInput formControlName="CON_ConsultedTime" min="09:00" max="18:00" required>
+                    <mat-error *ngIf="fixappointment.get('CON_ConsultedTime').hasError('required')">Time is required</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Remarks</mat-label>
+                  <input matInput placeholder="" formControlName="Remarks">
+                </mat-form-field>
+            </div>
+                </div>
+            </fieldset>
+        </form>
+</div>
+<div mat-dialog-actions align="end" >
+    <button id="save"  mat-raised-button color="primary" [disabled]="fixappointment.invalid" (click)="approveform()" >Approval</button>
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+</div>

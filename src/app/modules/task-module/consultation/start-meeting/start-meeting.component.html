@@ -1,0 +1,66 @@
+<div class="container-fluid mt-3">
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-6">
+        <h3>Start Meeting</h3>
+                <br>
+                <form autocomplete="off" [formGroup]= "startMeetingForm" (ngSubmit)="onStartMeeting()">
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <label for="inputmeetingid">Meeting Id  <span style="color: red;">*</span></label>
+                        <input type="text" autocomplete="nope" maxlength="100" name="meetingID" formControlName="meetingID" placeholder="Enter meeting id." class="form-control" id="meetingID">           
+                    </div>                   
+                </div>  
+
+                <div class="form-group row">
+
+                    <div class="col-sm-6">
+                        <label for="inputhostname">Host Name  <span style="color: red;">*</span></label>
+                        <input type="text" autocomplete="nope" maxlength="100" name="joineeName"  formControlName="joineeName" placeholder="Enter your name." class="form-control" id="joineeName">                         
+                    </div>
+                </div>           
+               
+            
+            <br>
+                <button type="submit" class="btn btn-danger">Start Meeting</button>
+                
+            </form> 
+    </div>
+      <div class="col-sm-3"></div>
+    </div>
+  </div>
+
+
+<!-- <div class="container py-5">
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+                <h3>Start Meeting</h3>
+                <br>
+                <form autocomplete="off" [formGroup]= "startMeetingForm" (ngSubmit)="onStartMeeting()">
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <label for="inputmeetingid">Meeting Id  <span style="color: red;">*</span></label>
+                        <input type="text" autocomplete="nope" maxlength="100" name="meeting_id" formControlName="meeting_id" placeholder="Enter meeting id." class="form-control" id="meeting_id"> 
+                        
+                    </div>                   
+
+                </div>  
+
+                <div class="form-group row">
+
+                    <div class="col-sm-6">
+                        <label for="inputhostname">Host Name  <span style="color: red;">*</span></label>
+                        <input type="text" autocomplete="nope" maxlength="100" name="joinee_name"  formControlName="joinee_name" placeholder="Enter your name." class="form-control" id="joinee_name">                         
+                    </div>
+                </div>           
+               
+            
+            <br>
+                <button type="submit" class="btn btn-danger">Start Meeting</button>
+                
+            </form> 
+        </div>
+    </div>
+</div> -->

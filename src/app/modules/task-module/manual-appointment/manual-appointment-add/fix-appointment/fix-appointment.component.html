@@ -1,0 +1,207 @@
+<h1 mat-dialog-title>Fix Appointment </h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content>
+    <form [formGroup]="patient">
+    <fieldset>
+        <legend>Patient Details</legend>
+            <div class="row">
+                <div class="col-md-3">
+                    <div >
+                        <img class="images" matPrefix  [src]="Image_Url.url" width="50px" height="50px"
+                            alt="image not found">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Code</mat-label>
+                        <input style="color: seagreen;"matInput  placeholder="" formControlName="PR_PatientCode" >
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>FirstName</mat-label>
+                        <input style="color: seagreen;"matInput  placeholder="" formControlName="PR_FirstName" >
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>LastName</mat-label>
+                        <input style="color: seagreen;"matInput placeholder="" formControlName="PR_LastName">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>DOB</mat-label>
+                        <input style="color: seagreen;"matInput [matDatepicker]="picker" formControlName="PR_DOB">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Age</mat-label>
+                        <input style="color: seagreen;"matInput placeholder="" formControlName="PR_Age">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label> Gender</mat-label>
+                        <input style="color: seagreen;"matInput placeholder="" formControlName="PR_Gender">
+                    </mat-form-field>
+                </div>
+            </div>
+       </fieldset>
+    </form>
+    <form [formGroup]="fixappointment">
+        <fieldset>
+            <legend>Appointment</legend>
+            <div class="row">
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Appointment Date</mat-label>
+                        <input matInput [matDatepicker]="dp" formControlName="select_day">
+                    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                    <mat-datepicker #dp></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Appointment From Time</mat-label>
+                        <input matInput type="time" matInput formControlName="select_FrmTime" min="09:00" max="18:00">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Appointment To Time</mat-label>
+                        <input matInput type="time" matInput formControlName="select_toTime" min="09:00" max="18:00">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Available Doctor</mat-label>
+                        <mat-select formControlName="appt_DO_Id_FK">
+                            <mat-option *ngFor="let d of doctordd" [value]="d.dO_Id">{{d.dO_FirstName}}&nbsp;{{d.dO_LastName}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Parameters</legend>
+            <div class="row">
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Complaints</mat-label>
+                        <mat-select formControlName="complaint" multiple>
+                            <mat-select-trigger>
+                                <mat-chip-list>
+                                    <mat-chip *ngFor="let topping of this.fixappointment.value.complaint" [removable]="true"
+                                        (removed)="onToppingRemoved(topping)">
+                                        {{topping.cpT_MST_Name}}
+                                        <mat-icon matChipRemove>cancel</mat-icon>
+                                    </mat-chip>
+                                </mat-chip-list>
+                            </mat-select-trigger>
+                            <mat-option *ngFor="let c of complaint" [value]="c">{{c.cpT_MST_Name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Symptoms</mat-label>
+                        <mat-select formControlName="symptoms" multiple>
+                            <mat-select-trigger>
+                                <mat-chip-list>
+                                    <mat-chip *ngFor="let topping of this.fixappointment.value.symptoms" [removable]="true"
+                                        (removed)="onToppingRemoveds(topping)">
+                                        {{topping.syM_MST_Name}}
+                                        <mat-icon matChipRemove>cancel</mat-icon>
+                                    </mat-chip>
+                                </mat-chip-list>
+                            </mat-select-trigger>
+                            <mat-option *ngFor="let c of symptoms" [value]="c">{{c.syM_MST_Name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Diseases</mat-label>
+                        <mat-select formControlName="diseasesDtl" multiple>
+                            <mat-select-trigger>
+                                <mat-chip-list>
+                                    <mat-chip *ngFor="let topping of this.fixappointment.value.diseasesDtl" [removable]="true"
+                                        (removed)="onToppingRemovedd(topping)">
+                                        {{topping.dis_Name}}
+                                        <mat-icon matChipRemove>cancel</mat-icon>
+                                    </mat-chip>
+                                </mat-chip-list>
+                            </mat-select-trigger>
+                            <mat-option *ngFor="let c of Diseases" [value]="c">{{c.dis_Name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Weight</mat-label>
+                        <input matInput formControlName="weight" placeholder="" >
+                    </mat-form-field>
+                </div>
+               
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Height</mat-label>
+                        <input matInput formControlName="height" placeholder="" >
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Temperature</mat-label>
+                        <input matInput formControlName="tempInFahrenheit" placeholder="" >
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Blood Pressure</mat-label>
+                        <input matInput formControlName="bloodPressure" placeholder="" >
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Pluse</mat-label>
+                        <input matInput formControlName="pulseRate" placeholder="" >
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Respiratory Rate</mat-label>
+                        <input matInput formControlName="respiratoryRate" placeholder="" >
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Spo2</mat-label>
+                        <input matInput formControlName="oxygenSaturation" placeholder="" >
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Hemoglobin</mat-label>
+                        <input matInput placeholder="" >
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Glucose</mat-label>
+                        <input matInput formControlName="sugar" placeholder="" >
+                    </mat-form-field>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<div mat-dialog-actions align="end">
+    <button id="save" mat-raised-button color="primary" mat-dialog-close (click)="updateform()" >Fix Appointment</button>
+    <button mat-dialog-close id="cancel" mat-raised-button
+      color="warn">Close</button>
+</div>
+

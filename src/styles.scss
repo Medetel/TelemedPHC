@@ -1,0 +1,133 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~ngx-toastr/toastr.css'; 
+@import "~bootstrap-select/dist/css/bootstrap-select.css";
+@import '~ng-wizard/themes/ng_wizard.min.css';
+body{font-family: "open sans", sans-serif !important;}
+.main-wrapper .page-wrapper .page-content{padding: 15px !important;}
+.sidebar-dark .sidebar .sidebar-body {
+    background: #0b749c !important;}
+.sidebar-dark .sidebar .sidebar-header {
+    background: #fff !important;
+    border-bottom: 1px solid #344258;
+    border-right: none !important;
+}
+.sidebar-dark .sidebar .sidebar-body .sidebar-nav .nav-item:hover > .nav-link .link-title, .sidebar-dark .sidebar .sidebar-body .sidebar-nav .nav-item.mm-active > .nav-link .link-title,
+.sidebar .sidebar-body .sidebar-nav .nav-item.mm-active > .nav-link .link-icon,
+.sidebar-dark .sidebar .sidebar-body .sidebar-nav .nav-item:hover > .nav-link, .sidebar-dark .sidebar .sidebar-body .sidebar-nav .nav-item.mm-active > .nav-link,
+.sidebar .sidebar-body .sidebar-nav .nav-item.mm-active > .nav-link,
+.sidebar .sidebar-body .sidebar-nav .nav-item:hover .nav-link .link-icon{color:#fff !important;}
+.sidebar .sidebar-body .sidebar-nav .nav-item.mm-active > .nav-link::before,
+.sidebar .sidebar-body .sidebar-nav.sub-menu .nav-item .nav-link.mm-active::before{border: 1px solid #727cf5 !important;
+    background: #fff !important;}
+.btn-primary, .fc .fc-toolbar.fc-header-toolbar .fc-left .fc-button-group .fc-button.fc-button-active, .fc .fc-toolbar.fc-header-toolbar .fc-right .fc-button-group .fc-button.fc-button-active, .swal2-modal .swal2-actions button.swal2-confirm {
+    background-color: #57dcff !important;
+    border-color: #1f40e8 !important;
+}
+.btn-outline-primary, .fc .fc-toolbar.fc-header-toolbar .fc-left .fc-button-group .fc-button, .fc .fc-toolbar.fc-header-toolbar .fc-right .fc-button-group .fc-button{
+    color: #57dcff !important;
+    border-color: #1f40e8 !important;
+}
+.dataTables_wrapper .dataTables_length label{display: inline-flex;}
+.card .card-body {
+    padding: 15px !important;
+}
+table .btn {
+    padding: 2px 4px !important;
+    font-size: 13px !important;
+    font-weight: 200 !important;
+}
+.del-form input[readonly], .del-form textarea[readonly], .del-form select[readonly]{
+    background-color:#ffffff !important;
+    border: 0 !important;width:100%;}
+.dataTables_wrapper .dataTables_length label{line-height: 30px;}
+.dataTables_wrapper .dataTables_length select{height: 30px;}
+.btn svg{margin-right: 3px !important;}
+.btn{padding: .5rem 0.5rem !important;}
+table tr td:last-child, table thead tr th:last-child { width: 155px !important; }
+.btn-warning, .btn-info{color:#fff !important;}
+// .btn-success, .btn-info{background-color:#000 !important;}
+.btn-info {
+    background-color: #4aa9e9 !important;
+    border-color: #4aa9e9 !important;
+}
+table thead{ background: #e6e7e8 !important;}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    color: #fff !important;
+    border: 1px solid #4169E1 !important;
+    background:#d4dbe0 !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button{border: 1px solid #cdcfd0 !important;}
+footer p{color: #0c1427 !important;
+    font-weight: 600;}
+.form-control, select, .ng-select .ng-select-container, .dataTable-wrapper .dataTable-top .dataTable-search .dataTable-input{border: 1px solid #c9c9ca;}
+.feather {
+width: 15px;
+height: 15px;}
+fieldset {
+    min-width: 0;
+    padding: 15px !important;
+    margin: 0;
+    border: 1px solid #f5f5f5;
+    background-color: #f5f5f5;
+}
+.modal-header{padding: 5px 15px !important;}
+.modal-title, .card .card-title {
+    color: #0e265f !important;
+}
+.form-group label {
+    font-weight: 600;}
+.search_bar .btn{margin-top: 25px;}
+.nav.nav-tabs .nav-item .nav-link.active {
+    background-color: #4aa9e9 !important;
+    color: #fff !important;
+    border-bottom: none;
+}
+.btn{margin-right: 3px;}
+.sidebar .sidebar-header .sidebar-brand img {
+    height: 50px !important;
+}
+/* button.dt-button{color: #fff !important;border: 1px solid #0a44af !important;background-color: #0a44af !important;
+    background: #4169E1 !important;} */
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+ //manual desing naveen
+.mat-card-title{
+    color: #0e265f;
+}
+form{
+    margin-top: 2%;
+  }
+  .mat-raised-button.mat-primary{
+      background-color: #0b749c;
+  }
+  .mat-raised-button.mat-Close{
+    background-color: #F9623A;
+}
+  .mat-raised-button.mat-accent{
+      background-color: #ca7e00e8;
+  }
+  .mat-raised-button.mat-warn{
+      background-color: #ce2d18e0;
+  }
+  .mat-icon-button.mat-primary{
+      color:#27c0e8bd;
+  }
+  .mat-icon-button.mat-accent{
+      color:#0b749c;
+  }
+  .mat-icon-button.mat-approve{
+      color:green;
+  }
+  .mat-expansion-panel-header-description, .mat-expansion-indicator::after {
+    color: rgba(245, 240, 240, 0.54);
+}
+.modal-backdrop{
+    z-index: 999 !important;
+}
+//   .ngx-toastr {
+//     width: 300px !important;  // Specify toastr-dialog width for all devices
+//     height: 100px !important;
+//     font-size: larger !important;
+//   }

@@ -1,0 +1,54 @@
+<!-- <mat-card> -->
+    <h1 mat-dialog-title>Edit Diagnostic Test</h1>
+    <mat-divider></mat-divider>
+    <form  [formGroup]="diagnostictest">
+        <!-- <div class="row"> -->
+            <!-- <fieldset> -->
+                <!-- <legend>Diagnostic Info</legend> -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Code</mat-label>
+                            <input matInput  formControlName="dT_Code"> 
+                            <!-- <mat-error *ngIf="diagnostictest.get('dT_Code').hasError('required')" >Code is required</mat-error> -->
+                          
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy" >
+                            <mat-label>Type</mat-label>
+                            <mat-select formControlName="dT_Type" #typevalue (valueChange)="typeschange(typevalue.value)">
+                                <mat-option *ngFor="let t of type" [value]="t.id">{{t.type}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>            
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Category</mat-label>
+                            <mat-select formControlName="dT_Category">
+                                <mat-option *ngFor="let c of category" [value]="c.id">{{c.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-6">
+                        <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                            <mat-label class="star">Description</mat-label>
+                            <textarea matInput maxlength="500" formControlName="dT_Desc" required></textarea>
+                            <mat-error *ngIf="diagnostictest.get('dT_Desc').hasError('required')">Description is required</mat-error>
+                            <mat-error *ngIf="diagnostictest.get('dT_Desc').hasError('spaceCheck')">
+                                Description will not allow white space
+                            </mat-error>
+                        </mat-form-field>
+                    </div>  
+                </div>
+            </form>
+                <br>
+                <div mat-dialog-actions align="end">
+                    <button id="save" mat-raised-button color="primary" (click)="update()">Update</button>
+                    <button routerLink="/base/master/diagnostic-test" id="cancel" mat-raised-button mat-dialog-close color="warn">Close</button>                    
+                </div>
+            <!-- </fieldset> -->
+        <!-- </div> -->
+    
+<!-- </mat-card> -->

@@ -1,0 +1,146 @@
+.footer_button{
+    justify-content: center;
+    justify-items: center;
+    text-align: center !important;
+ }
+ #save,#cancel{
+     margin-left: 20px;
+ }
+ #forms_center{
+   position: absolute;
+   left: 20%;
+   right: 20%;
+   box-sizing: border-box;
+ }
+ .example-full-width{
+   width: 100%;
+ }
+ .star::after{
+  content: " *";
+  color: red;
+}
+.preview-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.preview-item {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.preview {
+  margin-top: 4%;
+  max-width: 120px;
+  max-height: 120px;
+}
+body {
+  margin: 32px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  background: none;
+  //border: 1px solid lighten(gray, 24%);
+  height: 48px;
+  padding: 0 24px 0 16px;
+  letter-spacing: .25px;
+  border-radius: 2px;
+  cursor: pointer;
+  
+  &:focus {
+    outline: none;
+  }
+  
+  .mdi {
+    margin-right: 8px;
+  }
+}
+
+.btn-delete {
+  font-size: 16px;
+  color: red;
+  
+  >.mdi-delete-empty {
+    display: none;
+  }
+  
+  &:hover {
+    background-color: lighten(red, 48%);
+    
+    >.mdi-delete-empty {
+      display: block;
+    }
+    
+    >.mdi-delete {
+      display: none;
+    }
+  }
+  
+
+  
+  &:focus {
+    box-shadow: 0 0 0 4px lighten(red, 40%);
+  }
+}
+.add
+{
+  margin-left: 100%;
+}
+.buttonadd
+{
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 13px;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-right: 10px;
+  padding: 5px 8px;
+  border-radius: 4px;
+  background-color: rgb(0, 0, 0);
+    transition: transform 0.5s ease;
+}
+.buttonadds
+{
+    color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 13px;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-right: 10px;
+  padding: 5px 8px;
+  border-radius: 4px;
+  background-color: rgb(0, 0, 0);
+    transition: transform 0.5s ease;
+}
+.image-item {
+  flex: 1 1 px; /* Make each image item take up equal space with a maximum width of 200px */
+  margin: 5px; /* Add margin around each image */
+}
+
+.image {
+  //width: 100%; /* Ensure the image takes up the full width of its container */
+  height: auto; /* Maintain the aspect ratio of the image */
+}
+
+.image-container {
+  display: flex; /* Use flexbox to make the images flow horizontally */
+  flex-wrap: wrap; /* Allow images to wrap onto new lines if necessary */
+}
+
+.media-container {
+  display: flex; /* Use flexbox to align videos horizontally */
+  flex-wrap: wrap; /* Allow videos to wrap onto new lines if necessary */
+}
+
+.media-item {
+  flex: 1 1 200px; /* Make each media item take up equal space with a maximum width of 200px */
+  margin: 5px; /* Add margin around each media item */
+}
+.image-container {
+  display: inline-block; /* Ensures that elements are displayed in a row */
+  margin-right: 10px; /* Adjust as needed to add spacing between images */
+}

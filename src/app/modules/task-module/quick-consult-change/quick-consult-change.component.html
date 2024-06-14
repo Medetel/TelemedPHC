@@ -1,0 +1,96 @@
+<mat-card-title style="font-weight: 500;">Monitor Patients</mat-card-title>
+
+<mat-card class="mt-4">
+                  
+    <mat-card-content>
+        
+        <div class="row">
+            <div class="table-responsive" *ngIf="data?.length > 0">
+                <table  [dtOptions]="dtOptions" datatable class="table table-border ">
+                    <thead class="thead-dark" >
+                        <tr align="center">
+                            <th rowspan="2" colspan="1" >
+                                Sl.No
+                             </th>
+                            <th rowspan="1" colspan="3" >
+                                Appointment Details
+                            </th>
+                            
+                            <th rowspan="1" colspan="1">
+                               Patient Details
+                            </th>
+                             <th rowspan="1" colspan="1">
+                                Doctor Details
+                              </th>
+                              <th rowspan="2" colspan="1" >
+                                Status
+                             </th>
+                             <th rowspan="2" colspan="1" >
+                                Action
+                             </th>
+                        </tr>
+                        <tr align="center">
+                            <th>Id</th>
+                            <th >Date</th>
+                            <th>Time</th>
+                            <th>Name</th>
+                            <th>Name</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr align="center" *ngFor="let d of data;let i=index">
+                            <td> {{i+1}} </td>
+                            <td> {{d.appt_Id}} </td>
+                            <td>{{d.select_day | date :'dd/MM/YYY'}}</td>
+                            <td>{{d.select_FrmTime | time24to12Transform}}</td>
+                           
+                            <td>{{d.appt_P_Name}}</td>
+                            <td>{{d.appt_DO_Name}}</td>  
+                              <!-- <td *ngIf="(d.appt_Type === 'REFERRALS');                  
+                                   else pickListResponse">{{d.appt_Type}}</td>
+                                  <ng-template #pickListResponse>
+                                      <td>{{d.sts_name}}</td>
+                                    </ng-template> -->
+                                    <td>Quick Consult</td>
+                            <td>
+                                
+                                <!-- <button id="addb" (click)="addAppointment(d)" [hidden]="addhid" mat-button
+                                [disabled]="(d.delete_flag == 0 && d.status==1 && d.status==2 || d.status==3 || d.status==6)? true:false"
+                                    color="accent" matTooltip="Add" [matTooltipPosition]="TooltipPosition"
+                                    matTooltipClass="tooltip-yellow"
+                                    aria-label="Button that displays a tooltip in various positions">
+                                   Add
+                                </button> -->
+                                <button id="view" (click)="view(d)" 
+                                [hidden]="viewhid" mat-icon-button color="primary" matTooltip="View"
+                                    [matTooltipPosition]="TooltipPosition" matTooltipClass="tooltip-blue"
+                                    aria-label="Button that displays a tooltip in various positions">
+                                    <mat-icon id="vis">visibility</mat-icon>
+                                </button>
+                                <button id="edit" (click)="edit(d)" [hidden]="edithid"
+                                [disabled]="(d.delete_flag == 0 && d.status==1 && d.status==2 || d.status==3 || d.status==6)? true:false" mat-icon-button
+                                    color="accent" matTooltip="edit" [matTooltipPosition]="TooltipPosition"
+                                    matTooltipClass="tooltip-yellow"
+                                    aria-label="Button that displays a tooltip in various positions">
+                                    <mat-icon id="vis">edit</mat-icon>
+                                </button>
+                               
+                                <!-- <button id="delete" (click)="delete(d)" [hidden]="deletehid"
+                                [disabled]="(d.delete_flag == 0 && d.status==1 && d.status==2 || d.status==3 || d.status==6)? true:false" mat-icon-button
+                                    color="warn" matTooltip="delete" [matTooltipPosition]="TooltipPosition"
+                                    matTooltipClass="tooltip-red"
+                                    aria-label="Button that displays a tooltip in various positions">
+                                    <mat-icon id="vis">delete_outline</mat-icon>
+                                </button> -->
+                            </td>
+                        </tr> 
+                           
+                          
+                         
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

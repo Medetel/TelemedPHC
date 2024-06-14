@@ -1,0 +1,616 @@
+<button mat-icon-button class="close-button" [mat-dialog-close]="true">
+    <mat-icon class="close-icon" color="warn">close</mat-icon>
+</button>
+
+
+<mat-divider></mat-divider>
+<div class="row">
+    <div class="col-md-2" id="dvc">
+
+        <div id="mview">
+
+            <div align="center" id="dvc1" [hidden]="package_desc1">
+                <button mat-button data-toggle="modal" data-target="#loaderFunction"
+                    (click)="deviceConnected = 'pulseOximeter';checkBLEDeviceConnected()"><img
+                        style="width:50px !important ;" class="mes"
+                        src="assets/images/teleicons/Remedi kit-Icons/pulse-oximeter-remidid.png" />
+                    <br>Pulse Oximeter
+                </button>
+            </div>
+
+            <div align="center" id="dvc2" [hidden]="package_desc1">
+                <button mat-button data-toggle="modal" data-target="#loaderFunction"
+                    (click)="deviceConnected = 'bloodPressure';checkBLEDeviceConnected()"> <img class="mes"
+                        src="assets/images/teleicons/Remedi kit-Icons/blood-pressure-remidi.png" />
+                    <br>Blood Pressure
+                </button>
+            </div>
+        </div>
+
+        <div id="mview">
+            <div align="center" id="dvc3" [hidden]="package_desc1">
+                <button mat-button data-toggle="modal" data-target="#loaderFunction"
+                    (click)="deviceConnected = 'thermometer';checkBLEDeviceConnected()"><img
+                        style="width:60px !important ;" class="mes"
+                        src="assets/images/teleicons/Remedi kit-Icons/thermometer.remidi.png" />
+                    <br>Temperature
+                </button>
+            </div>
+
+            <div align="center" id="dvc4" [hidden]="package_desc2">
+                <button mat-button data-toggle="modal" data-target="#loaderFunction"
+                    (click)="deviceConnected = 'glucometer';checkParamWS()"> <img style="width:100px !important ;"
+                        class="mes" src="assets/images/teleicons/Remedi kit-Icons/blood-tests-remedi.jpg" />
+                    <br>Glucose
+                </button>
+            </div>
+            <div align="center" id="dvc5" [hidden]="package_desc2">
+                <button mat-button data-toggle="modal" data-target="#loaderFunction"
+                    (click)="deviceConnected = 'lipid'; checkParamWS()"> <img style="width:60px !important ;"
+                        class="mes" src="assets/images/teleicons/Remedi kit-Icons/lipid_care.jpg" />
+                    <br>Lipid Profile
+                </button>
+            </div>
+
+        </div>
+
+        <div id="mview">
+
+            <div align="center" id="dvc6" [hidden]="package_desc2">
+                <button mat-button data-toggle="modal" data-target="#loaderFunction"
+                    (click)="deviceConnected = 'hemoglobin';checkParamWS()"> <img style="width:50px !important ;"
+                        class="mes" src="assets/images/teleicons/Remedi kit-Icons/hemoglobin-remedi.png" />
+                    <br>Hemoglobin Test
+                </button>
+            </div>
+
+            <div align="center" id="dvc7" [hidden]="package_desc2">
+                <button mat-button data-toggle="modal" data-target="#loaderFunction"
+                    (click)="deviceConnected = 'ecg'; checkBLEDeviceConnected()"> <img style="width:60px !important ;"
+                        class="mes" src="assets/images/teleicons/Remedi kit-Icons/ECG-remidi.jpg" />
+                    <br>ECG Monitor
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="col-md-10">
+        <mat-card class="flex-item">
+            
+            <form [formGroup]="patient">
+                <fieldset>
+                    <legend>Patient Details</legend>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <mat-form-field appearance="legacy">
+                                <mat-label style="color:#000000;font-size: 18px !important;">Patient Name</mat-label>
+                                <input class="mt-2" style="color: seagreen;" matInput placeholder=""
+                                    formControlName="patientName" readonly>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3">
+                            <mat-form-field appearance="legacy">
+                                <mat-label style="color:#000000;font-size: 18px !important;">Consultation
+                                    Date</mat-label>
+                                <input class="mt-2" style="color: seagreen;" matInput placeholder=""
+                                    formControlName="appt_DateTime" readonly>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3">
+                            <mat-form-field appearance="legacy">
+                                <mat-label style="color:#000000;font-size: 18px !important;"> Doctor Name</mat-label>
+                                <input class="mt-2" style="color: seagreen;" matInput placeholder=""
+                                    formControlName="doctor_Name" readonly>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+
+
+            <form [formGroup]="fixappointment">
+                <fieldset>
+                    <legend>Vital-Signs</legend>
+                    <div class="row">
+                        
+                        <div class="col-md-4" [hidden]="package_desc1">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Temperature <span style="color: rgb(72, 135, 230);">(°F)</span></mat-label>
+                                <input matInput formControlName="pA_TempInCelsius" maxlength="7" placeholder=""
+                                    [ngClass]="{'all': (patient.controls.pA_TempInCelsius>=1 && patient.controls.pA_TempInCelsius==90)? false:true,'warn':tempInFahrenheit==0 ,'edit':tempInFahrenheit>=90}">
+                                <mat-error
+                                    *ngIf="fixappointment.controls['pA_TempInCelsius'].hasError('invalidName') || fixappointment.controls['pA_TempInCelsius'].hasError('pattern') ">
+                                    Please enter Number only
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4" style="margin-top: -5px;" [hidden]="package_desc1">
+                            <mat-label style="color: rgb(0, 0, 0); ">Blood Pressure<span
+                                    style="color: rgb(72, 135, 230); ">( mm )/(
+                                    Hg )</span></mat-label>
+                            <div class="row">
+                                <div class="col-md-5 mt-2" style="border-bottom: solid #777777 1px;">
+                                    <input matInput placeholder="( mm )" formControlName="bpmm">
+                                </div>
+                                <div class="mt-2">/</div>
+                                <div class="col-md-6 mt-2" style="border-bottom: solid #777777 1px;">
+                                    <input matInput placeholder="( Hg )" formControlName="bphg">
+                                </div>
+
+                                <div style="color: red;"
+                                    *ngIf="fixappointment.get('bpmm').hasError('pattern') || fixappointment.get('bphg').hasError('pattern')">
+                                    Please enter a only positive integer values.
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-4" style="margin-top: -5px;" [hidden]="package_desc1">
+                            <!-- <mat-form-field class="example-full-width" appearance="legacy"> -->
+                            <mat-label style="color: rgb(0, 0, 0); ">Pulse oximeter(spo2%)<span style="color: rgb(72, 135, 230); ">/(bpm
+                            )</span></mat-label>
+                            <div class="row">
+                                <div class="col-md-5 mt-2" style="border-bottom: solid #777777 1px;">
+                                    <input matInput placeholder="Saturation %" formControlName="pA_OxygenSaturation">
+                                </div>
+                        
+                                <div class="mt-2">/</div>
+                                <div class="col-md-6 mt-2" style="border-bottom: solid #777777 1px;">
+                                    <input matInput placeholder="Pulse Rate (bpm)" formControlName="pA_PulseRate">
+                                </div>
+                                <div style="color: red;"
+                                    *ngIf="fixappointment.get('pA_OxygenSaturation').hasError('pattern') || fixappointment.get('pA_PulseRate').hasError('pattern')">
+                                    Please enter a only positive integer values.
+                                </div>
+                            </div>
+                        
+                        </div>
+
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy" [hidden]="package_desc1">
+                                <mat-label>Height <span style="color: rgb(72, 135, 230); ">(Cm)</span></mat-label>
+                                <input matInput maxlength="7" formControlName="pA_Height" placeholder="">
+                                <mat-error
+                                    *ngIf="fixappointment.controls['pA_Height'].hasError('invalidName') || fixappointment.controls['pA_Height'].hasError('pattern') ">
+                                    Please enter Number only
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy" [hidden]="package_desc1">
+                                <mat-label>Weight <span style="color: rgb(72, 135, 230); ">(Kg)</span></mat-label>
+                                <input matInput maxlength="7" formControlName="pA_Weight" placeholder=""
+                                    (change)="Get_bmi(fixappointment.get('pA_Height').value,$event)">
+                                <mat-error
+                                    *ngIf="fixappointment.controls['pA_Weight'].hasError('invalidName') || fixappointment.controls['pA_Weight'].hasError('pattern') ">
+                                    Please enter Number only
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        
+                        <!-- Inclusion of BMI as a field  -->
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy" [hidden]="package_desc1">
+                                <mat-label>Body Mass Index(BMI) <span style="color: rgb(72, 135, 230); ">(Kg/m2)</span></mat-label>
+                                <input matInput maxlength="7" formControlName="bmi" placeholder="">
+                            </mat-form-field>
+                        </div>
+                       
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy" [hidden]="package_desc2">
+                                <mat-label>Hemoglobin <span style="color: rgb(72, 135, 230); ">(g/dl)</span></mat-label>
+                                <input matInput maxlength="7" placeholder="" formControlName="pA_Hemoglobin">
+                                <mat-error
+                                    *ngIf="fixappointment.controls['pA_Hemoglobin'].hasError('invalidName') || fixappointment.controls['pA_Hemoglobin'].hasError('pattern') ">
+                                    Please enter Number only
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy" [hidden]="package_desc2">
+                                <mat-label>Glucose<span style="color: rgb(72, 135, 230); ">(mg/dl)</span></mat-label>
+                                <input matInput maxlength="7" formControlName="pA_Sugar" placeholder="">
+                                <mat-error
+                                    *ngIf="fixappointment.controls['pA_Sugar'].hasError('invalidName') || fixappointment.controls['pA_Sugar'].hasError('pattern') ">
+                                    Please enter Number only
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy" [hidden]="package_desc2">
+                                <mat-label>Pulse Of ECG <span style="color: rgb(72, 135, 230);">( ECG
+                                        )</span></mat-label>
+                                <input matInput formControlName="pA_ECG" maxlength="7" placeholder="">
+
+                            </mat-form-field>
+                        </div>
+
+                        
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy" [hidden]="package_desc3">
+                                <mat-label>HIV 1 </mat-label>
+                                <input matInput maxlength="20" formControlName="lp_hiv_First">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy" [hidden]="package_desc3">
+                                <mat-label>Dengue</mat-label>
+                                <input matInput maxlength="20" formControlName="lp_dengue">
+                            </mat-form-field>
+                        </div>
+                         <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy" [hidden]="package_desc3">
+                                <mat-label>Malaria</mat-label>
+                                <input matInput maxlength="20" formControlName="lp_malaria">
+                            </mat-form-field>
+                        </div>
+                         <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy" [hidden]="package_desc3">
+                                <mat-label>Pregnancy/ Hepatitis B</mat-label>
+                                <input matInput maxlength="20" formControlName="lp_pregnancy">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy" [hidden]="package_desc3">
+                                <mat-label>Syphilis</mat-label>
+                                <input matInput maxlength="20" formControlName="lp_syphilis">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy" [hidden]="package_desc3">
+                                <mat-label>T3</mat-label>
+                                <input matInput maxlength="20" formControlName="lp_Tem_three">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy" [hidden]="package_desc3">
+                                <mat-label>T4</mat-label>
+                                <input matInput maxlength="20" formControlName="lp_Tem_forth">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy"  [hidden]="package_desc3">
+                                <mat-label>TSH</mat-label>
+                                <input matInput maxlength="20" formControlName="lp_tsh">
+                            </mat-form-field>
+                        </div>
+                        
+                        <!-- lipid profile -->
+                       
+                       
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy"  [hidden]="package_desc3">
+                                <mat-label>LDL <span style="color: rgb(72, 135, 230); ">(mg/dL)</span></mat-label>
+                                <input matInput maxlength="20" formControlName="lp_ldl">
+                        
+                                <mat-error *ngIf="fixappointment.controls['lp_ldl'].hasError('pattern') ">
+                                    Please enter a valid integer or decimal value
+                                    with upto 2 decimal places.
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy"  [hidden]="package_desc3">
+                                <mat-label>HDL Cholesterol <span
+                                        style="color: rgb(72, 135, 230); ">(mg/dL)</span></mat-label>
+                                <input matInput maxlength="20" formControlName="lp_hdl_cholesterol">
+
+                                <mat-error *ngIf="fixappointment.controls['lp_hdl_cholesterol'].hasError('pattern') ">
+                                    Please enter a valid integer or decimal value
+                                    with upto 2 decimal places.
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy"  [hidden]="package_desc3">
+                                <mat-label>Triglycerides <span style="color: rgb(72, 135, 230); ">(mg/dL)</span></mat-label>
+                                <input matInput maxlength="20" formControlName="lp_triglycerides">
+                        
+                                <mat-error *ngIf="fixappointment.controls['lp_triglycerides'].hasError('pattern') ">
+                                    Please enter a valid integer or decimal value
+                                    with upto 2 decimal places.
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy"  [hidden]="package_desc3">
+                                <mat-label>Total Cholesterol <span style="color: rgb(72, 135, 230); ">(mg/dL)</span></mat-label>
+                                <input matInput maxlength="20" formControlName="lp_total_cholesterol">
+                        
+                                <mat-error *ngIf="fixappointment.controls['lp_total_cholesterol'].hasError('pattern') ">
+                                    Please enter a valid integer or decimal value
+                                    with upto 2 decimal places.
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                       
+
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy" [hidden]="package_desc4">
+                                <mat-label>HIV 2</mat-label>
+                                <input matInput maxlength="20" formControlName="lp_hiv_two">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy"  [hidden]="package_desc4">
+                                <mat-label>Pregnancy/ Hepatitis B</mat-label>
+                                <input matInput maxlength="20" formControlName="lp_pregnancy">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy"  [hidden]="package_desc4">
+                                <mat-label>Hepatitis C </mat-label>
+                                <input matInput maxlength="20" formControlName="lp_hepatitis_c">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy"  [hidden]="package_desc4">
+                                <mat-label>Troponin 1</mat-label>
+                                <input matInput maxlength="20" formControlName="lp_troponin_one">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy" [hidden]="package_desc5">
+                                <mat-label>Leucocytes</mat-label>
+                                <input matInput maxlength="20" formControlName="lp_leucocytes">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy" [hidden]="package_desc5">
+                                <mat-label>Nitrite</mat-label>
+                                <input matInput maxlength="20" formControlName="lp_nitrite">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy" [hidden]="package_desc5">
+                                <mat-label>pH</mat-label>
+                                <input matInput maxlength="20" formControlName="lp_pH">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy" [hidden]="package_desc5">
+                                <mat-label>Protein</mat-label>
+                                <input matInput maxlength="20" formControlName="lp_protein">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy" [hidden]="package_desc5">
+                                <mat-label>Blood</mat-label>
+                                <input matInput maxlength="20" formControlName="lp_blood">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy" [hidden]="package_desc5">
+                                <mat-label>Specific Gravity</mat-label>
+                                <input matInput maxlength="20" formControlName="lp_specific_gravity">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy" [hidden]="package_desc5">
+                                <mat-label>Ketone</mat-label>
+                                <input matInput maxlength="20" formControlName="lp_ketone">
+                            </mat-form-field>
+                        </div>
+                        <!-- <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy" [hidden]="package_desc5">
+                                <mat-label>Glucose</mat-label>
+                                <input matInput maxlength="20" formControlName="sugar">
+                            </mat-form-field>
+                        </div> -->
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy" [hidden]="package_desc6">
+                                <mat-label>FEV 1</mat-label>
+                                <input matInput maxlength="20" formControlName="lp_fev_one">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy" [hidden]="package_desc6">
+                                <mat-label>FVC</mat-label>
+                                <input matInput maxlength="20" formControlName="lp_fvc">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy" [hidden]="package_desc6">
+                                <mat-label>TLC</mat-label>
+                                <input matInput maxlength="20" formControlName="lp_tlc">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy" [hidden]="package_desc6">
+                                <mat-label>FEV 1/FVC ratio</mat-label>
+                                <input matInput maxlength="20" formControlName="lp_fvc_ratio">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy" [hidden]="package_desc6">
+                                <mat-label>PEF</mat-label>
+                                <input matInput maxlength="20" formControlName="lp_pef">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy" [hidden]="package_desc6">
+                                <mat-label>FEF 25</mat-label>
+                                <input matInput maxlength="20" formControlName="lp_fef_twentyfive">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy" [hidden]="package_desc6">
+                                <mat-label>FEF 50</mat-label>
+                                <input matInput maxlength="20" formControlName="lp_fef_fifty">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy" [hidden]="package_desc6">
+                                <mat-label>FEF 75</mat-label>
+                                <input matInput maxlength="20" formControlName="lp_fef_seventyfive">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy" [hidden]="package_desc6">
+                                <mat-label>Tidal volume</mat-label>
+                                <input matInput maxlength="20" formControlName="lp_tidalvolume">
+                            </mat-form-field>
+                        </div>
+
+                      
+                    </div>
+                </fieldset>
+                 <br>
+                <input type="checkbox" [(ngModel)]="isChecked" (change)="toggleCheckbox()">&ensp;Please select the checkbox corresponding to the medical tests you would like to include.
+                <!-- <label for="isCheckedCheckbox">Select this checkbox</label> -->
+            </form>
+
+        </mat-card>
+    </div>
+</div>
+<!-- <div mat-dialog-content>
+
+</div> -->
+<div mat-dialog-actions align="end">
+    <button id="save" mat-raised-button color="primary" [disabled]="!isChecked" (click)="updateform()">Add medical tests</button>
+    <button mat-dialog-close id="cancel" mat-raised-button color="warn">Close</button>
+</div>
+
+<div class="modal fade" id="loaderFunction" tabindex="-1" aria-labelledby="loaderFunction" aria-hidden="true">
+    <div class="modal-dialog" [ngClass]="{'ecgContainer': deviceConnected == 'ecg' }">
+        <div class="modal-content" [ngClass]="{'w1350': deviceConnected == 'ecg' }">
+            <div class="modal-header">
+                <div class="battery"
+                    *ngIf="deviceConnected == 'ecg' || deviceConnected == 'bloodPressure' || deviceConnected == 'thermometer' || deviceConnected == 'pulseOximeter'">
+                    <img src="../../assets/images/10.png" *ngIf="batteryPower < 4"> <small
+                        *ngIf="batteryPower < 4">10%</small>
+                    <img src="../../assets/images/50.png" *ngIf="batteryPower == 4"><small
+                        *ngIf="batteryPower == 4">33%</small>
+                    <img src="../../assets/images/75.png" *ngIf="batteryPower == 5"><small
+                        *ngIf="batteryPower == 5">66%</small>
+                    <img src="../../assets/images/100.png" *ngIf="batteryPower == 6"><small
+                        *ngIf="batteryPower == 6">100%</small>
+                </div>
+                <p class="text-center p-0 m-0" *ngIf="deviceConnected == 'ecg'">12 Channel ECG</p>
+                <p class="text-center p-0 m-0" *ngIf="deviceConnected == 'bloodPressure'">Blood Pressure</p>
+                <p class="text-center p-0 m-0" *ngIf="deviceConnected == 'glucometer'">Glucose (Sugar)</p>
+                <p class="text-center p-0 m-0" *ngIf="deviceConnected == 'lipid'">Lipid Profile</p>
+                <p class="text-center p-0 m-0" *ngIf="deviceConnected == 'thermometer'">Thermometer</p>
+                <p class="text-center p-0 m-0" *ngIf="deviceConnected == 'pulseOximeter'">Pulse Oximeter</p>
+                <p class="text-center p-0 m-0" *ngIf="deviceConnected == 'hemoglobin'">Hemoglobin</p>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+            <div class="text-center">{{popupDeviceStatusLabel}}</div>
+            <div class="modal-body">
+                <div class="text-center" *ngIf="loading">
+                    <div class="spinner-border ui-spinner-input text-success" role="status">
+                    </div>
+                    <p class="mt-3 text-loading">Loading ..</p>
+                </div>
+                <div *ngIf="deviceConnected == 'ecg'">
+                    <div class="card p-3 mt-3">
+                        <app-ecg-monitor></app-ecg-monitor>
+                    </div>
+                </div>
+                <div *ngIf="deviceConnected == 'bloodPressure'">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="bloodPressure col-12 col-sm-6">
+                                <table>
+                                    <tr *ngIf="bloodPressureSystolic">
+                                        <th>Systolic</th>
+                                        <td>{{bloodPressureSystolic}}</td>
+                                    </tr>
+                                    <tr *ngIf="bloodPressureDiastolic">
+                                        <th>Diastolic</th>
+                                        <td>{{bloodPressureDiastolic}}</td>
+                                    </tr>
+                                    <tr *ngIf="bloodPressurePulse">
+                                        <th>Pulse</th>
+                                        <td>{{bloodPressurePulse}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-12 col-sm-6" *ngIf="bloodPressure.length > 0">
+                                <google-chart #chart [title]="'bloodPressure'" [type]="chartType" [options]="BPoptions"
+                                    [data]="bloodPressure">
+                                </google-chart>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="deviceConnected == 'lipid'">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="bloodPressure col-12 col-sm-6">
+                                <table>
+                                    <tr *ngIf="total_cholesterol">
+                                        <th>Total Cholesterol</th>
+                                        <td>{{total_cholesterol}}</td>
+                                    </tr>
+                                    <tr *ngIf="triglycerides">
+                                        <th>Triglycerides</th>
+                                        <td>{{triglycerides}}</td>
+                                    </tr>
+                                    <tr *ngIf="hdl_cholesterol">
+                                        <th>HDL Cholesterol</th>
+                                        <td>{{hdl_cholesterol}}</td>
+                                    </tr>
+                                    <tr *ngIf="ldl">
+                                        <th>LDL</th>
+                                        <td>{{ldl}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="deviceConnected == 'glucometer'">
+                    <div class="col-12">
+                        <div class="card text-center p-3 mt-3" *ngIf="glucose">
+                            <label class="gulcoseLabel">Glucose Result : {{glucose}} g/dL</label>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="deviceConnected == 'thermometer'">
+                    <div class="col-12 text-center">
+                        <app-temprature *ngIf="api.temperature"></app-temprature>
+                        <div>
+                            <label>Temperature : <b>{{api.temperature}}</b> Fahrenheit</label>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="deviceConnected == 'pulseOximeter'">
+                    <div class="col-12">
+                        <div>
+                            <div>
+                                <google-chart #chart [title]="'Pulse Oxymeter'" [type]="pulseType"
+                                    [options]="pulseoptions" [data]="pulseOxyMeterData">
+                                </google-chart>
+                            </div>
+                            <div class="card text-center p-3 mt-3" *ngIf="spo2SaturationPercentage">
+                                <label class="gulcoseLabel">SPO2 Saturation Percentage : {{spo2SaturationPercentage}}
+                                    %</label>
+                            </div>
+                            <div class="card text-center p-3 mt-3" *ngIf="spo2PulseRate">
+                                <label class="gulcoseLabel">Pulse Rate : {{spo2PulseRate}} bpm</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="deviceConnected == 'hemoglobin'">
+                        <div class="col-12">
+                            <div class="card text-center p-3 mt-3" *ngIf="hemoglobin">
+                                <label class="haemoglobinLabel">Hemoglobin Result : {{hemoglobin}} g/dl</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="modal-footer">
+            </div> -->
+            </div>
+        </div>
+    </div>

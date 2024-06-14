@@ -1,0 +1,10 @@
+<div mat-dialog-container>
+    <mat-icon>help_outline</mat-icon>
+    <h3 mat-dialog-title>Confirm</h3>
+    <mat-divider></mat-divider>
+    <div class="top" mat-dialog-content>Do You Have any Previous Records?</div>
+    <div mat-dialog-actions  align="end">
+        <button mat-stroked-button color="primary" mat-dialog-close>No</button>
+        <button mat-raised-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>Yes</button>
+    </div>
+</div>

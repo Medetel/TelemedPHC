@@ -1,0 +1,80 @@
+
+<mat-card>
+    <form [formGroup]="directStartMeetingForm">
+                <div class="row">
+                    <!-- <div class="col-md-3">Select Patient :</div> -->
+                    <div class="col-md-4">
+                        <!-- <input id="search" class="form-control " placeholder="Search" name="search"> -->
+                        <mat-form-field [hideRequiredMarker]="true" class="full-width" appearance="legacy">
+                            <mat-label class="star">Select Doctor </mat-label>
+                            <mat-select formControlName="doctor_ddl" required (selectionChange)="onChangeDoctorName($event)">
+                            <mat-option *ngFor="let d of ddata" [value]="d.do_id">{{d.do_name}}
+                            </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+    <div class="row">
+        <div class="col-md-5">
+            <div class="row">            
+                 <div class="col-md-12" style="text-align: center;">
+                    <!-- <div class="footer_button"> -->
+                        <button id="startMeeting" [disabled]="btnstate" mat-raised-button color="primary" (click)="directStartMeeting()">Start Meeting</button>                   
+                    <!-- </div> -->
+                 </div>
+            </div>
+    
+    
+            <div class="row">            
+                <div class="col-md-12" style="text-align: center;">
+                    <iframe [src]="urlSafe" width="100%" height="600" allow="geolocation *; camera *; microphone *; display-capture *;" allowfullscreen="true"></iframe>
+                </div>
+           </div>
+            
+        </div>
+        <mat-divider [vertical]="true" style="height: auto;"></mat-divider>
+        <div class="col-md-5">       
+            <b>Patient Info</b>
+            <div class="row">            
+                <div class="col-md-3">Name:</div>
+                <div class="col-md-3">
+                    <p>{{p_name}}</p>
+                </div>
+                <div class="col-md-3">Gender / Age:</div>
+                <div class="col-md-3">
+                    <p>{{p_gender}}</p>
+                </div>
+            </div>
+             <div class="row">
+                <div class="col-md-3">Blood Group:</div>
+                <div class="col-md-3">
+                    <p>{{p_blood_group}}</p>
+                </div> 
+                
+                <div class="col-md-3">Marital Status:</div>
+                <div class="col-md-3">
+                    <p>{{p_marital_status}}</p>
+                </div> 
+            </div> 
+    
+            <div class="row">         
+                <div class="col-md-3">Phone No:</div>
+                <div class="col-md-3">
+                    <p>{{p_phone}}</p>
+                </div> 
+    
+                <div class="col-md-3">Email:</div>
+                <div class="col-md-3">
+                    <p>{{p_email}}</p>
+                </div> 
+            </div>
+            
+        </div>
+    
+    
+    </div> 
+    
+    </form>
+    
+    </mat-card>

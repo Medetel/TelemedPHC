@@ -1,0 +1,37 @@
+<mat-card>
+    <mat-card-title>Add Network</mat-card-title>
+    <mat-divider></mat-divider>
+        <form [formGroup]="network">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                        <mat-label class="star">Network Code</mat-label>
+                        <input matInput #input maxlength="10" placeholder="Eg.NET00001" formControlName="nE_Code" >
+                        <mat-error *ngIf="checkError('nE_Code', 'required')">Network Code  is required</mat-error>
+                        <mat-error *ngIf="network.controls['nE_Code'].hasError('alphaNumCheck') || network.controls['nE_Code'].hasError('pattern') ">
+                        Network Code must start with "NET" followed by numeric characters
+                        </mat-error>                       
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                        <mat-label class="star">Network Description</mat-label>
+                        <input matInput placeholder="Eg.Bengaluru" maxlength="45" formControlName="nE_Description" required>
+                        <mat-error *ngIf="checkError('nE_Description', 'required')">Network Description  is required</mat-error>
+                        <mat-error *ngIf="network.get('nE_Description').hasError('alphaCheck')">
+                            Please enter alphabet characters
+                        </mat-error>
+                        <mat-error *ngIf="network.get('nE_Description').hasError('spaceCheck')">
+                            Network description will not allow white space
+                        </mat-error>                      
+                    </mat-form-field>
+                </div>
+            </div>
+            <br>
+            <div class="footer_button">
+                <button id="save" mat-raised-button color="primary" (click)="save()">Save</button>
+                <!-- <button id="cancel" mat-raised-button color="accent" (click)="reset()">Clear</button> -->
+                <button routerLink="/base/master/network" id="cancel" mat-raised-button color="warn">Close</button>
+            </div>
+        </form>
+</mat-card>

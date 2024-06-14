@@ -1,0 +1,171 @@
+<h1 mat-dialog-title>View Appointment</h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content>
+    <form [formGroup]="patient">
+        <fieldset>
+            <legend>Patient Details</legend>
+            <div class="row" *ngFor="let post of pat_details">
+                <div class="col-md-3">
+                    <h4>Patient ID :&nbsp; <span style="color: green;">{{post.appt_P_Code}}</span></h4>
+                </div>
+                <div class="col-md-3">
+                    <h4>Patient Name :&nbsp; <span style="color: green;">{{post.appt_P_Name}}</span></h4>
+                </div>
+                <div class="col-md-3">
+                    <h4 class="gender">Gender: <span style="color: green;">{{post.appt_P_Gender}}</span></h4>
+                </div>
+                <div class="col-md-3">
+                    <img class="images" matPrefix [src]="Image_Url" width="100px" height="100px" alt="image not found">
+                </div>
+                <div class="col-md-3">
+                    <h4>DOB: <span style="color: green;">{{post.appt_P_DOB | date:'dd-MM-yyy'}}</span></h4>
+                </div>
+                <div class="col-md-3">
+                    <h4>Age: <span style="color: green;">{{post.appt_P_Age}}</span></h4>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    <form [formGroup]="fixappointment">
+        <!-- <fieldset>
+            <legend>Vital-Signs</legend>
+            <div class="row" *ngFor="let post of pat_details">
+                <div class="col-md-4">
+                    <h4>Temprature <span style="color: rgb(72, 135, 230);">(°C)</span>:&nbsp; <span
+                            style="color: green;">{{post.appt_PA_TempInCelsius}}</span></h4>
+
+                </div>
+                <div class="col-md-4">
+                    <h4>Blood Pressure <span style="color: rgb(72, 135, 230);">(mmHg)</span>:&nbsp; <span
+                            style="color: green;">{{post.appt_PA_BloodPressure}}</span></h4>
+
+                </div>
+                <div class="col-md-4">
+                    <h4>Pulse <span style="color: rgb(72, 135, 230);">(Heart beats/min)</span>:&nbsp; <span
+                            style="color: green;">{{post.appt_PA_PulseRate}}</span></h4>
+
+                </div>
+
+                <div class="col-md-4">
+                    <h4>Spo2 <span style="color: rgb(72, 135, 230);">(%)</span>:&nbsp; <span
+                            style="color: green;">{{post.appt_PA_OxygenSaturation}}</span></h4>
+
+                </div>
+                <div class="col-md-4">
+                    <h4>Hemoglobin <span style="color: rgb(72, 135, 230); ">(g/dl)</span>:&nbsp; <span
+                            style="color: green;">{{post.appt_PA_Hemoglobin}}
+                        </span></h4>
+
+                </div>
+                <div class="col-md-4">
+                    <h4>Glucose <span style="color: rgb(72, 135, 230); ">(mg/dl)</span>:&nbsp; <span
+                            style="color: green;">{{post.appt_PA_Sugar}}</span></h4>
+                </div>
+                <div class="col-md-4">
+                    <h4>Total Cholesterol <span style="color: rgb(72, 135, 230); ">(mg/dl)</span>:&nbsp; <span
+                            style="color: green;">{{post.lp_total_cholesterol}}</span></h4>
+                </div>
+                <div class="col-md-4">
+                    <h4>Triglycerides <span style="color: rgb(72, 135, 230); ">(mg/dl)</span>:&nbsp; <span
+                            style="color: green;">{{post.lp_triglycerides}}</span></h4>
+                </div>
+                <div class="col-md-4">
+                    <h4>HDL Cholesterol <span style="color: rgb(72, 135, 230); ">(mg/dl)</span>:&nbsp; <span
+                            style="color: green;">{{post.lp_hdl_cholesterol}}</span></h4>
+                </div>
+                <div class="col-md-4">
+                    <h4>LDL <span style="color: rgb(72, 135, 230); ">(mg/dl)</span>:&nbsp; <span
+                            style="color: green;">{{post.lp_ldl}}</span></h4>
+                </div>
+                <div class="col-md-4">
+                    <h4>Height <span style="color: rgb(72, 135, 230); ">(Cm)</span>:&nbsp; <span
+                            style="color: green;">{{post.appt_PA_Height}}</span></h4>
+                </div>
+                <div class="col-md-4">
+                    <h4>Weight <span style="color: rgb(72, 135, 230); ">(Kg)</span>:&nbsp; <span
+                            style="color: green;">{{post.appt_PA_Weight}}</span></h4>
+                </div>
+
+                <div class="col-md-4">
+                    <h4>Body Mass Index(BMI) <span style="color: rgb(72, 135, 230); ">(Kg/m2)</span>:&nbsp; <span
+                            style="color: green;">{{bmi}}</span></h4>
+                </div>
+            </div>
+        </fieldset> -->
+
+
+        <fieldset>
+            <legend>Other-Info</legend>
+            <div class="row">
+                <div class="col-md-12">
+                    <div>
+                        <h4>Present Complaints :
+                            <span style="color: green;" *ngFor="let da of complaint">
+                                {{da.cmst_Name}},&nbsp;
+                            </span>
+                        </h4>
+                    </div>
+                </div>
+                <!-- <div class="col-md-12">
+                    <div>
+                        <h4>Symptoms :
+                            <span style="color: green;" *ngFor="let da of symptoms">
+                                {{da.smst_Name}},&nbsp;
+                            </span>
+                        </h4>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div>
+                        <h4>Present Illness :
+                            <span style="color: green;" *ngFor="let da of Diseases">
+                                {{da.diseases_Name}},&nbsp;
+                            </span>
+                        </h4>
+                    </div>
+                </div> -->
+                <div class="col-md-12">
+                    <h4>Any Known Allergy:&nbsp; <span style="color: green;"
+                            *ngFor="let da of allergy">{{da.al_Name}},&nbsp;</span></h4>
+                </div>
+                <div class="col-md-12">
+                    <h4>Past/Current Medical History:&nbsp; <span style="color: green;"
+                         *ngFor="let da of apt_meditation">{{da.medic_name}}</span>
+                    </h4>
+                </div>
+                <!-- <div class="col-md-6">
+                    <h4>Under Diabetes-Medication :&nbsp; <span style="color: green;">{{apt_glucose}}</span>
+                    </h4>
+                </div> -->
+            </div>
+        </fieldset>
+
+
+        <fieldset>
+            <legend>Consultation</legend>
+            <div class="row">
+                <div class="col-md-3">
+                    <h4>Date :&nbsp; <span style="color: green;">{{apt_date | date:'dd-MM-yyy'}}</span></h4>
+
+                </div>
+                <div class="col-md-3">
+                    <h4>From-Time :&nbsp; <span style="color: green;">{{apt_f_time==null ? 'NA' : (apt_f_time |
+                            time24to12Transform)}}</span></h4>
+
+                </div>
+                <div class="col-md-3">
+                    <h4>To-Time :&nbsp; <span style="color: green;">{{apt_to_time==null ? 'NA' : (apt_to_time |
+                            time24to12Transform)}}</span></h4>
+
+                </div>
+                <div class="col-md-3">
+                    <h4>Available Doctor :&nbsp; <span style="color: green;">Dr. {{apt_docor}}</span></h4>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+</div>

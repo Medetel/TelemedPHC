@@ -1,0 +1,40 @@
+<mat-card>
+    <mat-card-title>View Lab Test</mat-card-title>
+<mat-card-content>
+    <div class="button_add">
+        <form class="form-inline" [formGroup]="Labedit" >
+            <fieldset>
+                <legend>Lab_Test Info</legend>
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Category</mat-label>
+                            <input style="color: seagreen;" matInput   formControlName="category_Id"> 
+                            <!-- <mat-select formControlName="category_Id" #typecategory
+                            (valueChange)="typescategory(typecategory.value)" required>
+                            <mat-option *ngFor="let c of catogory" [value]="c.lab_SubInvst_Id">
+                                {{c.sub_Category}}</mat-option>
+                        </mat-select> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Description</mat-label>
+                            <input style="color: seagreen;" matInput   formControlName="description_Id"> 
+                            <!-- <mat-select formControlName="description_Id" required>
+                                <mat-option *ngFor="let d of discription" [value]="d.lab_DescId">
+                                    {{d.lab_Description}}</mat-option>
+                            </mat-select> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-12">
+                        <div align="center">
+                            <button mat-raised-button color="primary" mat-dialog-close>close</button>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</mat-card-content>
+</mat-card>

@@ -1,0 +1,171 @@
+<h1 mat-dialog-title>Edit Appointment</h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content>
+    <form [formGroup]="patient">
+        <fieldset>
+            <legend>Patient Details</legend>
+            <div class="row">
+                <div class="col-md-3">
+                    <h4>Patient ID :&nbsp; <span style="color: green;">{{patient_id}}</span></h4>
+                </div>
+                <div class="col-md-3">
+                    <h4>Patient Name :&nbsp; <span style="color: green;">{{patient_name}}</span></h4>
+                </div>
+                <div class="col-md-3">
+                    <h4 class="gender">Gender: <span style="color: green;">{{patient_gender}}</span></h4>
+                </div>
+                <div class="col-md-3">
+                    <img class="images" matPrefix [src]="Image_Url" width="100px" height="100px" alt="image not found">
+                </div>
+                <div class="col-md-3">
+                    <h4>DOB: <span style="color: green;">{{patient_dob | date:'dd-MM-yyy'}}</span></h4>
+                </div>
+                <div class="col-md-3">
+                    <h4>Age: <span style="color: green;">{{patient_age}}</span></h4>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    <form [formGroup]="fixappointment">
+        <!-- <fieldset>
+            <legend>Vital-Signs</legend>
+            <div class="row">
+
+                <div class="col-md-4">
+                    <h4>Height <span style="color: rgb(72, 135, 230); ">(Cm)</span>:&nbsp; <span style="color: green;">{{apt_height}}</span></h4>                         -->
+                    <!-- <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Height <span style="color: rgb(72, 135, 230); ">(Cm)</span></mat-label>
+                        <input matInput maxlength="7" formControlName="height" placeholder="">
+                       
+                    </mat-form-field> -->
+                <!-- </div>
+                <div class="col-md-4"> -->
+                    <!-- <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Weight <span style="color: rgb(72, 135, 230); ">(Kg)</span></mat-label>
+                        <input matInput maxlength="7" formControlName="weight" placeholder="">
+                       
+                    </mat-form-field> -->
+                    <!-- <h4>Weight <span style="color: rgb(72, 135, 230); ">(Kg)</span>:&nbsp; <span style="color: green;">{{apt_weight}}</span></h4>                      
+                </div>
+            </div>
+        </fieldset> -->
+
+        <fieldset>
+            <legend>Other-Info</legend>
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- <mat-form-field class="example-full-width">
+                        <mat-label>Complaints</mat-label>
+                        <mat-select formControlName="complaint">                           
+                            <mat-option *ngFor="let c of view_complaint" [value]="c">{{c.cmst_Name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field> -->
+                    <div class="row">
+                        <!-- <div class="col-md-12">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Complaints</mat-label>
+                                <mat-select formControlName="complaint" [(value)]="complaintselected"
+                                    [compareWith]="objectComparisonFunctioncomplaint" multiple required (openedChange)="resetComplaintSearchInput()">
+                                    <mat-select-trigger>
+                                        <mat-chip-list>
+                                            <mat-chip *ngFor="let complaint of fixappointment.value.complaint"
+                                                [removable]="true" (removed)="onToppingRemovedcomplaint(complaint)">
+                                                {{ complaint.cmst_Name }}
+                                                <mat-icon matChipRemove>cancel</mat-icon>
+                                            </mat-chip>
+                                        </mat-chip-list>
+                                    </mat-select-trigger>
+                                    <input type="text" class="p-2" autocomplete="off" matInput placeholder="Search by name..." #multiUserSearch
+                                                (input)="onInputChange()" />
+                                    <mat-option *ngFor="let c of complaint" [value]="c" [disabled]="isOptionDisabled3(c)">{{c.cmst_Name}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div> -->
+                     <h4>Complaints :
+                            <span style="color: green;" *ngFor="let da of view_complaint">
+                               {{da.cmst_Name}},&nbsp;
+                            </span>
+                    </h4>
+                    </div>
+                </div>
+
+                <!-- <div class="col-md-6">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Under BP-medication</mat-label>
+                        <mat-select formControlName="underBPMedication" required>
+                            <mat-option value="Yes">Yes</mat-option>
+                            <mat-option value="No">No</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div> -->
+                <!-- <div class="col-md-6">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Under Sugar-medication</mat-label>
+                        <mat-select formControlName="underSugarMedication" required>
+                            <mat-option value="Yes">Yes</mat-option>
+                            <mat-option value="No">No</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div> -->
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Consultation</legend>
+            <div class="row">
+                <div class="col-md-3">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Date</mat-label>
+                        <input matInput [matDatepicker]="dp" min="{{minDate | date:'yyyy-MM-dd'}}" formControlName="select_day" required>
+                        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                        <mat-datepicker #dp></mat-datepicker>
+                        <mat-error *ngIf="fixappointment.get('select_day').hasError('required')">Date is
+                            required</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>From-Time</mat-label>
+                        <input matInput type="time" matInput formControlName="select_FrmTime" min="09:00" max="18:00"
+                            required>
+                        <mat-error *ngIf="fixappointment.get('select_FrmTime').hasError('required')">From time is
+                            required</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>To-Time</mat-label>
+                        <input matInput type="time" matInput formControlName="select_toTime" min="09:00" max="18:00"
+                            required>
+                        <mat-error *ngIf="fixappointment.get('select_toTime').hasError('required')">To time is
+                            required</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Doctor</mat-label>
+                        <mat-select formControlName="appt_DO_Id_FK" required>
+                            <mat-option *ngFor="let h of doctordd"
+                                [value]="h.appt_DO_Id_FK">{{h.doctor_Name}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="fixappointment.get('appt_DO_Id_FK').hasError('required')">Doctor is
+                            required</mat-error>
+                    </mat-form-field>
+                </div>
+
+            </div>
+            <!-- <div class="footer_button">
+                    <button routerLink="/base/task/manualappointment" class="cancel" mat-raised-button color="warn">Close</button>
+                    <button class="save" mat-raised-button color="primary" (click)="updateform()">Fix Appointment</button>
+                </div> -->
+        </fieldset>
+    </form>
+</div>
+<div mat-dialog-actions align="end">
+    <button class="save" mat-raised-button color="primary" [disabled]="fixappointment.invalid"
+        (click)="updateform()">Update</button>
+    <button mat-dialog-close class="cancel" mat-raised-button color="warn">Close</button>
+</div>
+<!-- <div mat-dialog-actions align="end" >
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+</div> -->

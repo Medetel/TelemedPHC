@@ -1,0 +1,157 @@
+<h1 mat-dialog-title>View Callcenter Agent</h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content>
+    <form [formGroup]="callcenter">
+        <div class="row">
+            <div class="col-md-12">
+                <div align="center">
+                    <h4>Callcenter Agent Image</h4>
+                </div>
+                <div align="center">
+                    <img class="images" matPrefix [src]="Image_Url" width="100px" height="100px" alt="image not found">
+                </div>
+            </div>
+
+            <fieldset>
+                <legend>Personal Info</legend>
+                <div class="row">
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Code</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="Call_Ag_code">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>FirstName</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="Call_Ag_FirstName">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>LastName</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="Call_Ag_LastName">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>DOB</mat-label>
+                            <input style="color: seagreen;" matInput formControlName="Call_Ag_DOB">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label> Gender</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="Call_Ag_Gender">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Qualification</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="Call_Ag_Qua_Id">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Designation</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="Call_Ag_Des_Id">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Skill Set</mat-label>
+                            <input style="color: seagreen;" matInput placeholder=""
+                                formControlName="Call_Ag_Skill_Desc">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Hospital</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="Call_Ag_Hos_Id">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Communication Details</legend>
+                <div class="row">
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Mobile Number</mat-label>
+                            <input style="color: seagreen;" matInput placeholder=""
+                                formControlName="Call_Ag_MobileNumber">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Alternate Number</mat-label>
+                            <input style="color: seagreen;" matInput placeholder=""
+                                formControlName="Call_Ag_AlternativeNumber">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Landline Number</mat-label>
+                            <input style="color: seagreen;" matInput placeholder=""
+                                formControlName="Call_Ag_LandLineNumber">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4 mt-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Email Id</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="Call_Ag_Email">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Address</mat-label>
+                            <textarea style="color: seagreen;" matInput formControlName="Call_Ag_Address"></textarea>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-4 mt-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Country</mat-label>
+                            <input style="color: seagreen;" matInput placeholder=""
+                                formControlName="Call_Ag_Country_Id">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>State</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="Call_Ag_ST_Id">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>District</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="Call_Ag_DI_Id">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Taluk</mat-label>
+                            <input style="color: seagreen;" matInput formControlName="taluk_Id_Fk">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Village</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="Call_Ag_Village">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Postal Code</mat-label>
+                            <input style="color: seagreen;" matInput placeholder="" formControlName="Call_Ag_PostalCode">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+</div>

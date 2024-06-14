@@ -1,0 +1,44 @@
+.col-md-2{
+    height: 600px;
+    width: 100px;
+    // background-color: rgb(173, 240, 245);
+}
+#reight{
+    height: 600px;
+    width: 100px;
+    // background-color: rgb(176, 225, 226);
+}
+.butt{
+    padding: 5px;
+}
+
+button:hover{
+    width:max-content;
+    background-color: beige;
+    
+    color: black;
+}
+button:focus{
+    background-color: burlywood;
+    color: white;
+    border-radius: 20px;
+}
+button{
+    text-align: left;
+    font-size: 11pt;
+}
+span{
+    color:royalblue;
+}
+.patient h4{
+    margin-bottom: 10px !important;
+}
+.btn{
+    background-color: blue;
+    color: white;
+    
+}
+.btn :hover{
+    cursor: none;
+}
+

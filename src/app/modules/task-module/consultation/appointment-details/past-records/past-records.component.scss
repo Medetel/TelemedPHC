@@ -1,0 +1,342 @@
+// .example-full-width {
+//     width: 100%;
+//   }
+//   .rec{
+//     background-color: rgb(171, 236, 236);
+//     font-size: 13px;
+//     font-weight: 600;
+//     height: 25px;
+// }
+// span{
+//   margin-top: -40%;
+// }
+
+// input[type=file]::file-selector-button {
+//     border: 1px solid #246ddb;
+//     padding: .9em .9em;
+//     border-radius: .1em;
+//     background-color: #6294df;
+//     transition: 1s;
+//     margin-top: -1.9%;
+//     margin-left:-3.9%;
+//     color: white;
+//   }
+  
+//   input[type=file]::file-selector-button:hover {
+//     background-color: rgb(171, 236, 236);
+//     border: 2px solid #00cec9;
+//     color: black;
+//   }
+  
+//   .form-control{
+//     height: 44.6px;
+//     border-radius: .5em;
+//     border: 2px solid #246ddb;
+//     width: 45%;
+//     margin-bottom: 1%;
+//   }
+  
+//   .content{
+//    height: 90px;
+//    border: 1px solid #456fad;
+//   } 
+  
+//   button{
+//     margin-top: 2%;
+//     float: right;
+//     margin-right: 4%;
+//   }
+
+//   #forms_center {
+//     position: absolute;
+//     left: 20%;
+//     right: 20%;
+//     box-sizing: border-box;
+//   }
+  
+//   .example-full-width {
+//     width: 100%;
+//   }
+
+//   .mat-dialog-title {
+//     color: #0e265f;
+//   }
+  
+//   .mes {
+//     width: 40px;
+//   }
+  
+//   .mes:hover {
+//     border: 1px solid gray;
+//     box-shadow: 5px 2px gray;
+//   }
+  
+//   fieldset {
+//     // background-color: rgb(202, 229, 236)!important;
+//     border-radius: 10px;
+//     margin-top: 10px;
+//     border: 1px solid black;
+//     width: 100%;
+//   }
+  
+//   legend {
+//     background-color: white;
+//     width: auto;
+//   }
+//   form{
+//     width: 150%;
+//   }
+
+.card {
+  margin-top: 2%;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+// .drag {
+//     float: right;
+//     background-color: rgb(65, 65, 192);
+//     color: white;
+//     margin-top: 2%;
+// }
+
+mat-card {
+  margin-top: 2%;
+}
+
+.box mat-card button {
+  background-color: rgb(65, 65, 192);
+  color: white;
+  margin-left: 90%;
+}
+
+mat-icon {
+  color: rgb(8, 60, 158);
+}
+
+.user {
+  margin-left: 4%;
+  margin-top: -2.5%;
+  color: rgb(168, 166, 166);
+}
+
+.IMG1 {
+  width: 12%;
+  height: 70px;
+}
+
+
+.docs {
+  width: 20%;
+  height: 180px;
+  border: 1px solid rgb(86, 88, 88);
+  // background-color: aquamarine;
+
+}
+
+// mat-card-header{
+//     background-color: rgb(195, 195, 199);
+//     width: 117%;
+//     height: 40px;
+//     margin-left: -8.5%;
+//     margin-top: 60% !important;
+//     // border : 1px solid rgb(109, 108, 108);
+// }
+
+
+.docimg {
+  width: 60%;
+  height: 110px;
+}
+
+mat-card-header {
+  width: 30%;
+  height: 150px;
+  // border: 1px solid grey;
+  border-radius: 20px;
+  margin-top: -3% !important;
+  margin-left: -3.5% !important;
+  float: left;
+}
+
+.appoin6 {
+  // background-color: aquamarine;
+  height: 150px;
+  width: 42%;
+  border-radius: 20px;
+}
+
+.dash {
+  float: right;
+  margin-right: 25%;
+}
+
+h4 {
+  margin-top: 1%;
+  font-size: 23px;
+  font-weight: 700;
+  color: rgb(98, 206, 206);
+  margin-bottom: 13%;
+}
+
+h1 {
+  font-size: 25px;
+  font-weight: 900;
+  text-align: center;
+  margin-top: 10%;
+
+}
+
+.para {
+  margin-top: 12%;
+  font-size: 13px;
+  font-weight: 300;
+  color: grey;
+  margin-left: 6%;
+
+}
+
+// .img2 {
+//     width: 80%;
+//     height: 110px;
+//     margin-top: 10%;
+//     margin-left: -10%;
+//     border-radius: 10px;
+// }
+
+#forms_center {
+  position: absolute;
+  left: 20%;
+  right: 20%;
+  box-sizing: border-box;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+//
+
+
+.mat-dialog-title {
+  color: #0e265f;
+}
+
+.mes {
+  width: 40px;
+}
+
+.mes:hover {
+  border: 1px solid gray;
+  box-shadow: 5px 2px gray;
+}
+
+fieldset {
+  background-color:white!important;
+  border-radius: 10px;
+  margin-top: 10px;
+  border: 1px solid black;
+  width: 100%;
+}
+
+legend {
+  background-color: white;
+  width: auto;
+  font-size: 20px;
+}
+
+
+
+
+@media screen and (max-width:576px) {
+  .card {
+      margin-top: 2%;
+      font-size: 20px;
+      font-weight: 600;
+      height: 180px;
+  }
+
+  .drag {
+      background-color: rgb(65, 65, 192);
+      color: white;
+      margin-right: 54%;
+      margin-top: 8%;
+  }
+
+  mat-card {
+      margin-top: 2%;
+      position: fixed;
+  }
+
+  .IMG1 {
+      width: 21%;
+      height: 75px;
+  }
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.rec{
+  background-color: rgb(171, 236, 236);
+  font-size: 15px;
+  font-weight: 500;
+  text-align: center;
+}
+.heading{
+   margin-top: 3%;
+   text-align: center;
+   font-size: 14px;
+   color: blue;
+}
+
+input[type=file]::file-selector-button {
+border: 1px solid #246ddb;
+padding: .9em .9em;
+border-radius: .1em;
+background-color: #6294df;
+transition: 1s;
+margin-top: -1.9%;
+margin-left:-3.9%;
+color: white;
+}
+
+input[type=file]::file-selector-button:hover {
+background-color: rgb(171, 236, 236);
+border: 2px solid #00cec9;
+color: black;
+}
+
+.form-control{
+height: 44.6px;
+border-radius: .5em;
+border: 2px solid #246ddb;
+width: 45%;
+margin-bottom: 1%;
+}
+
+.content{
+height: 90px;
+border: 1px solid #456fad;
+} 
+
+button{
+margin-top: 2%;
+float: right;
+margin-right: 4%;
+}
+
+.tables{
+  margin-top: 3%;
+}
+
+table {
+  width: 100%;
+  margin-top: 1%;
+}
+
+.mat-header-cell {
+   color: white !important;
+   background-color: #2970db;
+}

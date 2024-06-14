@@ -1,0 +1,341 @@
+<mat-card>
+    <mat-card-title>Add Pharmacy</mat-card-title>
+    <mat-divider></mat-divider>
+    <form [formGroup]="pharmacy">
+        <div class="row">
+            <!-- <div class="col-md-12">
+                    <div align="center">
+                        <h4>Pharmacy Logo</h4>
+                    </div>
+                    <div align="center">
+                        <img class="images" [hidden]="imgs" matPrefix  [src]="Image_Url.url" width="100px" height="100px"
+                            alt="image not found">
+                        <input class="file" type="file" formControlName="hos_HospitalLogo"  (change)="onSelectFile($event)">
+                    </div>
+                </div> -->
+            <fieldset>
+                <legend>Pharmacy Info</legend>
+                <div class="row">
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Pharmacy Code</mat-label>
+                            <!-- <input matInput placeholder="" formControlName="ph_Code"> -->
+                            <input matInput #input minlength="5" maxlength="5" placeholder="Eg.Hos01"
+                                formControlName="ph_Code" required>
+                            <mat-error *ngIf="pharmacy.get('ph_Code').hasError('required')">pharmacy Code is required
+                            </mat-error>
+                            <mat-error
+                                *ngIf="pharmacy.get('ph_Code').hasError('invalidName') || pharmacy.get('ph_Code').hasError('pattern') ">
+                                <!-- please enter alpha numerical characters only and contains (5) characters -->
+                                Please enter alpha numerical characters only minimum:1/Maximum:5
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Pharmacy Registration Number</mat-label>
+                            <input matInput #input maxlength="10" placeholder="Eg.ABC00101" formControlName="regNo"
+                                required>
+                            <mat-error *ngIf="pharmacy.get('regNo').hasError('required')">Pharmacy Registration Number
+                                is required</mat-error>
+                            <mat-error
+                                *ngIf="pharmacy.get('regNo').hasError('invalidName') || pharmacy.get('regNo').hasError('pattern') ">
+                                Please enter alpha numerical characters only
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Name</mat-label>
+                            <input matInput placeholder="" maxlength="20" formControlName="ph_Name" required>
+                            <mat-error *ngIf="pharmacy.get('ph_Name').hasError('required')">Name is required</mat-error>
+                            <mat-error
+                                *ngIf="pharmacy.get('ph_Name').hasError('invalidName') || pharmacy.get('ph_Name').hasError('pattern')">
+                                Please enter alphabet and space is not allowed in starting and ending
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <!-- <div class="col-md-4">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Catagory</mat-label>
+                        <mat-select formControlName="cat_id" required>
+                            <mat-option *ngFor="let c of catagory" [value]="c.id">{{c.name}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="pharmacy.get('cat_id').hasError('required')">Category is required</mat-error>
+                    </mat-form-field>
+                </div>   -->
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Catagory</mat-label>
+                            <mat-select formControlName="cat_id" required>
+                                <mat-option *ngFor="let c of catagory" [value]="c.id">{{c.name}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="pharmacy.get('cat_id').hasError('required')">Category is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Type</mat-label>
+                            <mat-select formControlName="T_Id" required>
+                                <mat-option *ngFor="let t of type" [value]="t.id">{{t.type}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="pharmacy.get('T_Id').hasError('required')">Type is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Primary/Branch</mat-label>
+                            <mat-select formControlName="primaryOrBranch" #pbvalue
+                                (selectionChange)="Phy_p_b(pbvalue.value)" required>
+                                <mat-option value="Primary">Primary</mat-option>
+                                <mat-option value="Branch">Branch</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="pharmacy.get('primaryOrBranch').hasError('required')">Primary/Branch
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="branch_hid">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Branch</mat-label>
+                            <mat-select formControlName="ph_Branch" #brval
+                                (selectionChange)="change_branch(brval.value)" required>
+                                <mat-option *ngFor="let b of branch" [value]="b.ph_Id">{{b.ph_Name}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="pharmacy.get('ph_Branch').hasError('required')">Branch is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="network_hid">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Network</mat-label>
+                            <mat-select formControlName="ph_NE_Id" required>
+                                <mat-option *ngFor="let n of networkdd" [value]="n.nE_Id">{{n.nE_Description}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="pharmacy.get('ph_NE_Id').hasError('required')">Network is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>GST</mat-label>
+                            <input matInput #input minlength="15" maxlength="15" placeholder="Eg.22AAAAA0000A1s3"
+                                formControlName="GsTno" required>
+                            <mat-error *ngIf="pharmacy.get('GsTno').hasError('required')">GST No is required</mat-error>
+                            <mat-error
+                                *ngIf="pharmacy.get('GsTno').hasError('invalidName') || pharmacy.get('GsTno').hasError('pattern') ">
+                                please enter alphanumarical characters and maximum 15 characters only
+                            </mat-error>
+                            <mat-error *ngIf="pharmacy.get('GsTno').hasError('minlength')">
+                                Please enter a minimum of 15 digits
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>PAN No</mat-label>
+                            <input matInput #input minlength="10" maxlength="10" placeholder="Eg.AAAAA1234A"
+                                formControlName="PaNno" required>
+                            <mat-error *ngIf="pharmacy.get('PaNno').hasError('required')">PAN No is required</mat-error>
+                            <mat-error
+                                *ngIf="pharmacy.get('PaNno').hasError('invalidName') || pharmacy.get('PaNno').hasError('pattern') ">
+                                please enter alphanumarical characters and maximum 10 characters only
+                            </mat-error>
+                            <mat-error *ngIf="pharmacy.get('PaNno').hasError('minlength')">
+                                Please enter a minimum of 10 digits
+                            </mat-error>
+                        </mat-form-field>
+
+                    </div>
+                    <div class="col-md-5">
+                        <!-- <mat-form-field class="example-full-width" appearance="legacy"> -->
+                        <!-- <mat-label>upload photo</mat-label> -->
+                        <!-- <mat-select formControlName="uploadphoto" required>
+                              
+                            </mat-select> -->
+                        <mat-label>Upload Logo</mat-label>
+                        <div class="d-flex">
+
+                            <input type="file" formControlName="Ph_Logo" accept="image/*"
+                                (change)="onSelectPhoto($event)">
+                            <img class="images" matPrefix [src]="Image_Url" width="100px" height="100px"
+                                alt="image not found">
+                        </div>
+                        <!-- </mat-form-field> -->
+                    </div>
+                    <div>
+                        <mat-label>Upload Mou Document</mat-label>
+                        <div>
+
+                            <input type="file" formControlName="MOUDocument" accept=".pdf"
+                                (change)="onselectfiles($event)">
+                        </div>
+                        <!-- <mat-error *ngIf="doctor.get('DO_SP_Id_FK').hasError('required')" >Specilization is required</mat-error> -->
+                        <!-- </mat-form-field>  -->
+                    </div>
+
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Communication Details</legend>
+                <div class="row">
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Mobile Number</mat-label>
+                            <input matInput #input minlength="10" maxlength="10" placeholder="Eg.9000000001"
+                                formControlName="ph_MobileNumber" required>
+                            <mat-error *ngIf="pharmacy.get('ph_MobileNumber').hasError('required')">Mobile number is
+                                required</mat-error>
+                            <mat-error
+                                *ngIf="pharmacy.controls['ph_MobileNumber'].hasError('invalidName') || pharmacy.controls['ph_MobileNumber'].hasError('pattern') ">
+                                Please enter valid 10 digit mobile number
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Alternate Number</mat-label>
+                            <input matInput #input minlength="10" maxlength="10" placeholder="Eg.9000000001"
+                                formControlName="ph_AlterNumber">
+                            <mat-error
+                                *ngIf="pharmacy.controls['ph_AlterNumber'].hasError('invalidName') || pharmacy.controls['ph_AlterNumber'].hasError('pattern') ">
+                                Please enter valid 10 digit Alternate number
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Landline Number</mat-label>
+                            <input matInput #input minlength="5" maxlength="11" placeholder="Eg.080-30000000"
+                                formControlName="ph_LandLineNo">
+                            <mat-error
+                                *ngIf="pharmacy.controls['ph_LandLineNo'].hasError('invalidName') || pharmacy.controls['ph_LandLineNo'].hasError('pattern') ">
+                                Please enter valid 11 digit Landline number
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4 mt-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Email Id</mat-label>
+                            <input matInput placeholder="" formControlName="ph_Email" required>
+                            <mat-error *ngIf="pharmacy.get('ph_Email').hasError('required')">Email Id is
+                                required</mat-error>
+                            <mat-error
+                                *ngIf="pharmacy.controls['ph_Email'].hasError('invalidName') || pharmacy.controls['ph_Email'].hasError('pattern') ">
+                                Please enter a valid email address
+                            </mat-error>
+
+
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Address</mat-label>
+                            <textarea matInput placeholder="" formControlName="ph_Address" required></textarea>
+                            <!-- <input matInput placeholder="" formControlName="hos_HospitalAddress"> -->
+                            <mat-error *ngIf="pharmacy.get('ph_Address').hasError('required')">Address is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4 mt-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Country</mat-label>
+                            <mat-select formControlName="ph_COUN_Id_FK" #choosedValue
+                                (valueChange)="countrychange(choosedValue.value)" required>
+                                <mat-option *ngFor="let c of country" [value]="c.cntry_id">{{c.country_name}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="pharmacy.get('ph_COUN_Id_FK').hasError('required')">County is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>State</mat-label>
+                            <mat-select formControlName="ph_ST_Id_FK" #selectval
+                                (valueChange)="statechange(selectval.value)" required>
+                                <mat-option *ngFor="let s of state" [value]="s.stat_id">{{s.state_name}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="pharmacy.get('ph_ST_Id_FK').hasError('required')">State is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>District</mat-label>
+                            <mat-select formControlName="ph_DI_Id_FK" #districtval
+                                (valueChange)="distritchange(districtval.value)" required>
+                                <mat-option *ngFor="let d of district" [value]="d.district_id">{{d.district_name}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="pharmacy.get('ph_DI_Id_FK').hasError('required')">District is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Taluk</mat-label>
+                            <mat-select formControlName="ph_tl_Id" #talukval required>
+                                <mat-option *ngFor="let t of taluk" [value]="t.taluk_id">{{t.taluk_name}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="pharmacy.get('ph_tl_Id').hasError('required')">Taluk is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Village</mat-label>
+                            <!-- <mat-select formControlName="Hos_Gram_Id" #villageval
+                                                    (valueChange)="selectpincode(villageval.value)" required>
+                                                    <mat-option *ngFor="let g of gram" [value]="g.gram_id">{{g.gram_name}}</mat-option>
+                                                </mat-select> -->
+                            <input matInput #input maxlength="20" placeholder="" formControlName="ph_Village" required>
+                            <mat-error *ngIf="pharmacy.get('ph_Village').hasError('required')"> Village is
+                                required</mat-error>
+                            <mat-error
+                                *ngIf="pharmacy.get('ph_Village').hasError('invalidName') || pharmacy.get('ph_Village').hasError('pattern') ">
+                                Please enter alphabet and space is not allowed in starting and ending
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Postal Code</mat-label>
+                            <input matInput #input minlength="6" maxlength="6" placeholder="Eg.500000"
+                                formControlName="ph_PostalCode" required>
+                            <!-- <mat-error
+                                *ngIf="pharmacy.get('ph_PostalCode').hasError && !pharmacy.get('ph_PostalCode').hasError('required')">
+                                Postal code contain 6 digits
+                            </mat-error> -->
+                            <mat-error *ngIf="pharmacy.get('ph_PostalCode').hasError('required')">Postal code is
+                                required</mat-error>
+                            <mat-error
+                                *ngIf="pharmacy.controls['ph_PostalCode'].hasError('invalidName') || pharmacy.controls['ph_PostalCode'].hasError('pattern')">
+                                Please enter 6 digit postal code
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Website URL </mat-label>
+                            <input matInput placeholder="" formControlName="ph_web_url" maxlength="30">
+                            <mat-error *ngIf="pharmacy.controls['ph_web_url'].hasError('pattern')">
+                                Please enter valid url
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="footer_button">
+                    <button routerLink="/base/master/pharmacy" class="cancel" mat-raised-button
+                        color="warn">Close</button>
+                    <button class="save" mat-raised-button color="primary" [disabled]="pharmacy.invalid"
+                        (click)="save()">Save</button>
+                </div>
+            </fieldset>
+        </div>
+
+    </form>
+</mat-card>

@@ -1,0 +1,97 @@
+<h1 mat-dialog-title>Approve Doctor</h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content>
+    <form [formGroup]="doctor">
+        <div class="row">
+            <div class="col-md-4">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Registration Number</mat-label>
+                    <input style="color: seagreen;" matInput placeholder="" formControlName="Regno">
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>FirstName</mat-label>
+                    <input style="color: seagreen;" matInput placeholder="" formControlName="DO_FirstName">
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>LastName</mat-label>
+                    <input style="color: seagreen;" matInput placeholder="" formControlName="DO_LastName">
+                </mat-form-field>
+            </div>
+
+            <div class="col-md-4">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label> Gender</mat-label>
+                    <input style="color: seagreen;" matInput placeholder="" formControlName="DO_Gender">
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Designation</mat-label>
+                    <input style="color: seagreen;" matInput placeholder="" formControlName="DO_DE_Id_FK">
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Department</mat-label>
+                    <input style="color: seagreen;" matInput placeholder="" formControlName="DO_CD_Id_FK">
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Specialist Doctor</mat-label>
+                    <input style="color: seagreen;" matInput placeholder="" formControlName="DO_Spc_Id_FK">
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Specialization Category</mat-label>
+                    <input style="color: seagreen;" matInput placeholder="" formControlName="DO_SC_Id_FK">
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Specialization Description</mat-label>
+                    <input style="color: seagreen;" matInput placeholder="" formControlName="DO_SP_Id_FK">
+                </mat-form-field>
+            </div>
+            <!-- <div class="col-md-4">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Specilization</mat-label>
+                    <input style="color: seagreen;" matInput placeholder="" formControlName="DO_SP_Id_FK">
+                </mat-form-field>
+            </div> -->
+            <div class="col-md-4">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Hospital/Clinic</mat-label>
+                    <input style="color: seagreen;" matInput placeholder="" formControlName="DO_HO_Id_FK">
+                </mat-form-field>
+            </div>
+            <div class="col-md-4" [hidden]="hos_netid">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Network</mat-label>
+                    <input style="color: seagreen;" matInput placeholder="" formControlName="DO_NE_Id_FK">
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Mobile Number</mat-label>
+                    <input style="color: seagreen;" matInput placeholder="" formControlName="DO_MobileNumber">
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Remark</mat-label>
+                    <input style="color: seagreen;" matInput placeholder="" formControlName="Remarks">
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions align="end">
+    <button id="save" mat-raised-button color="primary" (click)="approveform()">Approval</button>
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+</div>

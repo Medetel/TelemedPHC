@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>Approve Designation</h1>
+<mat-divider></mat-divider>
+<!-- <div mat-dialog-content> -->
+    <form [formGroup]="designation">
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Designation Code</mat-label>
+                    <input style="color: seagreen;"  matInput  formControlName="designation_code" >
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Designation</mat-label>
+                    <input style="color: seagreen;" matInput  formControlName="designation_desc" >
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Remarks</mat-label>
+                    <textarea style="color: seagreen;" maxlength="200" matInput formControlName="Remarks"></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+      </form>
+<!-- </div> -->
+<div mat-dialog-actions align="end" >
+    <button id="save" mat-raised-button color="primary"   (click)="approveform()" >Approve</button>
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+</div>
+<!-- src/app/modules/register-module/patient-registration/add-patient-registration/add-patient-registration.component.ts -->

@@ -1,0 +1,80 @@
+<!-- <!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Checkout form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+ </head>
+<body> 
+      <div class="card">
+     
+        <h1>CCAvenue Payment gateway</h1><br> 
+        
+      </div> 
+      <button mat-raised-button color="primary" (click)="PayNow()">
+        Pay Now
+      </button>
+</body>
+</html>   -->
+
+<mat-card class="Payments">
+  <!-- <img src="../../../../assets/images/payment1.png" class="img">Pay for consultation -->
+  <h1 style="font-weight: bold;">Pay for consultation</h1>
+  <div class="col-md-4 " style="margin-left: 60%;margin-top: -4%;">
+    <!-- <p style="margin-left: 20px;font-size: 12px;">ಅಪಾಯಿಂಟ್ಮೆಂಟ್ ಅನ್ನು ಹೇಗೆ ಸೇರ್ಪಡಿಸುವುದು? <a
+          routerLink="/base/task/v3_kannada">ಕ್ಲಿಕ್ ಮಾಡಿ</a></p> -->
+    <p style="margin-left: 20px;font-size: 12px;">ಸಮಾಲೋಚನೆಗಾಗಿ ಪಾವತಿಸುವುದು ಹೇಗೆ ? <a
+        routerLink="/base/task/Pay_for_consult_kannada">ಕ್ಲಿಕ್ ಮಾಡಿ</a></p>
+    <p style="margin-left: 20px;font-size: 12px;">How_to_pay_for_consultations_English <a
+        routerLink="/base/task/How_To_pay_consulatation_ENG">Click Here</a></p>
+  </div>
+</mat-card>
+<div class="search-bar">
+  <mat-form-field class="search-input">
+    <input matInput [(ngModel)]="searchDoctor" (keyup)="applySearch()" placeholder="Search Patient Name">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+</div>
+<mat-card class="date" *ngFor="let d of cons_data">
+  <mat-card class="day">
+    <mat-card-header
+      style="background-color:#41a1be; width: 161%; height: 20px; margin-left:-30%; margin-top: -29%; border-radius: 5px;">
+    </mat-card-header>
+    <span class="disp"> {{d.cons_date | date: "E" | uppercase}} </span>
+  </mat-card>
+  <p class="details">
+    Doctor: {{ d.doctor_name }} ({{d.specialization}})
+    <br>
+    Patient:  {{d.billing_name}}
+    <br>
+    {{ d.cons_date}}, {{d.cons_time | time24to12Transform}}
+    <br>
+    Consulation Fee (₹) : {{d.consultation_fee}}
+    <br>
+    Package Fee (₹) : {{d.package_fee !== 987654 ? d.package_fee : 0}}
+    <br>
+    Total Fee (₹): {{ calculateTotalFee(d.consultation_fee, d.package_fee) }}
+    <br>
+  </p>
+ 
+  <div class="pay-now-container">
+    <button *ngIf="d.is_active == true" style="margin-right: 30px;" mat-raised-button color="accent" (click)="viewvitals(d)">
+      View Vitals
+    </button>
+    <button *ngIf="d.package_fee !== 987654 && d.is_active == false" style="margin-right: 30px;" mat-raised-button color="primary"
+      (click)="vitalSigns(d)">
+      Add Vitals
+    </button>
+    <button style="margin-right: 30px;" mat-raised-button color="primary" (click)="package(d)" [disabled]="d.package_fee !== 987654">
+      {{ d.package_fee !== 987654 ? 'Package Added' : 'Add Package' }}
+    </button>
+    <!-- <button *ngIf="d.package_fee === 987654" style="margin-right: 30px;" mat-raised-button color="primary" (click)="package()">
+      Add Package
+    </button> -->
+    <button mat-raised-button color="primary" [disabled]="d.package_fee === 987654" (click)="PayNow(d)">
+      Pay Now
+    </button>
+  </div>
+
+</mat-card>

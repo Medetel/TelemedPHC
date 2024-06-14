@@ -1,0 +1,276 @@
+<mat-card>
+    <mat-card-title>Add Callcenter Agent</mat-card-title>
+    <mat-divider></mat-divider>
+    <form [formGroup]="callcenter">
+        <div class="row">
+            <div class="col-md-12">
+                <div align="center">
+                    <mat-label>Upload Image</mat-label>
+                    <br>
+                    <br>
+                    <img class="images" matPrefix [src]="Image_Url" width="100px" height="100px" alt="image not found">
+                    <input type="file" formControlName="Call_Ag_Photo" (change)="onSelectFile($event)">
+                </div>
+            </div>
+
+            <fieldset>
+                <legend>Personal Info</legend>
+                <div class="row">
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Code</mat-label>
+                            <input matInput #input maxlength="10" placeholder="Eg.ClA01" formControlName="Call_Ag_code"
+                                required>
+                            <mat-error *ngIf="callcenter.get('Call_Ag_code').hasError('required')">Code is
+                                required</mat-error>
+                            <mat-error
+                                *ngIf="callcenter.controls['Call_Ag_code'].hasError('invalidName') || callcenter.controls['Call_Ag_code'].hasError('pattern') ">
+                                Please enter Alpha Numerical characters only
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>First Name</mat-label>
+                            <input matInput placeholder="" maxlength="45" formControlName="Call_Ag_FirstName" required>
+                            <mat-error *ngIf="callcenter.get('Call_Ag_FirstName').hasError('required')">First Name is
+                                required</mat-error>
+                            <mat-error *ngIf="callcenter.get('Call_Ag_FirstName').hasError('alphaCheck')">
+                                Please enter alphabet characters
+                            </mat-error>
+                            <mat-error *ngIf="callcenter.get('Call_Ag_FirstName').hasError('spaceCheck')">
+                                First Name will not allow white space
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Last Name</mat-label>
+                            <input matInput placeholder="" maxlength="45" formControlName="Call_Ag_LastName" required>
+                            <mat-error *ngIf="callcenter.get('Call_Ag_LastName').hasError('required')">Last Name is
+                                required</mat-error>
+                            <mat-error *ngIf="callcenter.get('Call_Ag_LastName').hasError('alphaCheck')">
+                                Please enter alphabet characters
+                            </mat-error>
+                            <mat-error *ngIf="callcenter.get('Call_Ag_LastName').hasError('spaceCheck')">
+                                Last Name will not allow white space
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>DOB</mat-label>
+                            <input matInput [matDatepicker]="picker" formControlName="Call_Ag_DOB"
+                                max="{{maxDate | date:'yyyy-MM-dd'}}" readonly required>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                            <mat-error *ngIf="callcenter.get('Call_Ag_DOB').hasError('required')">DOB is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label> Gender</mat-label>
+                            <mat-select formControlName="Call_Ag_Gender" required>
+                                <mat-option *ngFor="let g of gender" [value]="g.text">{{g.text}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="callcenter.get('Call_Ag_Gender').hasError('required')">Gender is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Qualification</mat-label>
+                            <mat-select formControlName="Call_Ag_Qua_Id" required>
+                                <!-- #qualivalue (valueChange)="qualificationchange($event)" -->
+                                <mat-option *ngFor="let q of qualificationdd"
+                                    [value]="q.qualification_id">{{q.qualification_Name}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="callcenter.get('Call_Ag_Qua_Id').hasError('required')">Qualification is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Skill Set</mat-label>
+                            <input matInput placeholder="" maxlength="45" formControlName="Call_Ag_Skill_Desc" required>
+                            <mat-error *ngIf="callcenter.get('Call_Ag_Skill_Desc').hasError('required')">Skill Set is
+                                required</mat-error>
+                            <mat-error *ngIf="callcenter.get('Call_Ag_Skill_Desc').hasError('alphaCheck')">
+                                Please enter alphabet characters
+                            </mat-error>
+                            <mat-error *ngIf="callcenter.get('Call_Ag_Skill_Desc').hasError('spaceCheck')">
+                                First Name will not allow white space
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Designation</mat-label>
+                            <mat-select formControlName="Call_Ag_Des_Id" required>
+                                <mat-option *ngFor="let d of designationdd"
+                                    [value]="d.designation_id">{{d.designation_desc}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="callcenter.get('Call_Ag_Des_Id').hasError('required')">Designation is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Hospital</mat-label>
+                            <mat-select formControlName="Call_Ag_Hos_Id" required>
+                                <mat-option *ngFor="let h of hospitaldd"
+                                    [value]="h.hos_Id">{{h.hos_HospitalName}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="callcenter.get('Call_Ag_Hos_Id').hasError('required')">Hospital is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Communication Details</legend>
+                <div class="row">
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Mobile Number</mat-label>
+                            <input matInput #input minlength="10" maxlength="10" placeholder="Eg.9000000001"
+                                formControlName="Call_Ag_MobileNumber" required>
+                            <mat-error *ngIf="callcenter.get('Call_Ag_MobileNumber').hasError('required')"> Mobile Number is
+                                required</mat-error>
+                            <mat-error
+                                *ngIf="callcenter.controls['Call_Ag_MobileNumber'].hasError('invalidName') || callcenter.controls['Call_Ag_MobileNumber'].hasError('pattern') ">
+                                Please enter valid 10 digit mobile number
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Alternate Number</mat-label>
+                            <input matInput #input maxlength="10" placeholder="Eg.9000000001"
+                                formControlName="Call_Ag_AlternativeNumber">
+                            <mat-error
+                                *ngIf="callcenter.controls['Call_Ag_AlternativeNumber'].hasError('invalidName') || callcenter.controls['Call_Ag_AlternativeNumber'].hasError('pattern') ">
+                                Please enter valid 10 digit Alternate number
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Landline Number</mat-label>
+                            <input matInput #input maxlength="11" placeholder="Eg.080-30000000"
+                                formControlName="Call_Ag_LandLineNumber">
+                            <mat-error
+                                *ngIf="callcenter.controls['Call_Ag_LandLineNumber'].hasError('invalidName') || callcenter.controls['Call_Ag_LandLineNumber'].hasError('pattern') ">
+                                Please enter valid 11 digit Landline number
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4 mt-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Email Id</mat-label>
+                            <input matInput placeholder="Eg.abc@gmail.com" formControlName="Call_Ag_Email" required>
+                            <mat-error *ngIf="callcenter.get('Call_Ag_Email').hasError('required')">Email is
+                                required</mat-error>
+                            <mat-error
+                                *ngIf="callcenter.controls['Call_Ag_Email'].hasError('email') || callcenter.controls['Call_Ag_Email'].hasError('pattern') ">
+                                Please enter a valid email address
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Address</mat-label>
+                            <textarea matInput formControlName="Call_Ag_Address" required></textarea>
+                            <mat-error *ngIf="callcenter.get('Call_Ag_Address').hasError('required')">Address is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4 mt-3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Country</mat-label>
+                            <mat-select formControlName="Call_Ag_Country_Id" #choosedValue
+                                (valueChange)="countrychange(choosedValue.value)" required>
+                                <mat-option *ngFor="let c of country" [value]="c.cntry_id">{{c.country_name}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="callcenter.get('Call_Ag_Country_Id').hasError('required')"> country is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>State</mat-label>
+                            <mat-select formControlName="Call_Ag_ST_Id" #selectval
+                                (valueChange)="statechange(selectval.value)" required>
+                                <mat-option *ngFor="let s of state" [value]="s.stat_id">{{s.state_name}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="callcenter.get('Call_Ag_ST_Id').hasError('required')"> State is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>District</mat-label>
+                            <mat-select formControlName="Call_Ag_DI_Id" #districtval
+                                (valueChange)="distritchange(districtval.value)" required>
+                                <mat-option *ngFor="let d of district" [value]="d.district_id">{{d.district_name}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="callcenter.get('Call_Ag_DI_Id').hasError('required')"> District is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Taluk</mat-label>
+                            <mat-select formControlName="taluk_Id_Fk" required>
+                                <mat-option *ngFor="let t of taluk" [value]="t.taluk_id">{{t.taluk_name}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="callcenter.get('taluk_Id_Fk').hasError('required')"> Taluk is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Village</mat-label>
+                            <input matInput #input maxlength="20" placeholder="" formControlName="Call_Ag_Village"
+                                #villageval required>
+                            <!-- <mat-select formControlName="gram_Id_Fk" #villageval
+                        (valueChange)="selectpincode(villageval.value)" required>
+                            <mat-option *ngFor="let g of gram" [value]="g.gram_id">{{g.gram_name}}</mat-option>
+                        </mat-select> -->
+                            <mat-error *ngIf="callcenter.get('Call_Ag_Village').hasError('required')"> Village is
+                                required</mat-error>
+                            <mat-error
+                                *ngIf="callcenter.get('Call_Ag_Village').hasError('invalidName') || callcenter.get('Call_Ag_Village').hasError('pattern') ">
+                                Please enter alphabet and space is not allowed in starting and ending
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Postal Code</mat-label>
+                            <input matInput #input minlength="6" maxlength="6" placeholder="Eg.500000"
+                                formControlName="Call_Ag_PostalCode" required>
+                            <mat-error *ngIf="callcenter.get('Call_Ag_PostalCode').hasError('required')"> Postal code is
+                                required</mat-error>
+                            <mat-error
+                                *ngIf="callcenter.controls['Call_Ag_PostalCode'].hasError('invalidName') || callcenter.controls['Call_Ag_PostalCode'].hasError('pattern') ">
+                                Please enter valid 6 digit postal code
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="footer_button">
+                    <button routerLink="/base/master/support-agent" class="cancel" mat-raised-button
+                        color="warn">Close</button>
+                    <button class="save" [disabled]="callcenter.invalid" mat-raised-button color="primary"
+                        (click)="save()">Save</button>
+                </div>
+            </fieldset>
+        </div>
+    </form>
+</mat-card>

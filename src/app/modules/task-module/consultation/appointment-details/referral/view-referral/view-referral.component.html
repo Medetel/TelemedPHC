@@ -1,0 +1,42 @@
+<mat-card-title>View Referral</mat-card-title>
+<mat-card-content style="margin-top:5%;">
+    <form [formGroup]="viewreferral">
+        <div class="button_add">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Refered Hospital</mat-label>
+                        <input matInput placeholder="" formControlName="hos_Name"style="color: seagreen;"  readonly>
+                        <!-- <mat-select formControlName="hos_Id" required>
+                            <mat-option *ngFor="let s of splhospt" [value]="s.hos_Id">{{s.hos_HospitalName}}
+                            </mat-option>
+                        </mat-select> -->
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Referral Date</mat-label>
+                        <input matInput  formControlName="ref_Date" style="color: seagreen;" readonly>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Special Observations</mat-label>
+                        <textarea matInput placeholder="" formControlName="splObs" style="color: seagreen;" readonly></textarea>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Remarks</mat-label>
+                        <textarea matInput placeholder="" formControlName="remarks" style="color: seagreen;" readonly></textarea>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-12">
+                    <div align="center">
+                        <button mat-raised-button color="warn" mat-dialog-close>close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</mat-card-content>

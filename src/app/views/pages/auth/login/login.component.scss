@@ -1,0 +1,134 @@
+body {
+  padding-bottom: 0px !important;
+  overflow: hidden;
+}
+@media only screen and (max-width: 767px) {
+  body {
+    padding-bottom: 0px !important;
+    position: relative;
+    min-height: 100vh;
+    /* background-color: ; */
+    background-repeat: no-repeat;
+    background-position: center;  
+    background-size: cover;
+    opacity: 0.6;
+  }
+  body:before {
+    height: 100%;
+    width: 100%;
+    content: "";
+    position: absolute;  
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
+
+.logo-warapper {
+  padding: 20px 20px 30px;
+  text-align: center;
+}
+
+.logo-warapper img {
+  height: 75px;
+}
+.login-form-content {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  min-height: 50vh;
+}
+.login-banner {
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  background-position: center center;
+  background-attachment: fixed;
+  opacity: 0.6;
+}
+.login-wrapper {
+  background: #fff;
+  padding: 20px;
+  position: absolute; 
+  width: 300px;
+  box-shadow: 2px 5px 15px 0px #04234a;
+}
+
+.field-wrapper {
+  margin-top: 10px;
+}
+
+label {
+  padding: 0px;
+  font-size: 14px;
+}
+
+.login-wrapper .btn-custom {
+  width: 45%;
+}
+
+.link-holder {
+  text-align: justify;
+}
+
+.link-holder a {
+  color: #04234a;
+  text-decoration: none;
+  font-size: 12px;
+}
+.link-holder a:nth-child(1) {
+  float: left;
+}
+.link-holder a:nth-child(2) {
+  float: right;
+}
+
+.text-title {
+  font-family: "Cinzel";
+  color: #fff;
+  position: absolute;
+  font-size: 2em;
+  top: 40%;
+  transform: rotate(-15deg);
+  left: 20%;
+}
+
+.footer_button {
+  justify-content: center;
+  justify-items: center;
+  text-align: center !important;
+}
+#save,
+#cancel {
+  margin-left: 20px;
+}
+#forms_center {
+  position: absolute;
+  left: 20%;
+  right: 20%;
+  box-sizing: border-box;
+}
+.example-full-width {
+  width: 100%; 
+}
+.Login {
+  justify-content: center;
+  justify-items: center;
+  text-align: center !important;
+}
+.socialmedia_button {
+  margin-top: 5%;
+}
+#mail {
+  background-color: #4285F4;
+}
+#Facebook {
+  background-color: #3b5998;
+}
+.example-margin {
+  margin: 0 12px;
+}

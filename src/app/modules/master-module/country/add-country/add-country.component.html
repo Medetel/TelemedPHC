@@ -1,0 +1,36 @@
+<mat-card>
+    <mat-card-title>Add Country</mat-card-title>
+    <mat-divider></mat-divider>
+        <form [formGroup]="country">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                        <mat-label class="star">Country Code</mat-label>
+                        <input matInput #input  maxlength="10" placeholder="Eg.IND00001" formControlName="country_code" required>                        
+                        <mat-error *ngIf="checkError('country_code', 'required')">Country Code is required</mat-error>
+                        <mat-error *ngIf="country.controls['country_code'].hasError('alphaNumCheck') || country.controls['country_code'].hasError('pattern') ">
+                            Country Code must start with "COU" followed by numeric characters
+                        </mat-error>
+                    </mat-form-field> 
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                        <mat-label class="star">Country Name</mat-label>
+                        <input matInput placeholder="Eg.India" maxlength="45" formControlName="country_name" required>
+                        <mat-error *ngIf="checkError('country_name', 'required')">Country Name is required</mat-error>
+                        <mat-error *ngIf="country.get('country_name').hasError('alphaCheck')">
+                            Please enter alphabet characters
+                        </mat-error>
+                        <mat-error *ngIf="country.get('country_name').hasError('spaceCheck')">
+                            Country Name will not allow white space
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <br>
+            <div class="footer_button">
+                <button id="save" mat-raised-button color="primary" (click)="save()">Save</button>                
+                <button routerLink="/base/master/country" id="cancel" mat-raised-button color="warn">Close</button>
+            </div>
+        </form>
+</mat-card>

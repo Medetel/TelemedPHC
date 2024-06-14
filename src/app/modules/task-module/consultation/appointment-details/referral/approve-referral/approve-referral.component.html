@@ -1,0 +1,54 @@
+<mat-card-title>View Referral</mat-card-title>
+<mat-card-content style="margin-top:5%;">
+    <form [formGroup]="approvereferral">
+        <div class="button_add">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Refered Hospital</mat-label>
+                        <input matInput placeholder="" formControlName="hos_Name"style="color: seagreen;"  readonly>
+                        <!-- <mat-select formControlName="hos_Id" required>
+                            <mat-option *ngFor="let s of splhospt" [value]="s.hos_Id">{{s.hos_HospitalName}}
+                            </mat-option>
+                        </mat-select> -->
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Referral Date</mat-label>
+                        <input matInput  formControlName="ref_Date" style="color: seagreen;" readonly>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Special Observations</mat-label>
+                        <input matInput placeholder="" formControlName="splObs" style="color: seagreen;" readonly>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Remarks</mat-label>
+                        <input matInput placeholder="" formControlName="remarks" style="color: seagreen;" readonly>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>From-Time</mat-label>
+                        <input matInput type="time" matInput formControlName="select_FrmTime" min="09:00" max="18:00">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>To-Time</mat-label>
+                        <input matInput type="time" matInput formControlName="select_toTime" min="09:00" max="18:00">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-12">
+                    <div align="center">
+                        <button mat-raised-button color="primary" mat-dialog-close (click)="approve()">Approve</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</mat-card-content>

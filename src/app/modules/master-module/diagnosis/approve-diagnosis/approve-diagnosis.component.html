@@ -1,0 +1,36 @@
+<h1 mat-dialog-title>Approve Diagnosis</h1>
+<mat-divider></mat-divider>
+<!-- <div mat-dialog-content> -->
+<form [formGroup]="diagnosis">
+    <div class="row">
+        <div class="col-md-6">
+            <mat-form-field class="example-full-width" appearance="legacy">
+                <mat-label>Diagnosis Code</mat-label>
+                <input style="color: seagreen;" formControlName="dD_Code" matInput>
+            </mat-form-field>
+        </div>
+        <div class="col-md-6">
+            <mat-form-field class="example-full-width" appearance="legacy">
+                <mat-label>Diagnosis Category</mat-label>
+                <input style="color: seagreen;" matInput formControlName="dM_Name">
+            </mat-form-field>
+        </div>
+        <div class="col-md-6">
+            <mat-form-field class="example-full-width" appearance="legacy">
+                <mat-label>Diagnosis Description</mat-label>
+                <input style="color: seagreen;" matInput formControlName="dD_Desc">
+            </mat-form-field>
+        </div>
+        <div class="col-md-6">
+            <mat-form-field class="example-full-width" appearance="legacy">
+                <mat-label>Remarks</mat-label>
+                <textarea style="color: seagreen;" maxlength="200" matInput formControlName="Remarks"></textarea>
+            </mat-form-field>
+        </div>
+    </div>
+</form>
+<!-- </div> -->
+<div mat-dialog-actions align="end">
+    <button id="save" mat-raised-button color="primary" (click)="approveform()">Approve</button>
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+</div>

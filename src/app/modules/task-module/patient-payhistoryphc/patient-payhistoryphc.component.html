@@ -1,0 +1,53 @@
+<mat-card>
+    <mat-card-content>
+        <div class="row">
+            <div class="col-md-8">
+                <mat-card-title>Patient Payment History</mat-card-title>
+            </div>
+            <br>
+            <br>
+            <div class="table-responsive">
+                <div class="table-responsive"  *ngIf="data?.length > 0">
+                    <!-- *ngIf="mainData?.length > 0" -->
+                    <table [dtOptions]="dtOptions" datatable
+                        class="table table-striped table-bordered table-sm row-border hover">
+                        <thead class="thead-dark">
+                            <tr align="center">
+                                <th>SL.NO.</th>
+                                <th>Doctor Name</th>
+                                <th>Patient Name</th>
+                                <th>Amount ( ₹ )</th>
+                                <th>Payment Status</th>
+                                <th>Payment Date</th>
+                                <!-- <th rowspan="2" colspan="1">Action</th> -->
+                            </tr>
+                            <!-- <tr align="center">
+                                <th style="width:auto;">Patient Code</th>
+                                <th style="width:20%;">Patient Name</th>
+                            </tr> -->
+                        </thead>
+                        <tbody>
+                            <!-- *ngFor="let d of mainData;let i=index" -->
+                            <tr align="center" *ngFor="let d of data;let i=index" style="color: seagreen ;">
+                                <td>{{i+1}}</td>
+                                <td>{{d.doctor_name}}</td>
+                                <td>{{d.patient_name}}</td>
+                                <td>{{d.amount}}</td>
+                                <td>{{d.payment_status}}</td>
+                                <td>{{d.payment_date}}</td>
+                                <!-- <td>
+                                    <button id="view" [hidden]="viewhid" mat-icon-button color="primary"
+                                        matTooltip="View" [matTooltipPosition]="TooltipPosition"
+                                        matTooltipClass="tooltip-blue"
+                                        aria-label="Button that displays a tooltip in various positions">
+                                        <mat-icon id="vis">visibility</mat-icon>
+                                    </button>
+                                </td> -->
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

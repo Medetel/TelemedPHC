@@ -1,0 +1,79 @@
+<mat-card>
+    <mat-card-title>Edit Profile</mat-card-title>
+    <mat-divider></mat-divider>    
+        <form [formGroup]="profileupdate">           
+                <div class="row">
+                    <div class="col-md-12">
+                        <div align="center">                           
+                            <img [src]="image_Url" alt="image not found" width="100px" height="100px" />
+                            <!-- <input type="file"  formControlName="Image" (change)="onSelectFile($event)">  -->
+                            <input
+                            type="file"
+                            formControlName="Image"
+                            #Image accept="image/*"
+                            (change)="onSelectFile($event)"                                                     
+                           name="Image"
+                           id="Image"
+                          />                          
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>First Name *</mat-label>
+                            <input matInput formControlName="Firstname" id="Firstname" maxlength="80">                            
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Last Name</mat-label>
+                            <input matInput  formControlName="Lastname" id="Lastname" maxlength="80">                           
+                        </mat-form-field>
+                    </div>
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>DOB</mat-label>
+                        <input  matInput [matDatepicker]="FromDate" formControlName="DOB" id="DOB"
+                            placeholder="DD/MM/YYYY"  max="{{maxDate | date:'yyyy-MM-dd'}}" readonly>
+                        <mat-datepicker-toggle matSuffix [for]="FromDate"></mat-datepicker-toggle>
+                        <mat-datepicker #FromDate></mat-datepicker>
+                        <!-- <mat-error *ngIf="profileupdate.controls['DOB'].hasError('required')">DOB is required</mat-error> -->
+                    </mat-form-field>
+                </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Gender</mat-label>
+                            <mat-select formControlName="Gender">
+                                <mat-option value="Male">Male</mat-option>
+                                <mat-option value="Female">Female</mat-option>
+                                <mat-option value="Others">Others</mat-option>
+                              </mat-select>
+                              <!-- <mat-error *ngIf="profileupdate.controls['Gender'].hasError('required')">Gender is
+                                required</mat-error> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Email Id*</mat-label>
+                            <input matInput formControlName="EmailID"  maxlength="80" id="EmailID">                           
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Contact No *</mat-label>
+                            <input matInput  minlength="10" maxlength="10" id="Phonenumber" formControlName="Phonenumber">                           
+                        </mat-form-field>
+                    </div>
+                    </div>           
+        </form>
+        <div class="row">
+            
+            <div class="col-md-12">
+                <div align="center">
+                    <br>
+                    <button mat-raised-button color="primary" (click)="updateprofile()">Update</button>
+                </div>
+            </div>
+        </div>   
+ </mat-card> 

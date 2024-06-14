@@ -1,0 +1,285 @@
+<mat-card>
+    <div class="row">
+        <div class="col-md-9">
+            <mat-card-title>Consultation</mat-card-title>
+        </div>
+        <div class="col-md-3">
+            <p class="mt-2" style="margin-left: 60px;">How to consult a patient? <a
+                    routerLink="/base/task/v5">click here</a></p>
+            <!-- <p class="mt-2" style="margin-left: 60px;">How to consult a patient? <a
+                   [routerLink]="['/base/task/consultation_demo', 'consult_patient']">click here</a></p> -->
+        </div>
+    </div>
+    <mat-card-content>
+        <!-- <div class="button_add">
+            <<div class="row">
+                <div class="col-md-12">
+                    <button id="add" mat-raised-button color="primary" routerLink="/base/task/manualappointment/add-manualappointment">
+                        <mat-icon>add</mat-icon>Add Manual Appoinment
+                    </button>
+                </div>
+            </div>
+        </div> -->
+        <mat-tab-group animationDuration="0ms">
+            <mat-tab label="Today Consultation">
+                <div class="row">
+                    <div class="table-responsive" *ngIf="data?.length > 0">
+                        <table [dtOptions]="dtOptions" datatable
+                            class="table table-striped table-bordered table-sm row-border hover">
+                            <thead class="thead-dark">
+                                <tr align="center">
+                                    <th rowspan="2" colspan="1">
+                                        Sl.No</th>
+                                    <th rowspan="1" colspan="2">
+                                        Patient Details</th>
+                                    <th rowspan="2" colspan="1">
+                                        Doctor Name
+                                    </th>
+                                    <!-- <th rowspan="2" colspan="1">
+                                        Hospital Name
+                                    </th> -->
+
+                                    <th rowspan="2" colspan="1">
+                                        Clinic/Hospital Name
+                                    </th>
+                                    <!-- <th rowspan="1" colspan="2" >
+                                        Appointment Details
+                                    </th> -->
+                                    <th rowspan="1" colspan="3">
+                                        Consultation Details
+                                    </th>
+                                    <th rowspan="2" colspan="1">
+                                        Action
+                                    </th>
+                                </tr>
+                                <tr align="center">
+                                    <th style="width:auto;">Patient Code</th>
+                                    <th style="width:20%;">Name</th>
+                                    <!-- <th  style="width:20%;">Appointment Day</th>
+                                <th  style="width:20%;">Appointment Date</th> -->
+                                    <th style="width:20%;"> Day</th>
+                                    <th style="width:20%;"> Date</th>
+                                    <th style="width:20%;"> Time</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- *ngFor="let d of Data;let i=index" -->
+                                <tr align="center" *ngFor="let d of todaydate_records;let i=index"
+                                    [ngClass]="{'warn': (d.delete_flag==0  && (d.status==1 ||d.status==2 || d.status==3))? false:true,'all':d.status==2 || d.status==3 || d.status==1}">
+                                    <td> {{i+1}} </td>
+                                    <td> {{d.pR_Code}} </td>
+                                    <td>{{d.coN_PR_Name}}</td>
+                                    <td>{{d.coN_DO_Name}}</td>
+                                    <!-- Clinic/Hospital Name to be displayed accordingly  -->
+                                    <td *ngIf="(d.coN_HO_Id_FK === null);            
+                                           else pickListResponse">{{d.clinicName}}</td>
+                                    <ng-template #pickListResponse>
+                                        <td>{{d.coN_HospitalName}}</td>
+                                    </ng-template>
+                                    <!-- <td>{{d.appt_DateTime | date :'EEEE'}}</td>
+                            <td>{{d.appt_DateTime | date :'dd/MM/YYY'}}</td> -->
+                                    <td>{{d.coN_ConsultedDate | date :'EEEE'}}</td>
+                                    <td>{{d.coN_ConsultedDate | date :'dd/MM/YYY'}}</td>
+                                    <td>{{d.coN_ConsultedTime | time24to12Transform}}</td>
+
+                                    <td>
+                                        <button id="addb"
+                                            [disabled]="(d.status==5 || d.status==6 || d.status==7)? true:false"
+                                            (click)="Appointment(d)" [hidden]="addhid" mat-raised-button color="primary"
+                                            matTooltip="Add" [matTooltipPosition]="TooltipPosition"
+                                            matTooltipClass="tooltip-blue"
+                                            aria-label="Button that displays a tooltip in various positions">
+                                            <!-- <mat-icon id="vis">visibility</mat-icon> -->Add
+                                        </button>
+
+                                        <!-- <button id="edit" (click)="edit(d)"
+                                        [disabled]="(d.status==1 && d.delete_flag==0)? false:true" mat-icon-button
+                                        color="accent" matTooltip="edit" [matTooltipPosition]="TooltipPosition"
+                                        matTooltipClass="tooltip-yellow"
+                                        aria-label="Button that displays a tooltip in various positions">
+                                        <mat-icon id="vis">edit</mat-icon>
+                                    </button> -->
+                                        <button id="delete" (click)="delete(d)" [hidden]="deletehid"
+                                            [disabled]="(d.delete_flag == 0 && d.status==1 && d.status==2 || d.status==3 || d.status==6)? true:false"
+                                            mat-icon-button color="warn" matTooltip="delete"
+                                            [matTooltipPosition]="TooltipPosition" matTooltipClass="tooltip-red"
+                                            aria-label="Button that displays a tooltip in various positions">
+                                            <mat-icon id="vis">delete_outline</mat-icon>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </mat-tab>
+
+            <mat-tab label="Future Consultation">
+                <div class="row">
+                    <div class="table-responsive" *ngIf="data?.length > 0">
+                        <table [dtOptions]="dtOptions" datatable
+                            class="example-full-width table table-striped table-bordered table-sm row-border hover">
+                            <thead class="thead-dark">
+                                <tr align="center">
+                                    <th rowspan="2" colspan="1">
+                                        Sl.No</th>
+                                    <th rowspan="1" colspan="2">
+                                        Patient Details</th>
+                                    <th rowspan="2" colspan="1">
+                                        Doctor Name
+                                    </th>
+                                    <th rowspan="2" colspan="1">
+                                        Clinic/Hospital Name
+                                    </th>
+                                    <!-- <th rowspan="2" colspan="1">
+                                        Hospital Name
+                                    </th> -->
+                                    <!-- <th rowspan="1" colspan="2" >
+                                        Appointment Details
+                                    </th> -->
+                                    <th rowspan="1" colspan="3">
+                                        Consultation Details
+                                    </th>
+                                    <th rowspan="2" colspan="1">
+                                        Action
+                                    </th>
+                                </tr>
+                                <tr align="center">
+                                    <th style="width:20%;">Patient Code</th>
+                                    <th style="width:20%;">Patient Name</th>
+                                    <!-- <th  style="width:20%;">Appontment Day</th>
+                                <th  style="width:20%;">Appontment Date</th> -->
+                                    <th style="width:20%;"> Day</th>
+                                    <th style="width:20%;"> Date</th>
+                                    <th style="width:20%;"> Time</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- *ngFor="let d of Data;let i=index" -->
+                                <tr align="center" *ngFor="let d of future_records;let i=index"
+                                    [ngClass]="{'warn': (d.delete_flag==0  && (d.status==1 ||d.status==2 || d.status==3))? false:true,'all':d.status==2 || d.status==3 || d.status==1}">
+                                    <td> {{i+1}} </td>
+                                    <td> {{d.pR_Code}} </td>
+                                    <td>{{d.coN_PR_Name}}</td>
+                                    <td>{{d.coN_DO_Name}}</td>
+                                    <!-- Clinic/Hospital Name to be displayed accordingly  -->
+                                    <td *ngIf="(d.coN_HO_Id_FK === null);            
+                                           else pickListResponse">{{d.clinicName}}</td>
+                                    <ng-template #pickListResponse>
+                                        <td>{{d.coN_HospitalName}}</td>
+                                    </ng-template>
+
+                                    <!-- <td>{{d.appt_DateTime | date :'EEEE'}}</td>
+                                <td>{{d.appt_DateTime | date :'dd/MM/YYY'}}</td> -->
+                                    <td>{{d.coN_ConsultedDate | date :'EEEE'}}</td>
+                                    <td>{{d.coN_ConsultedDate | date :'dd/MM/YYY'}}</td>
+                                    <td>{{d.coN_ConsultedTime | time24to12Transform}} </td>
+                                    <td>
+
+                                        <button id=".button_add" (click)="Appointment(d)" [hidden]="viewhid"
+                                            mat-raised-button color="primary" matTooltip="Add"
+                                            [matTooltipPosition]="TooltipPosition"
+                                            [disabled]="(d.delete_flag == 0 && d.status==1 && d.status==2 || d.status==3 || d.status==5 || d.status==6)? false:true"
+                                            matTooltipClass="tooltip-blue"
+                                            aria-label="Button that displays a tooltip in various positions">
+                                            <!-- <mat-icon id="vis">visibility</mat-icon> -->Add
+                                        </button>
+
+
+                                        <!-- <button id="edit" (click)="edit(d)"
+                                        [disabled]="(d.status==1 && d.delete_flag==0)? false:true" mat-icon-button
+                                        color="accent" matTooltip="edit" [matTooltipPosition]="TooltipPosition"
+                                        matTooltipClass="tooltip-yellow"
+                                        aria-label="Button that displays a tooltip in various positions">
+                                        <mat-icon id="vis">edit</mat-icon>
+                                    </button> -->
+                                        <button id="delete" (click)="delete(d)" mat-icon-button [hidden]="deletehid"
+                                            [disabled]="(d.delete_flag == 0 && d.status==1 && d.status==2 || d.status==3 || d.status==5 || d.status==6)? false:true"
+                                            color="warn" matTooltip="delete" [matTooltipPosition]="TooltipPosition"
+                                            matTooltipClass="tooltip-red"
+                                            aria-label="Button that displays a tooltip in various positions">
+                                            <mat-icon id="vis">delete_outline</mat-icon>
+                                        </button>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </mat-tab>
+            <!-- <mat-tab label="Past Consultation"><div class="row">
+                <div class="table-responsive" *ngIf="data?.length > 0">
+                    <table [dtOptions]="dtOptions" datatable
+                        class="table table-striped table-bordered table-sm row-border hover">
+                        <thead class="thead-dark">
+                            <tr align="center">
+                                <th rowspan="2" colspan="1" >
+                                    Sl.No</th>
+                                <th rowspan="1" colspan="2" >
+                                    Patient Details</th>
+                                    <th rowspan="2" colspan="1">
+                                       Doctor Name
+                                    </th>
+                                     <th rowspan="2" colspan="1">
+                                       Hospital Name
+                                      </th>
+                                      <th rowspan="1" colspan="2" >
+                                        Appointment Details
+                                    </th>
+                                     <th rowspan="2" colspan="1" >
+                                        Action
+                                     </th>
+                                </tr>
+                                <tr align="center">     
+                                <th  style="width:20%;">Patient Code</th>
+                                <th  style="width:20%;">Patient Name</th>
+                                <th  style="width:20%;">Appontment Day</th>
+                                <th  style="width:20%;">Appontment Date</th>
+                            </tr>
+                        </thead>
+                        <tbody> -->
+            <!-- *ngFor="let d of Data;let i=index" -->
+            <!-- <tr align="center" *ngFor="let d of data;let i=index"
+                            [ngClass]="{'warn': (d.delete_flag==0  && (d.status==1 ||d.status==2 || d.status==3))? false:true,'all':d.status==2 || d.status==3 || d.status==1}">
+                            <td> {{i+1}} </td>
+                            <td> {{d.pR_Code}} </td>
+                            <td>{{d.coN_PR_Name}}</td>
+                            <td>{{d.coN_DO_Name}}</td>
+                            <td>{{d.coN_HospitalName}}</td>
+                            <td>{{d.select_day}}</td> -->
+            <!-- <td> {{d.pR_DOB | date :'dd/MM/YYY'}} </td> -->
+            <!-- <td>{{d.coN_ConsultedDate | date :'dd/MM/YYY'}}</td>
+                                <td>
+                                    <button id="view" (click)="Appointment(d)" [hidden]="viewhid" 
+                                    mat-icon-button color="primary" matTooltip="View"
+                                    [matTooltipPosition]="TooltipPosition" matTooltipClass="tooltip-blue"
+                                    aria-label="Button that displays a tooltip in various positions">
+                                    <mat-icon id="vis">visibility</mat-icon>
+                                    </button> -->
+            <!-- (click)="Appointment(d.coN_Id)" -->
+            <!-- <button id="edit" (click)="edit(d)"
+                                        [disabled]="(d.status==1 && d.delete_flag==0)? false:true" mat-icon-button
+                                        color="accent" matTooltip="edit" [matTooltipPosition]="TooltipPosition"
+                                        matTooltipClass="tooltip-yellow"
+                                        aria-label="Button that displays a tooltip in various positions">
+                                        <mat-icon id="vis">edit</mat-icon>
+                                    </button> -->
+            <!-- <button id="delete" (click)="delete(d)" [hidden]="deletehid"
+                                    [disabled]="(d.delete_flag == 0 && d.status==1 && d.status==2 || d.status==3 || d.status==6)? true:false" mat-icon-button
+                                        color="warn" matTooltip="delete" [matTooltipPosition]="TooltipPosition"
+                                        matTooltipClass="tooltip-red"
+                                        aria-label="Button that displays a tooltip in various positions">
+                                        <mat-icon id="vis">delete_outline</mat-icon>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div></mat-tab> -->
+        </mat-tab-group>
+    </mat-card-content>
+</mat-card>

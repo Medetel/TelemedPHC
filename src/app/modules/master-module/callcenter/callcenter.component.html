@@ -1,0 +1,72 @@
+<mat-card>
+    <mat-card-title>Callcenter Agent Details</mat-card-title>
+    <mat-card-content>
+        <div class="button_add">
+            <div class="row">
+                <div class="col-md-12">
+                    <button id="add" mat-raised-button color="primary" [hidden]="addhid"
+                        routerLink="/base/master/support-agent/add-callcenter">
+                        <mat-icon>add</mat-icon>Add Callcenter Agent
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="table-responsive" *ngIf="data?.length > 0">
+                <table [dtOptions]="dtOptions" datatable
+                    class="table table-striped table-bordered table-sm row-border hover">
+                    <thead class="thead-dark">
+                        <tr align="center">
+                            <th>SL.NO.</th>
+                            <th>Code</th>
+                            <th>Name</th>
+                            <th>Hospital</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- *ngFor="let d of Data;let i=index" -->
+                        <tr align="center" *ngFor="let d of data;let i=index"
+                            [ngClass]="{'warn': (d.delete_flag==0  && (d.status==1 ||d.status==2 || d.status==3))? false:true,'all':d.status==2 || d.status==3 || d.status==1}">
+                            <td> {{i+1}} </td>
+                            <td> {{d.call_Ag_code}} </td>
+                            <td> {{d.call_Ag_FirstName}} {{d.call_Ag_LastName}}</td>
+                            <td>{{d.call_Ag_Hos_HospitalName}}</td>
+                            <td>{{d.sts_name}}</td>
+                            <td>
+                                <button id="view" (click)="view(d)" [hidden]="viewhid" mat-icon-button color="primary"
+                                    matTooltip="View" [matTooltipPosition]="TooltipPosition"
+                                    matTooltipClass="tooltip-blue"
+                                    aria-label="Button that displays a tooltip in various positions">
+                                    <mat-icon id="vis">visibility</mat-icon>
+                                </button>
+                                <button id="edit" (click)="edit(d)" [hidden]="edithid"
+                                    [disabled]="(d.delete_flag == 0 && d.status==1 && d.status==2 || d.status==3 || d.status==6)  && !isAdmin()"
+                                    mat-icon-button color="accent" matTooltip="edit"
+                                    [matTooltipPosition]="TooltipPosition" matTooltipClass="tooltip-yellow"
+                                    aria-label="Button that displays a tooltip in various positions">
+                                    <mat-icon id="vis">edit</mat-icon>
+                                </button>
+                                <button id="approvel" (click)="approve(d)" [hidden]="approveid" mat-icon-button
+                                    color="primary" [disabled]="(d.status==3 || d.status==6)? true:false"
+                                    matTooltip="Approve" [matTooltipPosition]="TooltipPosition"
+                                    matTooltipClass="tooltip-blue"
+                                    aria-label="Button that displays a tooltip in various positions">
+                                    <mat-icon id="vis">check_circle_outline</mat-icon>
+                                </button>
+                                <button id="delete" (click)="delete(d)" [hidden]="deletehid"
+                                    [disabled]="(d.delete_flag == 0 && d.status==1 && d.status==2 || d.status==3 || d.status==6)? true:false"
+                                    mat-icon-button color="warn" matTooltip="delete"
+                                    [matTooltipPosition]="TooltipPosition" matTooltipClass="tooltip-red"
+                                    aria-label="Button that displays a tooltip in various positions">
+                                    <mat-icon id="vis">delete_outline</mat-icon>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

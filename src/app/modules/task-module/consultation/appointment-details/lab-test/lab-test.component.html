@@ -1,0 +1,156 @@
+<mat-card>
+    <mat-card-title>Diagnostic Test</mat-card-title>
+    <mat-card-content>
+        <div class="button_add">
+            <form class="form-inline" [formGroup]="Labadd" [hidden]="issave">
+                <fieldset>
+                    <legend>Lab_Test Info</legend>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Category</mat-label>
+                                <mat-select formControlName="category_Id" #typecategory
+                                    (valueChange)="typescategory(typecategory.value)" required>
+                                    <mat-option *ngFor="let c of catogory" [value]="c.category_Id">
+                                        {{c.category_Name}}</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="Labadd.get('category_Id').hasError('required')">Category is required</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6" *ngIf="Labadd.get('category_Id').value !== 69">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Description</mat-label>
+                                <mat-select formControlName="description_Id" required>
+                                    <mat-option *ngFor="let d of discription" [value]="d.dt_Id">
+                                        {{d.description}}</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="Labadd.get('description_Id').hasError('required')">Description is required</mat-error>
+                            </mat-form-field>
+                        </div>
+                            <div class="col-md-6" *ngIf="Labadd.get('category_Id').value === 69">
+                                <mat-form-field class="example-full-width" appearance="legacy">
+                                    <mat-label>Other Description Name</mat-label>
+                                    <input matInput formControlName="othersLabTest" required>
+                                    <!-- pattern="[a-zA-Z][a-zA-Z0-9 ]*" -->
+                                    <mat-error *ngIf="Labadd.get('othersLabTest').hasError('required')">Other Description Name is
+                                        required</mat-error>
+                                        <!-- <mat-error *ngIf="Labadd.get('othersLabTest').hasError('pattern')">Only alphanumeric characters are allowed</mat-error> -->
+                                </mat-form-field>
+                            </div>
+                        <div class="col-md-12">
+                            <div align="center">
+                                <button mat-raised-button color="primary" [disabled]="Labadd.invalid" (click)="save()">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </mat-card-content>
+
+    <mat-card-content>
+        <div class="button_add">
+            <form class="form-inline" [formGroup]="Labedit" [hidden]="isedit">
+                <fieldset>
+                    <legend>Lab_Test Info</legend>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Category</mat-label>
+                                <mat-select formControlName="category_Id" (valueChange)="typescategorys($event)"
+                                    required>
+                                    <mat-option *ngFor="let c of catogory" [value]="c.category_Id">
+                                        {{c.category_Name}}</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="Labedit.get('category_Id').hasError('required')">Category is required</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6" *ngIf="Labedit.get('category_Id').value !== 69">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Discription</mat-label>
+                                <mat-select formControlName="description_Id" required>
+                                    <mat-option *ngFor="let d of discriptions_edit" [value]="d.dt_Id">
+                                        {{d.description}}</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="Labedit.get('description_Id').hasError('required')">Description is required</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6" *ngIf="Labedit.get('category_Id').value === 69">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Other Description Name</mat-label>
+                                <input matInput formControlName="othersLabTest" required>
+                                <mat-error *ngIf="Labedit.get('othersLabTest').hasError('required')">Other Description Name is
+                                    required</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-12">
+                            <div align="center">
+                                <button mat-raised-button color="primary" [disabled]="Labedit.invalid" (click)="update()">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </mat-card-content>
+
+    <mat-card-content>
+        <div class="button_add">
+            <div class="row">
+                <div class="col-md-12">
+                    <button id="add" mat-raised-button color="warn" (click)="pdf(data)">
+                        Export PDF
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="table-responsive" *ngIf="data?.length > 0">
+                <!-- <div  *ngIf="data?.length > 0"> -->
+                <table [dtOptions]="dtOptions" datatable >
+                    <thead class="thead-dark">
+                        <tr align="center">
+                            <th>SL.NO.</th>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- *ngFor="let d of Data;let i=index" -->
+                        <tr align="center" *ngFor="let d of data;let i=index"
+                            [ngClass]="{'warn': (d.delete_flag==0  && (d.status==1 ||d.status==2 || d.status==3))? false:true,'all':d.status==2 || d.status==3 || d.status==1}">
+                            <td>{{i+1}}</td>
+                            <td>{{d.category_Name}}</td>
+                            <td>{{ d.category_Id === 69 ? d.othersLabTest : d.description }}</td>
+                            <td>{{d.sts_name}}</td>
+                            <td>
+                                <button id="view" (click)="view(d)" [hidden]="viewhid" mat-icon-button color="primary"
+                                    matTooltip="View" [matTooltipPosition]="TooltipPosition"
+                                    matTooltipClass="tooltip-blue"
+                                    aria-label="Button that displays a tooltip in various positions">
+                                    <mat-icon id="vis">visibility</mat-icon>
+                                </button>
+                                <button id="edit" (click)="edit(d)" [hidden]="edithid" mat-icon-button
+                                    [disabled]="(d.delete_flag == 0 && d.status==1 && d.status==2 || d.status==3 || d.status==6)? true:false"
+                                    color="accent" matTooltip="edit" [matTooltipPosition]="TooltipPosition"
+                                    matTooltipClass="tooltip-yellow"
+                                    aria-label="Button that displays a tooltip in various positions">
+                                    <mat-icon id="vis">edit</mat-icon>
+                                </button>
+                                <!-- <button id="delete" (click)="delete(d)" [hidden]="deletehid" mat-icon-button
+                                    [disabled]="(d.delete_flag == 0 && d.status==1 && d.status==2 || d.status==3 || d.status==6)? true:false"
+                                    color="warn" matTooltip="delete" [matTooltipPosition]="TooltipPosition"
+                                    matTooltipClass="tooltip-red"
+                                    aria-label="Button that displays a tooltip in various positions">
+                                    <mat-icon id="vis">delete_outline</mat-icon>
+                                </button> -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

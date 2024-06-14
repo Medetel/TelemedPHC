@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>Edit Qualification</h1>
+<mat-divider></mat-divider>
+<!-- <div mat-dialog-content> -->
+    <form [formGroup]="qualification">
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Qualification Code</mat-label>                   
+                    <input matInput #input  maxlength="8" formControlName="qualification_code">
+                    <!-- <mat-error *ngIf="checkError('qualification_code', 'required')">Qualification Code is required</mat-error>                       -->
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                    <mat-label class="star">Qualification</mat-label>
+                    <input matInput formControlName="qualification_Name" required>
+                    <mat-error *ngIf="checkError('qualification_Name', 'required')">Qualification Name is required</mat-error>
+                    <mat-error *ngIf="qualification.get('qualification_Name').hasError('alphaCheck')">
+                        Please enter alphabet characters
+                    </mat-error>
+                    <mat-error *ngIf="qualification.get('qualification_Name').hasError('spaceCheck')">
+                        Qualification Name will not allow white space
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+<!-- </div> -->
+<br>
+<div mat-dialog-actions align="end">
+    <button id="save" mat-raised-button color="primary" (click)="updateform()">Update</button>
+    <button mat-dialog-close id="cancel" mat-raised-button color="warn">Close</button>
+</div>

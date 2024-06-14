@@ -1,0 +1,48 @@
+<body style="background-image: url('../../../assets/images/login_img.jpeg');">
+    <div class="row">
+      <div class="col-md-9 col-12 d-none d-md-block">
+        <div class="login_banner">
+        </div>
+      </div>
+      <div class="col-md-3 col-12" style="min-height: 100vh;">
+        <div class="login-form-content">
+          <div class="logo-warapper">
+            <img src="../../../assets/images/Medetellogo.png">
+            <img src="../../../assets/images/LOGO.png" style="background-color: aliceblue;">
+            <script src="https://apis.google.com/js/platform.js" async defer></script>
+          </div>
+          <form [formGroup]="loginform" autocomplete="off">
+            <div class="login-wrapper">
+              <div class="field-wrapper">
+                  <h4 style="text-align: center;"><strong>Patient Login</strong></h4>
+                <mat-form-field class="example-full-width" appearance="legacy">
+                  <mat-label>Usernames</mat-label>
+                  <input matInput type="text" formControlName="username" required />
+                  <mat-error *ngIf="checkError('username', 'required')">Username is required</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="field-wrapper">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                  <mat-label>Password</mat-label>
+                  <input matInput type="password" formControlName="password"  required />
+                  <mat-error *ngIf="checkError('password', 'required')">password is required</mat-error>
+                  <mat-error *ngIf="checkError('password', 'minlength')">Password should be minimum 6 char</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="form-check form-check-flat form-check-primary">
+                  <mat-checkbox> Remember me</mat-checkbox>
+              </div>
+              <div class="field-wrapper text-center">
+                <button mat-raised-button color="primary" [disabled]="loginform.invalid" (click)="onSubmit()"
+                 style="width: 100%;" >Login</button>
+              </div>
+              <div class="field-wrapper link-holder">               
+                <span class="clearfix"></span>
+                <span class="clearfix"></span>
+              </div>             
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    </body>

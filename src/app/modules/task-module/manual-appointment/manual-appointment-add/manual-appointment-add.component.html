@@ -1,0 +1,50 @@
+<mat-card>
+    <mat-card-title>Add Manual Appointment</mat-card-title>
+    <mat-divider></mat-divider>
+    <div class="row">
+        <div class="table-responsive" *ngIf="data?.length > 0" style="margin-top: 10px;">
+            <table [dtOptions]="dtOptions" datatable
+                class="table table-striped table-bordered table-sm row-border hover">
+                <thead class="thead-dark">
+                    <tr align="center">
+                        <th>SL.NO.</th>
+                        <th>Patient Code</th>
+                        <th>Patient FirstName</th>
+                        <th>Patient LastName</th>
+                        <th>Patient Mobile Number</th>
+                        <th>Patient DOB</th>
+                        <th>Patient Address</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- *ngFor="let d of Data;let i=index" -->
+                    <tr align="center" *ngFor="let d of data;let i=index"
+                        [ngClass]="{'warn': (d.status==1 && d.delete_flag==0)? false:true,'all':d.status==1}">
+                        <td> {{i+1}} </td>
+                        <td>{{d.pR_PatientCode}}</td>
+                        <td> {{d.pR_FirstName}} </td>
+                        <td>{{d.pR_LastName}}</td>
+                        <td>{{d.pR_MobileNumber}}</td>
+                        <td> {{d.pR_DOB | date :'dd/MM/YYY'}} </td>
+                        <td>{{d.pR_Address}}</td>
+                        <td>
+                            <button id="view" (click)="view(d)" mat-icon-button color="primary" matTooltip="Consultation"
+                                [matTooltipPosition]="TooltipPosition" matTooltipClass="tooltip-blue"
+                                aria-label="Button that displays a tooltip in various positions">
+                                <mat-icon id="vis">visibility</mat-icon>
+                            </button>
+                            <button id="edit" (click)="Appointment(d)"
+                                [disabled]="(d.status==1 && d.delete_flag==0)? false:true" mat-icon-button
+                                color="accent" matTooltip="edit" [matTooltipPosition]="TooltipPosition"
+                                matTooltipClass="tooltip-yellow"
+                                aria-label="Button that displays a tooltip in various positions">
+                                <mat-icon id="vis">perm_contact_calendar</mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</mat-card>

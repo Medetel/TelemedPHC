@@ -1,0 +1,55 @@
+<mat-card>
+    <mat-card-title>Referral</mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="referral" (submit)="add()" [hidden]="issave">
+            <div class="button_add">
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Refered Hospital</mat-label>
+                            <mat-select formControlName="hos_Id" required>
+                                <mat-option *ngFor="let s of splhospt" [value]="s.hos_Id">{{s.hos_HospitalName}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="referral.get('hos_Id').hasError('required')">Refered Hospital is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Referral Date</mat-label>
+                            <input matInput [matDatepicker]="dp" min="{{mindate | date:'yyyy-MM-dd'}}" formControlName="ref_Date" required>
+                            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                            <mat-datepicker #dp></mat-datepicker>
+                            <mat-error *ngIf="referral.get('ref_Date').hasError('required')">Please select valid date</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Special Observations</mat-label>
+                            <textarea matInput placeholder="" maxlength="500" formControlName="splObs" required></textarea>
+                            <mat-error *ngIf="referral.get('splObs').hasError('required')">Special Observations is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Remarks</mat-label>
+                            <textarea matInput placeholder="" maxlength="500" formControlName="remarks" ></textarea>
+                            <!-- <mat-error *ngIf="referral.get('remarks').hasError('required')">Remarks is required</mat-error> -->
+                        </mat-form-field>
+                    </div>
+                    <!-- <div class="col-md-6" [hidden]="true">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>REF_ID</mat-label>
+                            <textarea matInput placeholder="" formControlName="ref_Id" ></textarea>
+                        </mat-form-field>
+                    </div> -->
+                    <div class="col-md-12">
+                        <div align="center">
+                            <button mat-raised-button color="primary" [disabled]="referral.invalid">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

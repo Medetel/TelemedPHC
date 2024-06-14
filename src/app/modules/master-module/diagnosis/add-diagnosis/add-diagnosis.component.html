@@ -1,0 +1,48 @@
+<mat-card>
+    <mat-card-title>Add Diagnosis</mat-card-title>
+    <mat-divider></mat-divider>
+    <form [formGroup]="diagnosis">
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                    <mat-label class="star">Diagnosis Code</mat-label>
+                    <input matInput #input maxlength="10" placeholder="Eg.SPDR00001" formControlName="dD_Code" required>
+                    <mat-error *ngIf="checkError('dD_Code', 'required')">Diagnosis Code is required</mat-error>
+                    <mat-error
+                        *ngIf="diagnosis.controls['dD_Code'].hasError('alphaNumCheck') || diagnosis.controls['dD_Code'].hasError('pattern') ">
+                        Diagnosis Code must start with "DIAG" followed by numeric characters
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                    <mat-label class="star">Diagnosis Category</mat-label>
+                    <mat-select placeholder="Eg.India" formControlName="dD_Master" required>
+                        <mat-option *ngFor="let d of diagnosisdd" [value]="d.dM_Id">{{d.dM_Name}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="checkError('dD_Master', 'required')">Diagnosis is required</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                    <mat-label class="star">Diagnosis Description</mat-label>
+                    <input matInput placeholder="Eg.General" maxlength="45" formControlName="dD_Desc" required>
+                    <mat-error *ngIf="checkError('dD_Desc', 'required')">Diagnosis is
+                        required</mat-error>
+                    <mat-error *ngIf="diagnosis.get('dD_Desc').hasError('alphaCheck')">
+                        Please enter alphabet characters
+                    </mat-error>
+                    <mat-error *ngIf="diagnosis.get('dD_Desc').hasError('spaceCheck')">
+                        Diagnosis will not allow white space
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <br>
+        <div class="footer_button">
+            <button id="save" mat-raised-button color="primary" (click)="save()">Save</button>
+            <!-- <button id="cancel" mat-raised-button color="accent" (click)="reset()">Clear</button> -->
+            <button routerLink="/base/master/diagnosis" id="cancel" mat-raised-button color="warn">Close</button>
+        </div>
+    </form>
+</mat-card>

@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>View Skillset</h1>
+<mat-divider></mat-divider>
+<!-- <div mat-dialog-content> -->
+    <form [formGroup]="skillset">
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Qualification</mat-label>
+                    <input style="color: seagreen;" matInput  formControlName="qualification_Name" >
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Skillset</mat-label>
+                    <input style="color: seagreen;"  matInput  formControlName="skillset_name" >
+                </mat-form-field>
+            </div>
+        </div>
+      </form>
+<!-- </div> -->
+<div mat-dialog-actions align="end" >
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+</div>

@@ -1,0 +1,55 @@
+<h1 mat-dialog-title>Edit {{_data.d.name}} Claims</h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content>   
+    <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <td>Sl. No.</td>
+              <td>Module</td>
+              <td>Sub Modules</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of role; let i=index;">
+              <td>{{i+1}}.</td>
+              <td>{{c.m_label}}</td>
+              <td>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <td>Actions
+                      </td>
+                      <td>Add
+                      </td>
+                      <td>View
+                      </td>
+                      <td>Edit
+                      </td>
+                      <td>Delete
+                      </td>
+                      <td>Approve
+                      </td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let p of c.subItems; let j=index;">
+                      <td>{{p.sM_label}}</td>                     
+                      <td *ngFor="let claim of p.subMenuClaim; let k=index;">
+                        <input type="checkbox" [value]="claim.claimType" name="claimValue"  [checked]="claim.claimValue===true" (change)="changeCheckbox(i, j, k)" [hidden]="!claim.isClaimShown">
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+</div>
+<div mat-dialog-actions align="end">
+    <button id="save" mat-raised-button color="primary" mat-dialog-close (click)="updateform()" >Update</button>
+    <button mat-dialog-close id="cancel" mat-raised-button
+      color="warn">Close</button>
+</div>

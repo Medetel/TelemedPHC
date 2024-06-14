@@ -1,0 +1,27 @@
+<span style="margin-left:95%;color:red;" mat-dialog-close>X</span>
+<div class="row">
+    <div class="col-md-6 text-center">
+        <div *ngIf="imageData">
+            <img *ngIf="imageData.media_name === 'General Photos'" width="250" height="250" [src]="imageData.filePath"
+                alt="Image">
+            <video *ngIf="imageData.media_name === 'General videos'" controls style="width: 250px;height:250px">
+                <source [src]="imageData.filePath" type="video/mp4">
+            </video>
+            <video *ngIf="imageData.media_name === 'English videos version'" controls style="width: 250px;height:250px">
+                <source [src]="imageData.filePath" type="video/mp4">
+            </video>
+            <video *ngIf="imageData.media_name === 'Kannada videos version'" controls style="width: 250px;height:250px">
+                <source [src]="imageData.filePath" type="video/mp4">
+            </video>
+
+            <a *ngIf="imageData.media_name === 'General Articles'" href="{{imageData.filePath}}" target="_blank">View
+                pdf</a>
+            <a *ngIf="imageData.media_name === 'Doctor Articles'" href="{{imageData.filePath}}" target="_blank">View
+                pdf</a>
+        </div>
+    </div>
+    <!-- <div class="col-md-6">
+        Gallery Type : <span class="text-center">{{imageData.media_name}}</span> <br><br>
+        Gallery Name : <h5 class="text-center" style="margin-top: -5%;margin-left: -23%;">{{imageData.name}}</h5>
+    </div> -->
+</div>

@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>View District</h1>
+<mat-divider></mat-divider>
+<!-- <div mat-dialog-content> -->
+    <form [formGroup]="district">
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>State Name</mat-label>
+                    <input style="color: seagreen;" matInput  formControlName="state_name" >
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>District Code</mat-label>
+                    <input style="color: seagreen;"  matInput  formControlName="district_code" >
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>District Name</mat-label>
+                    <input style="color: seagreen;"  matInput  formControlName="district_name" >
+                </mat-form-field>
+            </div>
+           
+        </div>
+      </form>
+<!-- </div> -->
+<div mat-dialog-actions align="end" >
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+</div>

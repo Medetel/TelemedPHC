@@ -1,0 +1,255 @@
+<mat-card>
+    <mat-card-title>Add Gallery</mat-card-title>
+    <mat-divider></mat-divider>
+       
+<form [formGroup]="actionforms" (submit)="onsubmits()">
+
+  <div class="row">
+      
+    <div class="col-md-4">
+        <select (change)="select_dd_value($event)">
+            <option value="" selected> Select Gallery type </option>
+            <option *ngFor="let c of country" [value]="c.media_id">{{c.media_name}}</option>
+        </select>
+    </div>
+  
+    <div class="col-md-4" [hidden]="image_media" >
+        General photos upload
+   
+              
+<form [formGroup]="form">
+  <div formArrayName="rows">
+    <div *ngFor="let row of rows.controls; let i=index" [formGroupName]="i">
+    
+      <!-- <input  matInput type="text" formControlName="mediaName" style=" margin-left: 60%;"> -->
+      <input type="file"formControlName="Name" (change)="onFileSelecte($event,i)"  accept="image/png, image/gif, image/jpeg"  required #fileInput style="margin-top: -130%;">
+
+
+      <!-- <div>
+        <img *ngIf="row.controls.imageURL.value" [src]="row.controls.imageURL.value" alt="Image Preview" style="max-width: 100%; max-height: 100px;">
+      </div> -->
+<div>
+
+  <mat-form-field appearance="fill" style=" margin-left: 80%;margin-top: -660%;">
+    <mat-label>Media Name</mat-label>
+    <input matInput formControlName="mediaName">
+  </mat-form-field>
+</div>
+     
+     
+    
+      <!-- <button  >Delete</button> -->
+      <button class="btn btn-delete" (click)="removeRow(i)" style="margin-top: -20%;margin-left: 150%;">
+        <span class="mdi mdi-delete mdi-24px"></span>
+        <span class="mdi mdi-delete-empty mdi-24px"></span>
+        <span>Delete</span>
+      </button>
+      
+    </div>
+  </div>
+
+  <button type="button"  class="buttonadds" (click)="addRow()">Add More Photos</button>
+
+
+ 
+</form>
+             
+              
+    </div>
+    <div class="col-md-4" [hidden]="pdf_media">
+        Articles upload(pdf)
+        <!-- <input type="file" formControlName="Name" (change)="SelectFile($event)"
+            accept="application/pdf,application/vnd.ms-excel"  multiple
+            type="file"> -->
+
+            
+            <form [formGroup]="form">
+              <div formArrayName="rows">
+                <div *ngFor="let row of rows.controls; let i=index" [formGroupName]="i">
+                 
+                  <input type="file"formControlName="Name" (change)="onselectpdf($event,i)"   accept="application/pdf,application/vnd.ms-excel"  required #fileInput>
+                  <div>
+
+                    <mat-form-field appearance="fill" style=" margin-left: 80%;margin-top: -660%;">
+                      <mat-label>Media Name</mat-label>
+                      <input matInput formControlName="mediaName">
+                    </mat-form-field>
+
+                  </div>
+                  <button class="btn btn-delete" (click)="removeRow(i)" style="margin-top: -20%;margin-left: 170%;">
+                    <span class="mdi mdi-delete mdi-24px"></span>
+                    <span class="mdi mdi-delete-empty mdi-24px"></span>
+                    <span>Delete</span>
+                  </button>
+                </div>
+              </div>
+              <button type="button"   class="buttonadds"(click)="addRow()">Add More Pdf-Files</button>
+            
+            </form>
+             
+  
+    </div>
+
+    
+    <div class="col-md-4" [hidden]="video_media">
+        Videos upload
+        <!-- <input type="file" formControlName="Name" (change)="onSelectFiles($event)" accept="video/mp4,video/x-m4v,video/*"
+        multiple required  > -->
+                  
+<form [formGroup]="form">
+  <div formArrayName="rows">
+    <div *ngFor="let row of rows.controls; let i=index" [formGroupName]="i">
+      <input type="file" formControlName="Name" (change)="onSelectFiles($event.target, $event, i)" accept="video/mp4,video/x-m4v,video/*"
+        multiple required  >
+     
+      <mat-form-field appearance="fill" style="  margin-left: 80%;margin-top: -660%;">
+        <mat-label>Media Name</mat-label>
+        
+        <input matInput formControlName="mediaName"  >
+      </mat-form-field>
+      <button class="btn btn-delete" (click)="removeRow(i)" style="margin-top: -20%;margin-left: 160%;">
+        <span class="mdi mdi-delete mdi-24px"></span>
+        <span class="mdi mdi-delete-empty mdi-24px"></span>
+        <span>Delete</span>
+      </button>
+    </div>
+   
+  </div>
+  <button type="button"  class="buttonadds" (click)="addRow()">Add More Videos</button>
+ 
+</form>
+       
+    </div>
+    <div class="col-md-4" [hidden]="none_media">
+        select media type to upload
+        <input type="file" disabled>
+    </div>
+
+   
+    </div>
+
+
+</form>
+        
+         <form [formGroup]="actionform" (submit)="onsubmit()" style="margin-left: 35%;"> 
+            <!-- <div class="footer_button" >
+                <button id="save" mat-raised-button color="primary">Save</button>
+                 <button id="cancel" mat-raised-button color="accent" (click)="reset()">Clear</button> -->
+                <!-- <button routerLink="/base/master/videogallery" id="cancel" mat-raised-button color="warn">Close</button>
+            </div> --> 
+
+            <button type="button"  class="buttonadd"(click)="submitForm()">Save</button>
+            <button routerLink="/base/master/videogallery" id="cancel" class="buttonadds">Close</button>
+            
+        </form>  
+
+          <div class="preview-container">
+            <div *ngFor="let media of selectedFiless; let i = index" class="preview-item">
+                <embed [src]="file"*ngIf="isPDF(selectedFiless[i])" type="application/pdf" width="100%" height="600px" class="preview">
+            
+              <div>
+
+
+                <!-- <button class="button button3" (click)="removeImage(i)">Remove</button> -->
+                
+              </div>
+            
+            </div>
+         
+          </div>
+
+
+          
+                    
+<form [formGroup]="form">
+  <div formArrayName="rows">
+    <div  class="image-container"*ngFor="let row of rows.controls; let i=index" [formGroupName]="i"  >
+  
+      <div  >
+        <img *ngIf="row.controls.imageURL.value" [src]="row.controls.imageURL.value" alt="Image Preview" style="max-width: 100%; max-height: 100px;">
+      </div>
+<div>
+
+  
+</div>
+<div>
+ 
+ 
+</div>
+
+
+      <!-- <button  >Delete</button> -->
+     
+      
+    </div>
+  </div>
+
+ 
+
+
+ 
+</form>
+          
+                    
+<form [formGroup]="form">
+  <div formArrayName="rows">
+    <div  >
+      <div  >
+  
+        <div>
+        
+          
+        </div>
+        <div>
+         
+          <div  class="image-container" *ngFor="let videoUrl of videoUrls">
+            <video controls [src]="videoUrl"width="320" height="240"  ></video>
+          </div>
+        </div>
+        
+        
+              <!-- <button  >Delete</button> -->
+             
+              
+            </div>
+          </div>
+        
+         
+        
+
+    </div>
+   
+
+ 
+</form>
+          
+<div>
+
+
+</div>
+
+  
+         
+          
+</mat-card>
+<div   >
+  <div>
+
+
+
+  </div>
+  
+
+
+
+</div>
+
+
+
+
+<div *ngIf="selectedFile">
+  <object [data]="selectedFile" type="application/pdf" width="100%" height="600px">
+    <embed [src]="URL.createObjectURL(selectedFile)" type="application/pdf" width="100%" height="600px" />
+  </object>
+</div>
+

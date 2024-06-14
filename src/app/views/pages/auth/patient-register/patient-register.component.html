@@ -1,0 +1,56 @@
+<div class="row w-100 mx-0 auth-page">
+    <div class="col-md-8 col-xl-6 mx-auto">
+      <div class="card">
+        <div class="row">         
+          <div class="col-md-12">
+            <div class="auth-form-wrapper px-4 py-5">
+              <a routerLink="." class="noble-ui-logo d-block md-12" style="text-align: center;">Patient<span>Register</span></a>
+              <h5 class="text-muted font-weight-normal mb-4"></h5>
+              <form class="forms-sample"[formGroup]="patientregister">
+                  <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>User Name</mat-label>
+                            <input matInput placeholder="" formControlName="Username" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Email</mat-label>
+                            <input matInput placeholder="" type="email" formControlName="Email" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Phone Number</mat-label>
+                            <input matInput placeholder="" formControlName="Phonenumber" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Password</mat-label>
+                            <input matInput placeholder="" formControlName="Password"  required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Confirm Password</mat-label>
+                            <input matInput placeholder="" formControlName="ConfirmPassword" required>
+                        </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                        <div align="center">
+                            <button mat-raised-button color="primary" (click)="Register()">Register</button>
+                        </div>
+                    </div>
+                </div>
+                <a routerLink="/auth/patientlogin" class="d-block mt-3 text-muted">Already a user? Sign in</a>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

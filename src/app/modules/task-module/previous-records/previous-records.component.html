@@ -1,0 +1,41 @@
+<mat-card class="rec">
+    UPLOAD DOCUMENTS
+  </mat-card>
+
+  <fieldset>
+    <legend>Previous-Records</legend>
+    <form [formGroup]="myForm">
+    <div class="row">
+    
+        <div class="col-md-6">
+            <mat-form-field class="example-full-width" appearance="legacy">
+                <mat-label>Document Type</mat-label>
+                <mat-select formControlName="Doc_Type" required>
+                <mat-option *ngFor="let d of document" [value]="d">{{d.doctype_name}}
+                </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-md-6">
+            <mat-form-field class="example-full-width" appearance="legacy">
+                <mat-label>Document Name</mat-label>
+                <input matInput formControlName="documentname" placeholder="" required>
+            </mat-form-field>
+        </div><br><br><br><br>
+        
+        <div class="col-md-12">            
+                <div class="form-group">                          
+                    <input formControlName="file" (change)="onSelectFile($event)"
+                        id="file" 
+                        type="file" 
+                        multiple="" 
+                        class="form-control"
+                         /> 
+                   
+                </div>
+        </div>
+    </div>
+</form>
+  </fieldset>
+  <button mat-raised-button color="warn"   (click)="close()">Back</button>
+  <button mat-raised-button color="primary" type="submit" (click)="save_document()" >Submit</button>

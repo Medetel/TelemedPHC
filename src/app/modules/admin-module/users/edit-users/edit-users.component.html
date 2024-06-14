@@ -1,0 +1,51 @@
+<h1 mat-dialog-title>Edit User</h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content>
+    <form [formGroup]="user_register">
+        <div class="row">            
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Role Name</mat-label>
+                    <input matInput  formControlName="role">
+                </mat-form-field>
+            </div>           
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Phone Number</mat-label>
+                    <input matInput  formControlName="Phonenumber">                   
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Email</mat-label>
+                    <input matInput  formControlName="Email">                    
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>User Name</mat-label>
+                    <input matInput formControlName="Username">                   
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Password</mat-label>
+                    <input matInput placeholder="" [type]="newphide ? 'password' : 'text'" maxlength="15" formControlName="Password">
+                    <mat-icon matSuffix (click)="newphide = !newphide">{{newphide ? 'visibility_off' : 'visibility'}}</mat-icon>                    
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Confirm Password</mat-label>
+                    <input matInput placeholder="" [type]="conphide ? 'password' : 'text'" maxlength="15" formControlName="ConfirmPassword">
+                    <mat-icon matSuffix (click)="conphide = !conphide">{{conphide ? 'visibility_off' : 'visibility'}}</mat-icon>                  
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions align="end">
+    <button id="save" mat-raised-button color="primary" (click)="updateform()">Update</button>
+    <!-- <button id="clear" mat-raised-button color="accent" (click)="reset()">Clear</button> -->
+    <button mat-dialog-close id="cancel" mat-raised-button color="warn">Close</button>
+</div>

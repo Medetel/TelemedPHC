@@ -1,0 +1,62 @@
+<h1 mat-dialog-title>Edit Taluk</h1>
+<mat-divider></mat-divider>
+<!-- <div mat-dialog-content> -->
+    <form [formGroup]="taluk">
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Country</mat-label>
+                    <mat-select formControlName="cntry_id" #choosedValue (valueChange)="countrychange(choosedValue.value)">
+                        <mat-option *ngFor="let c of country" [value]="c.cntry_id">{{c.country_name}}</mat-option>
+                    </mat-select>
+                    <!-- <mat-error *ngIf="checkError('cntry_id', 'required')">Country Name is required</mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>State</mat-label>
+                    <mat-select formControlName="state_id" #selectval (valueChange)="statechange(selectval.value)">
+                        <mat-option *ngFor="let s of state" [value]="s.stat_id">{{s.state_name}}</mat-option>
+                    </mat-select>
+                    <!-- <mat-error *ngIf="checkError('state_id', 'required')">State Name is required</mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>District</mat-label>
+                    <mat-select formControlName="district_id" required>
+                        <mat-option *ngFor="let d of district" [value]="d.district_id">{{d.district_name}}</mat-option>
+                    </mat-select>
+                    <!-- <mat-error *ngIf="checkError('district_id', 'required')">District Name is required</mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Taluk Code</mat-label>                    
+                    <input matInput #input  formControlName="taluk_code">
+                        <!-- <mat-error *ngIf="checkError('taluk_code', 'required')">Taluk Code is required</mat-error>
+                        <mat-error *ngIf="taluk.controls['taluk_code'].hasError('invalidName') || taluk.controls['taluk_code'].hasError('pattern') ">
+                            Please enter Alpha Numerical characters only minimum:1/Maximum:5
+                        </mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                    <mat-label class="star">Taluk Name</mat-label>
+                    <input matInput maxlength="95" formControlName="taluk_name" required>
+                    <mat-error *ngIf="checkError('taluk_name', 'required')">Taluk Name is required</mat-error>
+                    <mat-error *ngIf="taluk.get('taluk_name').hasError('alphaCheck')">
+                        Please enter alphabet characters
+                    </mat-error>
+                    <mat-error *ngIf="taluk.get('taluk_name').hasError('spaceCheck')">
+                        Taluk Name will not allow white space
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+<!-- </div> -->
+<div mat-dialog-actions align="end">
+    <button id="save" mat-raised-button color="primary" (click)="updateform()" >Update</button>
+    <button mat-dialog-close id="cancel" mat-raised-button color="warn">Close</button>
+</div>

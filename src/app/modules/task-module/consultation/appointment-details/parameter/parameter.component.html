@@ -1,0 +1,274 @@
+<mat-card>
+    <mat-card-title>Vital-Signs</mat-card-title>
+    <div class="row">
+        <form [formGroup]="fixappointment">
+                <div class="row">
+                    <div class="col-md-4" [hidden]="package_desc1">
+                        <mat-form-field class="example-full-width" appearance="legacy" >
+                            <mat-label>Temperature <span style="color: rgb(72, 135, 230);">(°F)</span></mat-label>
+                            <input matInput placeholder="" formControlName="pA_TempInCelsius">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc1">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Blood pressure<span style="color: rgb(72, 135, 230);">(mmHg)</span></mat-label>
+                            <input matInput placeholder="" formControlName="pA_BloodPressure">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc1">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Pulse oximeter<span style="color: rgb(72, 135, 230); "> (bpm/%)</span></mat-label>
+                        <div class="row">
+                            <div class="col-md-2 pr-0">
+                                <input matInput  placeholder=""  formControlName="pA_OxygenSaturation">
+                            </div>
+                            <div style="color: rgba(0,0,0,.38)">/</div>
+                            <div class="col-md-2 pr-0">
+                                <input matInput  placeholder=""  formControlName="pA_PulseRate">
+                            </div>
+                        </div>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc1">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Height <span style="color: rgb(72, 135, 230); ">(Cm)</span></mat-label>
+                            <input matInput placeholder="" formControlName="pA_Height">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc1">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Weight <span style="color: rgb(72, 135, 230); ">(Kg)</span></mat-label>
+                            <input matInput placeholder="" formControlName="pA_Weight">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc1">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>BMI (kg/m²)</mat-label>
+                            <input matInput placeholder="" formControlName="pA_BMI" disabled>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc2">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Hemoglobin<span style="color: rgb(72, 135, 230); ">(g/dl)</span></mat-label>
+                            <input matInput placeholder="" formControlName="pA_Hemoglobin">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc2">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Glucose<span style="color: rgb(72, 135, 230); ">(mg/dl)</span></mat-label>
+                            <input matInput  placeholder=""  formControlName="pA_Sugar">
+                        </mat-form-field>
+                    </div>
+                    
+
+                    <div class="col-md-4" [hidden]="package_desc3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>HIV 1</mat-label>
+                            <input matInput placeholder="" formControlName="lp_hiv_First">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Dengue</mat-label>
+                            <input matInput placeholder="" formControlName="lp_dengue">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Malaria</mat-label>
+                            <input matInput placeholder="" formControlName="lp_malaria">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Pregnancy/ Hepatitis B</mat-label>
+                            <input matInput placeholder="" formControlName="lp_pregnancy">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Syphilis</mat-label>
+                            <input matInput placeholder="" formControlName="lp_syphilis">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>T3</mat-label>
+                            <input matInput placeholder="" formControlName="lp_Tem_three">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>T4</mat-label>
+                            <input matInput placeholder="" formControlName="lp_Tem_forth">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>TSH</mat-label>
+                            <input matInput placeholder="" formControlName="lp_tsh">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>LDL</mat-label>
+                            <input matInput placeholder="" formControlName="lp_ldl">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>HDL Cholesterol</mat-label>
+                            <input matInput placeholder="" formControlName="lp_hdl_cholesterol">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Triglycerides</mat-label>
+                            <input matInput placeholder="" formControlName="lp_triglycerides">
+                        </mat-form-field>
+                    </div>
+                  
+                    
+                    <div class="col-md-4" [hidden]="package_desc3">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Total Cholesterol</mat-label>
+                            <input matInput  placeholder=""  formControlName="lp_total_cholesterol">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>HIV 2</mat-label>
+                            <input matInput placeholder="" formControlName="lp_hiv_two">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Hepatitis C</mat-label>
+                            <input matInput placeholder="" formControlName="lp_hepatitis_c">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Troponin 1</mat-label>
+                            <input matInput placeholder="" formControlName="lp_troponin_one">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc5">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Leucocytes</mat-label>
+                            <input matInput placeholder="" formControlName="lp_leucocytes">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc5">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Nitrite</mat-label>
+                            <input matInput placeholder="" formControlName="lp_nitrite">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc5">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>pH</mat-label>
+                            <input matInput placeholder="" formControlName="lp_pH">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc5">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Protein</mat-label>
+                            <input matInput placeholder="" formControlName="lp_protein">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc5">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Blood</mat-label>
+                            <input matInput placeholder="" formControlName="lp_blood">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc5">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Specific Gravity</mat-label>
+                            <input matInput placeholder="" formControlName="lp_specific_gravity">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc5">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Ketone</mat-label>
+                            <input matInput placeholder="" formControlName="lp_ketone">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>FEV 1</mat-label>
+                            <input matInput placeholder="" formControlName="lp_fev_one">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>FVC</mat-label>
+                            <input matInput placeholder="" formControlName="lp_fvc">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>TLC</mat-label>
+                            <input matInput placeholder="" formControlName="lp_tlc">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>FEV 1/FVC ratio</mat-label>
+                            <input matInput placeholder="" formControlName="lp_fvc_ratio">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>PEF</mat-label>
+                            <input matInput placeholder="" formControlName="lp_pef">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>FEF 25</mat-label>
+                            <input matInput placeholder="" formControlName="lp_fef_twentyfive">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>FEF 50</mat-label>
+                            <input matInput placeholder="" formControlName="lp_fef_fifty">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>FEF 75</mat-label>
+                            <input matInput placeholder="" formControlName="lp_fef_seventyfive">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" [hidden]="package_desc6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Tidal volume</mat-label>
+                            <input matInput placeholder="" formControlName="lp_tidalvolume">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-4" [hidden]="package_desc2">
+                        <div class="col-md-3 pr-0">
+                            <!-- <mat-form-field class="example-full-width" appearance="legacy"> -->
+                            <mat-label> ECG monitor<span style="color: rgb(72, 135, 230); "> ( EKG )</span></mat-label>
+                            <!-- <input matInput  placeholder=""  formControlName="pA_Sugar"> -->
+                            <input matInput placeholder="ECG value" formControlName="">
+                        </div>
+                        <div class="col-md-3 pr-0">
+                            <a style="display: flex; flex-direction: row;" id="view" (click)="ecgGraphData1()" [hidden]="viewhid"
+                                mat-icon-button color="primary" matTooltip="View" [matTooltipPosition]="TooltipPosition"
+                                matTooltipClass="tooltip-blue" aria-label="Button that displays a tooltip in various positions">
+                                <mat-icon id="vis">visibility</mat-icon></a>
+                        </div>
+                    </div>
+                                 
+                                      
+
+                </div>
+               
+        </form>
+    </div>     
+</mat-card>

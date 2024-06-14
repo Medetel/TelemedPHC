@@ -1,0 +1,246 @@
+<mat-card>
+    <form>
+        <div class="row">
+            <div class="col-md-5">
+                <!-- <div class="row">            
+            <div class="col-md-9">                
+                <mat-form-field [hideRequiredMarker]="true" class="full-width" appearance="legacy">
+                    <mat-label class="star">Select Patient </mat-label>
+                    <mat-select formControlName="patient_ddl" required (selectionChange)="onChangePatientName($event)">
+                    <mat-option *ngFor="let d of pdata" [value]="d.pr_id">{{d.pr_name}}
+                    </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div> -->
+
+                <div class="row">
+                    <div class="col-md-4" style="text-align: left;">
+                        <button id="startMeeting" mat-raised-button color="primary" (click)="startMeeting()">Start
+                            Meeting</button>
+
+                    </div>
+                    <div class="col-md-4" style="text-align: right;">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label class="star">Specialist Doctor</mat-label>
+                            <mat-select [(ngModel)]="selectedDoctor" name="selectedDoctor">
+                                <mat-option *ngFor="let d of specdoc" [value]="d.spec_doctor"
+                                    matTooltip="{{d.spec_doctor}}">{{d.spec_doctor}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4" style="text-align: right;">
+                       <button mat-raised-button color="accent" [disabled]="!selectedDoctor || !meetingStarted" (click)="send()">Send SMS</button>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-12" style="text-align: center;">
+                        <iframe [src]="urlSafe" width="100%" height="600"
+                            allow="geolocation *; camera *; microphone *; display-capture *;"
+                            allowfullscreen="true"></iframe>
+                    </div>
+                </div>
+
+            </div>
+            <mat-divider [vertical]="true" style="height: auto;"></mat-divider>
+
+            <div class="col-md-5">
+                <b>Patient Info</b>
+                <div class="row">
+                    <div class="col-md-3">Name:</div>
+                    <div class="col-md-3">
+                        <p>{{p_name}}</p>
+                    </div>
+                    <div class="col-md-3">Gender / Age:</div>
+                    <div class="col-md-3">
+                        <p>{{p_gender}}</p>
+                    </div>
+                </div>
+                <!-- <div class="row">
+            <div class="col-md-3">Blood Group:</div>
+            <div class="col-md-3">
+                <p>{{p_blood_group}}</p>
+            </div> 
+            
+            <div class="col-md-3">Marital Status:</div>
+            <div class="col-md-3">
+                <p>{{p_marital_status}}</p>
+            </div> 
+        </div> -->
+
+                <div class="row">
+                    <div class="col-md-3">Phone No:</div>
+                    <div class="col-md-3">
+                        <p>{{p_phone}}</p>
+                    </div>
+
+                    <div class="col-md-3">Email:</div>
+                    <div class="col-md-3">
+                        <p>{{p_email}}</p>
+                    </div>
+                </div>
+                <br>
+                <b>Consultation Details</b>
+                <div class="row">
+                    <div class="col-md-3">Consultation Type:</div>
+                    <div class="col-md-3">
+                        <p>{{cons_type}}</p>
+                    </div>
+
+                    <div class="col-md-3">Date & Time:</div>
+                    <div class="col-md-3">
+                        <p>{{ cons_date_time | date:'dd/MM/yyyy' }} {{ cons_date_time | date:'h:mm a' }} </p>
+                    </div>
+
+                </div>
+
+                <br>
+                <b>Vital Signs</b>
+                <div class="row">
+                    <div class="col-md-4">Spo2(bpm/%):</div>
+                    <div class="col-md-2">
+                        <p>{{oxygen_saturation}}/{{pulse_rate}} </p>
+                    </div>
+                    <div class="col-md-4">BP(mmHg):</div>
+                    <div class="col-md-2">
+                        <p>{{blood_pressure}}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">Temperature(°F):</div>
+                    <div class="col-md-2">
+                        <p>{{temperature}} </p>
+                    </div>
+                    <div class="col-md-4">Glucose(mg/dl):</div>
+                    <div class="col-md-2">
+                        <p>{{glucose}}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">Hemoglobin(g/dl):</div>
+                    <div class="col-md-2">
+                        <p>{{hemoglobin}} </p>
+                    </div>
+                    <div class="col-md-4">ECG(EKG):</div>
+                    <div class="col-md-2">
+                        <p>{{ecg_monitor}}</p>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-4">Total Cholesterol(mg/dl):</div>
+                    <div class="col-md-2">
+                        &nbsp;&nbsp;
+                        <p>{{lp_total_cholesterol}} </p>
+                    </div>
+                    <div class="col-md-4">Triglycerides(mg/dl):</div>
+                    <div class="col-md-2">
+                        <p>{{lp_triglycerides}}</p>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-4">HDL Cholesterol(mg/dl):</div>
+                    <div class="col-md-2">
+                        &nbsp;&nbsp;
+                        <p>{{lp_hdl_cholesterol}} </p>
+                    </div>
+                    <div class="col-md-4">LDL(mg/dl):</div>
+                    <div class="col-md-2">
+                        <p>{{lp_ldl}}</p>
+                    </div>
+                </div>
+
+                <br>
+                <div class="row">
+                    <div class="col-md-4">Height(cm):</div>
+                    <div class="col-md-2">
+                        <p>{{height}} </p>
+                    </div>
+                    <div class="col-md-4">Weight(kg):</div>
+                    <div class="col-md-2">
+                        <p>{{weight}}</p>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-3">BMI(kg/m²):</div>
+                    <div class="col-md-3">
+                        <p>{{ calculateBMI() }}</p>
+                    </div>
+                </div>
+
+                <br>
+                <b>Other Info</b>
+                <div class="row">
+                    <div class="col-md-3">Present Complaints:</div>
+                    <div class="col-md-9">
+                        <ul *ngFor="let cdata of complaints_data">
+                            <li>{{ cdata.cmst_name }}</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">Symptoms:</div>
+                    <div class="col-md-9">
+                        <ul *ngFor="let sdata of symptoms_data">
+                            <li>{{ sdata.smst_name }}</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">Present illness:</div>
+                    <div class="col-md-9">
+                        <p>{{dis_Desc}}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">Any Known Allergy:</div>
+                    <div class="col-md-9">
+                        <ul *ngFor="let adata of allergys_data">
+                            <li>{{ adata.allergy_name }}</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">Past/Current Medical History:</div>
+                    <div class="col-md-9">
+                        <ul *ngFor="let medi of medication_data">
+                            <li>{{ medi.medic_name }}</li>
+                        </ul>
+                    </div>
+                    <!-- <div class="col-md-4">Under BP Medication:</div>
+            <div class="col-md-2">
+            <p>{{under_bp_medication}} </p>
+            </div>
+            <div class="col-md-4">Under Sugar Medication:</div>
+            <div class="col-md-2">
+            <p>{{under_sugar_medication}}</p>
+            </div>            -->
+                </div>
+
+
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <a mat-raised-button color="primary" (click)="endMeeting()">Back</a>
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </form>
+
+</mat-card>

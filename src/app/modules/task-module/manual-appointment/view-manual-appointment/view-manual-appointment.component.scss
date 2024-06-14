@@ -1,0 +1,57 @@
+.cancel,.save {
+    float: right;
+    margin-left: 2%;
+  }
+  
+  //  #cancel{
+  //   margin-left: 310%;
+  //  }
+  #forms_center {
+    position: absolute;
+    left: 20%;
+    right: 20%;
+    box-sizing: border-box;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  
+  //
+  
+  
+  .mat-dialog-title {
+    color: #0e265f;
+  }
+  
+  .mes {
+    width: 40px;
+  }
+  
+  .mes:hover {
+    border: 1px solid gray;
+    box-shadow: 5px 2px gray;
+  }
+  
+  fieldset {
+    // background-color: rgb(202, 229, 236)!important;
+    border-radius: 10px;
+    margin-top: 10px;
+    border: 1px solid black;
+    width: 100%;
+  }
+  
+  legend {
+    background-color: white;
+    width: auto;
+  }
+img{
+    width: 35%;
+    height: 50px;
+    margin-top: -8%;
+    margin-left: 50%;
+}
+
+.gender{
+  margin-left: 60% !important;
+}

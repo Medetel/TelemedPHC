@@ -1,0 +1,17 @@
+<!-- <h1 mat-dialog-title>Error</h1>
+<div mat-dialog-content>
+  <p>{{ data.message }}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCloseClick()">Close</button>
+</div> -->
+<mat-dialog-content class="mat-typography">
+    <div align="center">
+        <mat-icon color="warn" style="width: 200px;">warning</mat-icon>
+        <h2>{{ data.message }}</h2>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+    <button mat-raised-button color="primary" (click)="onCloseClick()">Close</button>
+    <!-- <button mat-raised-button color="warn" mat-dialog-close>No</button> -->
+</mat-dialog-actions>

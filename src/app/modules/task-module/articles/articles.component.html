@@ -1,0 +1,48 @@
+<!-- <mat-card>
+
+    <body>
+        <nav class="accordion arrows">
+            <header class="box">
+                <label for="acc-close" class="box-title">GUIDELINES</label>
+            </header>
+
+            <div class="mt-5" *ngIf="videoData_articles_hide">
+                <section class="box " *ngFor="let v of videoData_articles">
+                    <label class="box-title">
+                        <div class="row">
+                            <div class="col-md-10">
+                                {{v.name}}
+                            </div>
+                            <div class="col-md-2">
+                                <a href="{{v.filePath}}" target="_blank"><button class="btn btn-primary">View
+                                        pdf</button></a>
+                            </div>
+                        </div>
+                    </label>
+                </section>
+            </div>
+            
+            <div class="row pb-3 text-center mt-5" *ngIf="videoData_articles_hide">
+                <div class="col-md-12" *ngIf="videoData_articles.length==0">
+                    <img src="../../../../assets/images/empty_folder.png" width="150" height="150" alt="">
+                    <p style="font-size: 24px;color: #c9c9c9;">No articles found</p>
+                </div>
+            </div>
+        </nav>
+
+    </body>
+</mat-card> -->
+
+<mat-card>
+    <h2 style="background-color: aquamarine;padding: 4px;">GUIDELINES</h2>
+
+    <div class="row customeCard" *ngFor="let v of videoData_articles">
+        <div class="col-md-10">
+            {{v.name}}
+        </div>
+        <div class="col-md-2">
+           <button class="btn-btn-primary"><a href="{{v.filePath}}" target="_blank">View pdf</a></button>
+        </div>
+    </div>
+
+</mat-card>

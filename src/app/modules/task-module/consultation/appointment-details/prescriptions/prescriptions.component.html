@@ -1,0 +1,423 @@
+<mat-card>
+    <mat-card-title>Drug Prescription</mat-card-title>
+    <mat-card-content>
+        <div class="button_add">
+            <form class="form-inline" [formGroup]="prescriptions" [hidden]="issave">
+                <fieldset>
+                    <legend>Drugs</legend>
+                    <div class="row">
+                        <div class="col-md-2 mt-3">
+                            <mat-label style="color:rgb(40, 182, 238); font-size: 17px;">Category:</mat-label>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label class="star">Category</mat-label>
+                                <mat-select formControlName="drg_Category_Id" #typecategory
+                                    (valueChange)="typescategory(typecategory.value)" required>
+                                    <mat-option *ngFor="let c of category" [value]="c.drg_Category_Id">
+                                        {{c.drg_Category}}</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="prescriptions.get('drg_Category_Id').hasError('required')">Category is
+                                    required</mat-error>
+                            </mat-form-field>
+
+                        </div>
+                        <div class="col-md-2 mt-3">
+                            <mat-label style="color:rgb(40, 182, 238); font-size: 17px;">Drugs:</mat-label>
+                        </div>
+                        <div class="col-md-4" *ngIf="prescriptions.get('drg_Category_Id').value !== 47">
+
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Select</mat-label>
+                                <mat-select formControlName="prc_drug_id_FK" (change)="drugchange()" required>
+                                    <mat-option *ngFor="let d of cat"
+                                        [value]="d.prc_drug_id_FK">{{d.prc_Drg_name}}</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="prescriptions.get('prc_drug_id_FK').hasError('required')">Drugs field
+                                    is required</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-4" *ngIf="prescriptions.get('drg_Category_Id').value === 47">
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Other Drug Name</mat-label>
+                                <input matInput formControlName="othersDrugName" required>
+                                <mat-error *ngIf="prescriptions.get('othersDrugName').hasError('required')">Other Drug Name is
+                                    required</mat-error>
+                                <!-- <mat-error *ngIf="prescriptions.get('othersDrugName').hasError('pattern')">Please enter
+                                        valid text</mat-error> -->
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-3 mt-3">
+                            <mat-label style="color:rgb(40, 182, 238); font-size: 15px;">Dosage & Frequency</mat-label>
+                        </div>
+                        <div class="col-md-3">
+                            <!-- <label for="inputPassword2" class="sr-only"></label>
+                            <input type="text" placeholder="Search" class="form-control dosage border border-primary"
+                                formControlName="prc_dosage_qty" placeholder="10"> -->
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Ex: 10</mat-label>
+                                <input matInput placeholder="" maxlength="4" type="number"
+                                    onKeyPress="if(this.value.length==4) return false;" formControlName="prc_dosage_qty"
+                                    >
+                                <!-- <mat-error *ngIf="prescriptions.get('prc_dosage_qty').hasError('required')">Field is
+                                    required</mat-error> -->
+                                <mat-error *ngIf="prescriptions.get('prc_dosage_qty').hasError('pattern')">Please enter
+                                    positive value</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <span class="col-md-2 type">{{drg_type}} </span>
+                        <!-- <p class="col-md-1 tablets">({{drg_Unit}})</p> -->
+
+                        <div class="col-md-4">
+                            <!-- <label for="inputPassword2" class="sr-only"></label> -->
+                            <!-- <input type="text" class="form-control frequency border border-primary" id="inputPassword2"
+                                placeholder="Add Frequency"> -->
+                            <!-- <select id="input" placeholder="Add Frequency" formControlName="prc_drg_frequency_id_FK"
+                                class="form-control frequency border border-primary" (change)="saverange()">
+                                <option value="">Add Frequency...</option>
+                                <option *ngFor="let f of  freues" [value]="f.drg_freq_Id">{{f.drg_frq_name}}</option>
+                            </select> -->
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Add Frequency</mat-label>
+                                <mat-select formControlName="prc_drg_frequency_id_FK" (change)="saverange()" required>
+                                    <mat-option *ngFor="let f of  freues"
+                                        [value]="f.drg_freq_Id">{{f.drg_frq_name}}</mat-option>
+                                </mat-select>
+                                <mat-error
+                                    *ngIf="prescriptions.get('prc_drg_frequency_id_FK').hasError('required')">Frequency
+                                    field is required</mat-error>
+                            </mat-form-field>
+                            <h5>{{drg_frq}}</h5>
+                        </div>
+                        <div class="col-md-3 mt-3">
+                            <mat-label style="color:rgb(40, 182, 238); font-size: 15px;">Intake & Duration</mat-label>
+                        </div>
+                        <div class="col-md-4">
+                            <!-- <select id="input" class="form-control food border border-primary"
+                                formControlName="prc_intake">
+                                <option value="">Select...</option>
+                                <option value="Before Food">Before Food</option>
+                                <option value="After Food">After Food</option>
+                            </select> -->
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Select</mat-label>
+                                <mat-select formControlName="prc_intake" required>
+                                    <!-- <mat-option value="">Select *</mat-option> -->
+                                    <mat-option value="Before Food">Before Food</mat-option>
+                                    <mat-option value="After Food">After Food</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="prescriptions.get('prc_intake').hasError('required')">please select
+                                    field</mat-error>
+
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3">
+                            <!-- <label for="inputPassword2" class="sr-only"></label>
+                            <input type="text" class="form-control duration border border-primary"
+                                formControlName="prc_drug_duration" placeholder="10"> -->
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Ex: 10</mat-label>
+                                <input matInput placeholder="" maxlength="2" type="number"
+                                    onKeyPress="if(this.value.length==2) return false;"
+                                    formControlName="prc_drug_duration" required>
+                                <mat-error *ngIf="prescriptions.get('prc_drug_duration').hasError('required')">Field is
+                                    required</mat-error>
+                                <mat-error *ngIf="prescriptions.get('prc_drug_duration').hasError('pattern')">Please
+                                    enter positive value</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-2">
+                            <!-- <select id="input" class="form-control food1 border border-primary"
+                                formControlName="prc_duration_intermof">
+                                <option value="">Select...</option>
+                                <option value="Days">Days...</option>
+                                <option value="Weeks">Weeks</option>
+                                <option value="Months">Months</option>
+                            </select> -->
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Select</mat-label>
+                                <mat-select formControlName="prc_duration_intermof" required>
+                                    <!-- <mat-option value="">Select *</mat-option> -->
+                                    <mat-option value="Days">Days...</mat-option>
+                                    <mat-option value="Weeks">Weeks</mat-option>
+                                    <mat-option value="Months">Months</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="prescriptions.get('prc_duration_intermof').hasError('required')">Field
+                                    is required</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-3">
+                            <button mat-icon-button color="primary" type="button" (click)="istruc()">
+                                <mat-icon>add</mat-icon>Instructions
+                            </button>
+                        </div>
+
+                        <div class="col-md-9" [hidden]="enable">
+                            <!-- <label for="inputPassword2" class="sr-only"></label>
+                            <input type="text" class="form-control instr border border-primary"
+                                formControlName="prc_intake_instaruction" placeholder="10"> -->
+                            <mat-form-field class="example-full-width" appearance="legacy">
+                                <mat-label>Instructions</mat-label>
+                                <textarea matInput placeholder="" maxlength="500"
+                                    formControlName="prc_intake_instaruction"></textarea>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="col-md-12">
+                    <div align="end">
+                        <button mat-raised-button color="primary" type="button" [disabled]="prescriptions.invalid"
+                            (click)="adddrugs()">Save
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </mat-card-content>
+
+
+    <!--update-->
+    <mat-card-content>
+        <form class="form-inline update" [hidden]="isedit" [formGroup]="prescription">
+            <fieldset>
+                <legend>Drugs</legend>
+                <div class="row">
+                    <div class="col-md-2 mt-3">
+                        <mat-label style="color:rgb(40, 182, 238); font-size: 17px;">Category:</mat-label>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label class="star">Select</mat-label>
+                            <mat-select formControlName="drg_Category_Id" #typecategory
+                                (valueChange)="typescategorys(typecategory.value)">
+                                <mat-option *ngFor="let c of category" [value]="c.drg_Category_Id">
+                                    {{c.drg_Category}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="prescription.get('drg_Category_Id').hasError('required')">Category is
+                                required</mat-error>
+                        </mat-form-field>
+
+                    </div>
+
+                    <div class="col-md-2 mt-3">
+                        <mat-label style="color:rgb(40, 182, 238); font-size: 17px;">Drugs:</mat-label>
+                    </div>
+                    <div class="col-md-4" *ngIf="prescription.get('drg_Category_Id').value !== 47">
+
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Select</mat-label>
+                            <mat-select formControlName="prc_drug_id_FK" (change)="drugchange()" required>
+                                <mat-option *ngFor="let d of cat1"
+                                    [value]="d.prc_drug_id_FK">{{d.prc_Drg_name}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="prescription.get('prc_drug_id_FK').hasError('required')">Drugs field is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-4" *ngIf="prescription.get('drg_Category_Id').value === 47">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Other Drug Name</mat-label>
+                            <input matInput formControlName="othersDrugName" required>
+                            <mat-error *ngIf="prescription.get('othersDrugName').hasError('required')">Other Drug Name is
+                                required</mat-error>
+                                <mat-error *ngIf="prescription.get('othersDrugName').hasError('pattern')">Please enter
+                                    valid text</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-3 mt-3">
+                        <mat-label style="color:rgb(40, 182, 238); font-size: 15px;">Dosage & Frequency</mat-label>
+                    </div>
+                    <div class="col-md-3">
+                        <!-- <label for="inputPassword2" class="sr-only"></label>
+                        <input type="text" placeholder="Search" class="form-control dosage border border-primary"
+                            formControlName="prc_dosage_qty" placeholder="10"> -->
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Ex: 10</mat-label>
+                            <input matInput placeholder="" maxlength="4" type="number"
+                                onKeyPress="if(this.value.length==4) return false;" formControlName="prc_dosage_qty"
+                                >
+                            <!-- <mat-error *ngIf="prescription.get('prc_dosage_qty').hasError('required')">Field is
+                                required</mat-error> -->
+                            <mat-error *ngIf="prescription.get('prc_dosage_qty').hasError('pattern')">Please enter
+                                positive value</mat-error>
+
+                        </mat-form-field>
+                    </div>
+
+                    <span class="col-md-2 type">{{drg_type}} </span>
+                    <!-- <p class="col-md-1 tablets">({{drg_Unit}})</p> -->
+
+                    <div class="col-md-4">
+                        <!-- <label for="inputPassword2" class="sr-only"></label> -->
+                        <!-- <input type="text" class="form-control frequency border border-primary" id="inputPassword2"
+                            placeholder="Add Frequency"> -->
+                        <!-- <select id="input" placeholder="Add Frequency" formControlName="prc_drg_frequency_id_FK"
+                            class="form-control frequency border border-primary" (change)="saverange()">
+                            <option value="">Add Frequency...</option>
+                            <option *ngFor="let f of  freues" [value]="f.drg_freq_Id">{{f.drg_frq_name}}</option>
+                        </select> -->
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Add Frequency</mat-label>
+                            <mat-select formControlName="prc_drg_frequency_id_FK" (change)="saverange()" required>
+                                <mat-option *ngFor="let f of  freues"
+                                    [value]="f.drg_freq_Id">{{f.drg_frq_name}}</mat-option>
+                            </mat-select>
+                            <mat-error
+                                *ngIf="prescription.get('prc_drg_frequency_id_FK').hasError('required')">Frequency field
+                                is required</mat-error>
+                        </mat-form-field>
+                        <h5>{{drg_frq}}</h5>
+                    </div>
+                    <div class="col-md-3 mt-3">
+                        <mat-label style="color:rgb(40, 182, 238); font-size: 15px;">Intake & Duration</mat-label>
+                    </div>
+                    <div class="col-md-4">
+                        <!-- <select id="input" class="form-control food border border-primary"
+                            formControlName="prc_intake">
+                            <option value="">Select...</option>
+                            <option value="Before Food">Before Food</option>
+                            <option value="After Food">After Food</option>
+                        </select> -->
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Select</mat-label>
+                            <mat-select formControlName="prc_intake" required>
+                                <!-- <mat-option value="">Select *</mat-option> -->
+                                <mat-option value="Before Food">Before Food</mat-option>
+                                <mat-option value="After Food">After Food</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="prescription.get('prc_intake').hasError('required')">please select
+                                field</mat-error>
+
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <!-- <label for="inputPassword2" class="sr-only"></label>
+                        <input type="text" class="form-control duration border border-primary"
+                            formControlName="prc_drug_duration" placeholder="10"> -->
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Ex: 10</mat-label>
+                            <input matInput placeholder="" maxlength="2" type="number"
+                                onKeyPress="if(this.value.length==2) return false;" formControlName="prc_drug_duration"
+                                required>
+                            <mat-error *ngIf="prescription.get('prc_drug_duration').hasError('required')">Field is
+                                required</mat-error>
+                            <mat-error *ngIf="prescription.get('prc_drug_duration').hasError('pattern')">Please enter
+                                positive value</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-2">
+                        <!-- <select id="input" class="form-control food1 border border-primary"
+                            formControlName="prc_duration_intermof">
+                            <option value="">Select...</option>
+                            <option value="Days">Days...</option>
+                            <option value="Weeks">Weeks</option>
+                            <option value="Months">Months</option>
+                        </select> -->
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Select</mat-label>
+                            <mat-select formControlName="prc_duration_intermof" required>
+                                <!-- <mat-option value="">Select *</mat-option> -->
+                                <mat-option value="Days">Days...</mat-option>
+                                <mat-option value="Weeks">Weeks</mat-option>
+                                <mat-option value="Months">Months</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="prescription.get('prc_duration_intermof').hasError('required')">Field is
+                                required</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-3">
+                        <button mat-icon-button color="primary" (click)="istruc()">
+                            <mat-icon>add</mat-icon>Instructions
+                        </button>
+                    </div>
+
+                    <div class="col-md-9" [hidden]="enable">
+                        <!-- <label for="inputPassword2" class="sr-only"></label>
+                        <input type="text" class="form-control instr border border-primary"
+                            formControlName="prc_intake_instaruction" placeholder="10"> -->
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Instructions</mat-label>
+                            <textarea matInput placeholder="" maxlength="500"
+                                formControlName="prc_intake_instaruction"></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="col-md-12">
+                <div align="end">
+                    <button mat-raised-button color="primary" [disabled]="prescription.invalid" (click)="updatedrugs()">
+                        Update
+                    </button>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+    <mat-card-content>
+        <div class="button_add">
+            <div class="row">
+                <div class="col-md-12">
+                    <button id="add" mat-raised-button color="warn" (click)="pdf(d)">
+                        Export PDF
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="table-responsive" *ngIf="data?.length > 0">
+                <table [dtOptions]="dtOptions" datatable>
+                    <thead class="thead-dark">
+                        <tr align="center">
+                            <th>SL.NO.</th>
+                            <th>Drugs</th>
+                            <th>Dosage</th>
+                            <th>Duration</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- *ngFor="let d of Data;let i=index" -->
+                        <tr align="center" *ngFor="let d of data;let i=index"
+                            [ngClass]="{'warn': (d.delete_flag==0  && (d.status==1 ||d.status==2 || d.status==3))? false:true,'all':d.status==2 || d.status==3 || d.status==1}">
+                            <td>{{i+1}}</td>
+                            <!-- <td>{{d.prc_Drg_name || d.othersDrugName}}</td> -->
+                            <td>{{ d.drg_Category_Id === 47 ? d.othersDrugName : d.prc_Drg_name }}</td>
+                            <td>{{d.prc_dosage_qty}}</td>
+                            <td>{{d.prc_drug_duration}}&nbsp;{{d.prc_duration_intermof}}</td>
+                            <td>{{d.status_name}}</td>
+                            <td>
+                                <button id="view" (click)="view(d)" [hidden]="viewhid" mat-icon-button color="primary"
+                                    matTooltip="View" [matTooltipPosition]="TooltipPosition"
+                                    matTooltipClass="tooltip-blue"
+                                    aria-label="Button that displays a tooltip in various positions">
+                                    <mat-icon id="vis">visibility</mat-icon>
+                                </button>
+                                <button id="edit" (click)="edit(d)" [hidden]="edithid" mat-icon-button
+                                    [disabled]="(d.delete_flag == 0 && d.status==1 && d.status==2 || d.status==3 || d.status==6)? true:false"
+                                    color="accent" matTooltip="edit" [matTooltipPosition]="TooltipPosition"
+                                    matTooltipClass="tooltip-yellow"
+                                    aria-label="Button that displays a tooltip in various positions">
+                                    <mat-icon id="vis">edit</mat-icon>
+                                </button>
+                                <!-- <button id="delete" (click)="delete(d)" [hidden]="deletehid" mat-icon-button
+                                    [disabled]="(d.delete_flag == 0 && d.status==1 && d.status==2 || d.status==3 || d.status==6)? true:false"
+                                    color="warn" matTooltip="delete" [matTooltipPosition]="TooltipPosition"
+                                    matTooltipClass="tooltip-red"
+                                    aria-label="Button that displays a tooltip in various positions">
+                                    <mat-icon id="vis">delete_outline</mat-icon>
+                                </button> -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

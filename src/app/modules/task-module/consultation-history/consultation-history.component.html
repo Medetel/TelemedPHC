@@ -1,0 +1,79 @@
+<mat-card>
+    <mat-card-title>Consultation History</mat-card-title>
+    <br>
+    <mat-card-content>
+        
+      
+       
+        <div class="container">
+          <div class="row">
+            <div class="table-responsive" *ngIf="data?.length > 0">
+                <table [dtOptions]="dtOptions" datatable
+                    class="example-full-width"class="table table-border ">
+                    <thead class="thead-dark" >
+                        <tr align="center">
+                            <th rowspan="2" colspan="1" >
+                                Sl.No
+                             </th>
+                            <th rowspan="1" colspan="3" >
+                                Consultation Details
+                            </th>
+                            <!-- <th rowspan="2" colspan="1">
+                                Date
+                            </th> -->
+                            <th rowspan="1" colspan="1">
+                               Patient Details
+                            </th>
+                            
+                            <!-- <th rowspan="1" colspan="3">
+                               Consultation Details
+                             </th> -->
+                             <!-- <th rowspan="1" colspan="1">
+                                Doctor Details
+                              </th> -->
+                              <th rowspan="2" colspan="1" >
+                                Status
+                             </th>
+                             <th rowspan="2" colspan="1" >
+                                Action
+                             </th>
+                        </tr>
+                        <tr align="center">
+                            <th>Id</th>
+                            <th >Date</th>
+                            <th>Time</th>
+                            
+                            <th>Name</th>
+                            
+                            <!-- <th>Name</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr align="center" *ngFor="let d of data;let i=index"
+                        [ngClass]="{'warn': (d.delete_flag==0  && (d.status==1 ||d.status==2 || d.status==3))? false:true,'all':d.status==2 || d.status==3 || d.status==1}">
+                            <td> {{i+1}} </td>
+                            <td> {{d.coN_Id}} </td>
+                            <td>{{d.coN_ConsultedDate | date :'dd/MM/YYY'}}</td>
+                            <td>{{d.coN_ConsultedTime}}</td>
+                            <!-- <td>{{d.appt_PatientId_FK}}</td> -->
+                            <td>{{d.coN_P_Name}}</td>
+
+                            
+                            <!-- <td>{{d.coN_DO_Name}}</td> -->
+                            <td>{{d.status_name}}</td>
+                            <td>
+                                <button id="view" (click)="view(d)" [hidden]="viewhid" mat-icon-button color="primary" matTooltip="View"
+                                    [matTooltipPosition]="TooltipPosition" matTooltipClass="tooltip-blue"
+                                    aria-label="Button that displays a tooltip in various positions">
+                                    <mat-icon id="vis">visibility</mat-icon>
+                                </button>
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+          </div>
+        </div>
+    </mat-card-content>
+</mat-card>

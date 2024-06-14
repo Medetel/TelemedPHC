@@ -1,0 +1,62 @@
+  .example-full-width {
+    width: 100%;
+  }
+
+  .form-inline {
+    display:block;
+  }
+  fieldset {
+    border-radius: 10px;
+    margin-top: 10px;
+    border: 1px solid black;
+    width: 100%;
+  }
+
+ 
+
+
+  .example-full-width {
+    width: 100%;
+  }
+  .button_add {
+    box-sizing: border-box;
+    justify-content: right;
+    justify-items: right;
+    padding-bottom: 10px;
+  }
+  #add {
+    float: right;
+    background-color: #3790e9;
+  }
+  .tooltip-red {
+    background: black;
+  }
+  .tooltip-blue {
+    background: black;
+  }
+  .tooltip-yellow {
+    background: black;
+  }
+  #view,
+  #edit,
+  #delete {
+    margin-left: 5px;
+  }
+  .warn {
+    color: red;
+  }
+  .all {
+    color: seagreen;
+  }
+  .mat-tab-group {
+    margin-bottom: 35px;
+    width: 100% !important;
+  }
+.table-responsive{
+  margin-top: 2%;
+  margin-left: 2%;
+}
+
+table{
+  width: 100%;
+}

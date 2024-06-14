@@ -1,0 +1,215 @@
+<mat-card>
+    <mat-card-title>Clinical Notes</mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="complaints">
+            <div class="button_add">
+                <div class="row">
+                   <!--div class="col-md-12">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Complaints</mat-label>
+                        <mat-select formControlName="complaint" multiple>
+                            <mat-select-trigger>
+                                <mat-chip-list>
+                                    <mat-chip *ngFor="let topping of this.complaints.value.complaint" [removable]="true"
+                                        (removed)="onToppingRemoved(topping)">
+                                        {{topping.cmst_Name}}
+                                        <mat-icon matChipRemove>cancel</mat-icon>
+                                    </mat-chip>
+                                </mat-chip-list>
+                            </mat-select-trigger>
+                            <mat-option *ngFor="let c of complaint" [value]="c">{{c.cmst_Name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                   </div>
+                   <div class="col-md-12">
+                       <div align="center">
+                        <button mat-raised-button color="primary">Add</button>
+                       </div>
+                   </div>
+                </div> -->
+                <div class="col-md-12">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Present Complaints</mat-label>
+                        <mat-select formControlName="consult_Complaint_DTL" [(value)]="complaintselected"
+                            [compareWith]="objectComparisonFunctioncomplaint" multiple (selectionChange)="onComplaintsSelectionChange()" required>
+                            <mat-select-trigger>
+                                <mat-chip-list>
+                                    <mat-chip *ngFor="let complaint of complaints.value.consult_Complaint_DTL"
+                                        [removable]="true" (removed)="onToppingRemovedcomplaint(complaint)">
+                                        {{complaint.cmst_Name}}
+                                        <mat-icon matChipRemove>cancel</mat-icon>
+                                    </mat-chip>
+                                </mat-chip-list>
+                            </mat-select-trigger>
+                            <div class="row">
+                                <div class="col-md-6" *ngFor="let c of complaint">
+                                    <mat-option  [value]="c"  [disabled]="isOptionDisabled3(c)">{{c.cmst_Name}}</mat-option>
+                                </div>
+                            </div>
+                        </mat-select>
+                        <mat-error
+                            *ngIf="complaints.get('consult_Complaint_DTL').invalid && complaints.get('consult_Complaint_DTL').touched">Field is
+                            required</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-12">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Symptoms</mat-label>
+                        <mat-select formControlName="consult_Symptoms_DTL" [(value)]="symptomsselected"
+                            [compareWith]="objectComparisonFunctionsymptoms" multiple (selectionChange)="onSymptomsSelectionChange()" required>
+                            <mat-select-trigger>
+                                <mat-chip-list>
+                                    <mat-chip *ngFor="let symptoms of complaints.value.consult_Symptoms_DTL" [removable]="true"
+                                        (removed)="onToppingRemovedsymptoms(symptoms)">
+                                        {{ symptoms.smst_Name }}
+                                        <mat-icon matChipRemove>cancel</mat-icon>
+                                    </mat-chip>
+                                </mat-chip-list>
+                            </mat-select-trigger>
+                            <div class="row">
+                                <div class="col-md-6" *ngFor="let s of symptoms">
+                            <mat-option  [value]="s"  [disabled]="isOptionDisabled2(s)">{{s.smst_Name}}</mat-option>
+                                </div></div>
+                        </mat-select>
+                        <mat-error
+                            *ngIf="complaints.get('consult_Symptoms_DTL').invalid && complaints.get('consult_Symptoms_DTL').touched">Field is
+                            required</mat-error>
+                    </mat-form-field>
+                </div>
+                <!-- <div class="col-md-12">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Present Illness</mat-label>
+                        <mat-select formControlName="consult_Diseases_DTL" [(value)]="diseasesselected"
+                            [compareWith]="objectComparisonFunctionPresentIlleness" multiple  (selectionChange)="onIllnessSelectionChange()">
+                            <mat-select-trigger>
+                                <mat-chip-list>
+                                    <mat-chip *ngFor="let diseases of complaints.value.consult_Diseases_DTL"
+                                        [removable]="true" (removed)="onToppingRemoveddiseases(diseases)">
+                                        {{ diseases.diseases_Name }}
+                                        <mat-icon matChipRemove>cancel</mat-icon>
+                                    </mat-chip>
+                                </mat-chip-list>
+                            </mat-select-trigger>
+                            <div class="row">
+                                <div class="col-md-4" *ngFor="let d of diseases">
+                            <mat-option  [value]="d" [disabled]="isOptionDisabled1(d)">{{d.diseases_Name}}</mat-option>
+                                </div></div>
+                        </mat-select>
+                        
+                    </mat-form-field>
+                </div> -->
+                <div class="col-md-12">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label class="star">Present Illness</mat-label>
+                        <input matInput placeholder="Eg.General" formControlName="dis_Desc" required>
+                        <mat-error *ngIf="complaints.get('dis_Desc').hasError('required')">Present Illness is required</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-12">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Any Known Allergy</mat-label>
+                        <mat-select formControlName="consult_AllergySigns_DTL" [(value)]="allergysignsselected" required
+                            [compareWith]="objectComparisonFunctionallergysigns" multiple (selectionChange)="onAllergySelectionChange()">
+                            <mat-select-trigger>
+                                <mat-chip-list>
+                                    <mat-chip *ngFor="let allergysigns of complaints.value.consult_AllergySigns_DTL"
+                                        [removable]="true" (removed)="onToppingRemovedallergysigns(allergysigns)">
+                                        {{allergysigns.al_Name}}
+                                        <mat-icon matChipRemove>cancel</mat-icon>
+                                    </mat-chip>
+                                </mat-chip-list>
+                            </mat-select-trigger>
+                            <div class="row">
+                                <div class="col-md-4" *ngFor="let a of allergy">
+                                    <mat-option [value]="a" [disabled]="isOptionDisabled(a)">{{a.al_Name}}</mat-option>
+                                </div>
+                            </div>
+                        </mat-select>
+                        <mat-error
+                            *ngIf="complaints.get('consult_AllergySigns_DTL').invalid && complaints.get('consult_AllergySigns_DTL').touched">Field
+                            is
+                            required</mat-error>
+                    </mat-form-field>
+                </div>
+              
+
+                <div class="col-md-12">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Past/Current Medical History</mat-label>
+                        <mat-select formControlName="consult_UnderMedication" [(value)]="medicationsselected"
+                            [compareWith]="objectComparisonFunctionmedications" multiple required (selectionChange)="onMedicationSelectionChange()">
+                            <mat-select-trigger>
+                                <mat-chip-list>
+                                    <mat-chip *ngFor="let topping of complaints.value.consult_UnderMedication" [removable]="true"
+                                        (removed)="onToppingRemovedm(topping)">
+                                        {{ topping.medic_name }}
+                                        <mat-icon matChipRemove>cancel</mat-icon>
+                                    </mat-chip>
+                                </mat-chip-list>
+                            </mat-select-trigger>
+                            <!-- <input type="text" class="p-2" autocomplete="off" matInput placeholder="Search by name..." #multiUserSearch3
+                                (input)="onInputChange3()" /> -->
+                                <div class="row">
+                                    <div class="col-md-4" *ngFor="let m of medication">
+                            <mat-option  [value]="m" [disabled]="isOptionDisabledm(m)">{{m.medic_name}}</mat-option>
+                                </div></div>
+                        </mat-select>
+                        <mat-error
+                            *ngIf="complaints.get('consult_UnderMedication').invalid && complaints.get('consult_UnderMedication').touched">Field
+                            is
+                            required</mat-error>
+                    </mat-form-field>
+                </div>
+                <!-- <div class="col-md-6">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Under Hypertension-medication</mat-label>
+                        <mat-select formControlName="underBPMedication" required>
+                            <mat-option value="Yes">Yes</mat-option>
+                            <mat-option value="No">No</mat-option>
+                        </mat-select>
+                        <mat-error
+                            *ngIf="complaints.get('underBPMedication').invalid && complaints.get('underBPMedication').touched">Field
+                            is
+                            required</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>Under Diabetes-medication</mat-label>
+                        <mat-select formControlName="underSugarMedication" required>
+                            <mat-option value="Yes">Yes</mat-option>
+                            <mat-option value="No">No</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="complaints.get('underSugarMedication').invalid && complaints.get('underSugarMedication').touched">Field
+                            is
+                            required</mat-error>
+                    </mat-form-field>
+                </div> -->
+                <div class="col-md-12">
+                    <div align="end">
+                        <button mat-raised-button color="primary" (click)="saveform()">Update</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </form>
+        <!-- <div class="row" style="margin-top: 20px;">
+            <div class="table-responsive" >
+                <table
+                    class="table table-striped table-bordered table-sm row-border hover">
+                    <thead class="thead-dark">
+                        <tr align="center">
+                            <th>Complaints</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      *ngFor="let d of Data;let i=index"
+                        <tr align="center" >
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div> -->
+    </mat-card-content>
+</mat-card>

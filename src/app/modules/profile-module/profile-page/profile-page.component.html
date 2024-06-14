@@ -1,0 +1,58 @@
+ <mat-card>
+    <mat-card-title>View Profile</mat-card-title>
+    <mat-divider></mat-divider>
+     <!-- <mat-content>  -->
+        <form [formGroup]="user_profile">
+            <!-- <fieldset> -->
+                <!-- <legend></legend> -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group" align="center">
+                            <!-- <img class="images" [src]="image_Url" width="100px" height="100px" alt="image not found"> -->
+                            <img  [src]="image_Url" alt="image not found" width="100px" height="100px" />
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+                   
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>First Name</mat-label>
+                            <input style="color:#228B22;" matInput value="{{firstname}}" formControlName="firstname">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Last Name</mat-label>
+                            <input style="color: #228B22;" matInput value="{{lastname}}" formControlName="lastname">
+                        </mat-form-field>
+                    </div>
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width" appearance="legacy">
+                        <mat-label>DOB</mat-label>
+                        <input style="color: #228B22;" matInput value="{{dob | date:'dd/MM/yyy'}}" formControlName="dob">
+                    </mat-form-field>
+                </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Gender </mat-label>
+                            <input style="color: #228B22;" matInput value="{{gender}}" formControlName="gender">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Email</mat-label>
+                            <input style="color: #228B22;" matInput value="{{email}}" formControlName="email">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Contact No</mat-label>
+                            <input style="color: #228B22;" matInput value="{{contact_no}}" formControlName="contact_no">
+                        </mat-form-field>
+                    </div>
+                    </div>
+            <!-- </fieldset> -->
+        </form>
+   <!-- </mat-content>  -->
+</mat-card> 

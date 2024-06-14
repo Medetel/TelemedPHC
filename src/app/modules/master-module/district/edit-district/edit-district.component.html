@@ -1,0 +1,51 @@
+<h1 mat-dialog-title>Edit District</h1>
+<mat-divider></mat-divider>
+<!-- <div mat-dialog-content> -->
+    <form [formGroup]="district">
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>Country Name</mat-label>
+                    <mat-select formControlName="cntry_id" #selectval (valueChange)="countrychange(selectval.value)">
+                        <mat-option *ngFor="let c of country" [value]="c.cntry_id">{{c.country_name}}</mat-option>
+                    </mat-select>
+                    <!-- <mat-error *ngIf="checkError('cntry_id', 'required')">Country Name is required</mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>State Name</mat-label>
+                    <mat-select formControlName="stat_id">
+                        <mat-option *ngFor="let s of state" [value]="s.stat_id">{{s.state_name}}</mat-option>
+                    </mat-select>
+                    <!-- <mat-error *ngIf="checkError('stat_id', 'required')">State Name is required</mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="legacy">
+                    <mat-label>District Code</mat-label>                   
+                    <input matInput #input formControlName="district_code" maxlength="8">
+                    <!-- <mat-error *ngIf="checkError('district_code', 'required')">District code is required</mat-error>                    -->
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field [hideRequiredMarker]="true" class="example-full-width" appearance="legacy">
+                    <mat-label class="star">District Name</mat-label>
+                    <input matInput maxlength="45" formControlName="district_name" required>
+                    <mat-error *ngIf="checkError('district_name', 'required')">District Name is required</mat-error>
+                    <mat-error *ngIf="district.get('district_name').hasError('alphaCheck')">
+                        Please enter alphabet characters
+                    </mat-error>
+                    <mat-error *ngIf="district.get('district_name').hasError('spaceCheck')">
+                        District Name will not allow white space
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+<!-- </div> -->
+<div mat-dialog-actions align="end">
+    <button id="save" mat-raised-button color="primary" (click)="updateform()" >Update</button>
+    <button mat-dialog-close id="cancel" mat-raised-button
+      color="warn">Close</button>
+</div>
